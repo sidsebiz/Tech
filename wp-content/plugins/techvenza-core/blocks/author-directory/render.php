@@ -43,11 +43,11 @@ $tv_exp_opts = '<option value="">' . esc_html__( 'All expertise', 'techvenza-cor
 foreach ( $tv_exps as $tv_e ) {
 	$tv_exp_opts .= sprintf( '<option value="%1$s"%2$s>%1$s</option>', esc_attr( $tv_e ), selected( $tv_f['exp'], $tv_e, false ) );
 }
-$tv_chips = sprintf( '<a class="filter-chip" href="%s" data-live-link aria-pressed="%s">%s</a>', esc_url( Params::url( array_merge( $tv_keep, array( 'acat' => '' ) ) ) ), $tv_f['acat'] ? 'false' : 'true', esc_html__( 'All categories', 'techvenza-core' ) );
+$tv_chips = sprintf( '<a class="filter-chip" href="%s" data-live-link aria-current="%s">%s</a>', esc_url( Params::url( array_merge( $tv_keep, array( 'acat' => '' ) ) ) ), $tv_f['acat'] ? 'false' : 'true', esc_html__( 'All categories', 'techvenza-core' ) );
 foreach ( $tv_cats as $tv_slug ) {
 	$tv_c = CategoryMeta::get( $tv_slug );
 	if ( $tv_c ) {
-		$tv_chips .= sprintf( '<a class="filter-chip" href="%s" data-live-link aria-pressed="%s"><span class="dot-c" style="--c:%s"></span>%s</a>', esc_url( Params::url( array_merge( $tv_keep, array( 'acat' => $tv_slug ) ) ) ), $tv_f['acat'] === $tv_slug ? 'true' : 'false', esc_attr( $tv_c['color'] ), esc_html( $tv_c['short'] ) );
+		$tv_chips .= sprintf( '<a class="filter-chip" href="%s" data-live-link aria-current="%s"><span class="dot-c" style="--c:%s"></span>%s</a>', esc_url( Params::url( array_merge( $tv_keep, array( 'acat' => $tv_slug ) ) ) ), $tv_f['acat'] === $tv_slug ? 'true' : 'false', esc_attr( $tv_c['color'] ), esc_html( $tv_c['short'] ) );
 	}
 }
 

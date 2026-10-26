@@ -27,7 +27,7 @@ foreach ( $tv_levels as $tv_v => $tv_l ) {
 	if ( $tv_v && ! in_array( $tv_v, $tv_have, true ) ) {
 		continue;
 	}
-	$tv_seg .= sprintf( '<a class="seg-btn" href="%s" data-live-link aria-pressed="%s">%s</a>', esc_url( Params::url( array( 'level' => $tv_v ) ) ), $tv_v === $tv_level ? 'true' : 'false', esc_html( $tv_l ) );
+	$tv_seg .= sprintf( '<a class="seg-btn" href="%s" data-live-link aria-current="%s">%s</a>', esc_url( Params::url( array( 'level' => $tv_v ) ) ), $tv_v === $tv_level ? 'true' : 'false', esc_html( $tv_l ) );
 }
 $tv_cards = '';
 foreach ( $tv_list as $tv_p ) {

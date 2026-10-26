@@ -83,7 +83,7 @@ foreach ( array(
 	'popular' => __( 'Most read', 'techvenza-core' ),
 	'picks'   => __( "Editor's picks", 'techvenza-core' ),
 ) as $tv_k => $tv_l ) {
-	$tv_sorts .= sprintf( '<a href="%s" data-live-link aria-pressed="%s" class="seg-btn">%s</a>', esc_url( Params::url( array_merge( $tv_keep, array( 'sort' => 'latest' === $tv_k ? '' : $tv_k ) ) ) ), $tv_f['sort'] === $tv_k ? 'true' : 'false', esc_html( $tv_l ) );
+	$tv_sorts .= sprintf( '<a href="%s" data-live-link aria-current="%s" class="seg-btn">%s</a>', esc_url( Params::url( array_merge( $tv_keep, array( 'sort' => 'latest' === $tv_k ? '' : $tv_k ) ) ) ), $tv_f['sort'] === $tv_k ? 'true' : 'false', esc_html( $tv_l ) );
 }
 $tv_type_opts = '<option value="">' . esc_html__( 'All formats', 'techvenza-core' ) . '</option>';
 foreach ( $tv_types as $tv_k => $tv_l ) {
@@ -110,12 +110,12 @@ $tv_toolbar = sprintf(
 );
 
 /* Category chips */
-$tv_chips = sprintf( '<a class="filter-chip" href="%s" data-live-link aria-pressed="%s">%s <span class="count">%d</span></a>', esc_url( Params::url( array_merge( $tv_keep, array( 'cat' => '' ) ) ) ), $tv_f['cat'] ? 'false' : 'true', esc_html__( 'All categories', 'techvenza-core' ), (int) wp_count_posts( 'post' )->publish );
+$tv_chips = sprintf( '<a class="filter-chip" href="%s" data-live-link aria-current="%s">%s <span class="count">%d</span></a>', esc_url( Params::url( array_merge( $tv_keep, array( 'cat' => '' ) ) ) ), $tv_f['cat'] ? 'false' : 'true', esc_html__( 'All categories', 'techvenza-core' ), (int) wp_count_posts( 'post' )->publish );
 foreach ( CategoryMeta::all() as $tv_c ) {
 	if ( ! $tv_c['count'] ) {
 		continue;
 	}
-	$tv_chips .= sprintf( '<a class="filter-chip" href="%s" data-live-link aria-pressed="%s"><span class="dot-c" style="--c:%s"></span>%s <span class="count">%d</span></a>', esc_url( Params::url( array_merge( $tv_keep, array( 'cat' => $tv_c['slug'] ) ) ) ), $tv_f['cat'] === $tv_c['slug'] ? 'true' : 'false', esc_attr( $tv_c['color'] ), esc_html( $tv_c['short'] ), $tv_c['count'] );
+	$tv_chips .= sprintf( '<a class="filter-chip" href="%s" data-live-link aria-current="%s"><span class="dot-c" style="--c:%s"></span>%s <span class="count">%d</span></a>', esc_url( Params::url( array_merge( $tv_keep, array( 'cat' => $tv_c['slug'] ) ) ) ), $tv_f['cat'] === $tv_c['slug'] ? 'true' : 'false', esc_attr( $tv_c['color'] ), esc_html( $tv_c['short'] ), $tv_c['count'] );
 }
 /* Topic tags */
 $tv_tags     = get_tags(
@@ -128,7 +128,7 @@ $tv_tags     = get_tags(
 $tv_tag_html = '';
 foreach ( is_array( $tv_tags ) ? $tv_tags : array() as $tv_t ) {
 	$tv_on        = $tv_f['tag'] === $tv_t->slug;
-	$tv_tag_html .= sprintf( '<a class="tag%s" href="%s" data-live-link aria-pressed="%s">#%s</a>', $tv_on ? ' is-active' : '', esc_url( Params::url( array_merge( $tv_keep, array( 'tag' => $tv_on ? '' : $tv_t->slug ) ) ) ), $tv_on ? 'true' : 'false', esc_html( $tv_t->name ) );
+	$tv_tag_html .= sprintf( '<a class="tag%s" href="%s" data-live-link aria-current="%s">#%s</a>', $tv_on ? ' is-active' : '', esc_url( Params::url( array_merge( $tv_keep, array( 'tag' => $tv_on ? '' : $tv_t->slug ) ) ) ), $tv_on ? 'true' : 'false', esc_html( $tv_t->name ) );
 }
 
 /* Results */

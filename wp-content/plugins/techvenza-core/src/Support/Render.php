@@ -191,11 +191,13 @@ final class Render {
 		$date = ( $o['date'] ?? true )
 			? sprintf( ' <span aria-hidden="true">·</span> <time datetime="%s">%s</time>', esc_attr( $a['date'] ), esc_html( self::date( $a['date'] ) ) )
 			: '';
+		$name = ( $o['link'] ?? true )
+			? sprintf( '<a href="%s"><strong>%s</strong></a>', esc_url( $au['url'] ), esc_html( $au['name'] ) )
+			: '<strong>' . esc_html( $au['name'] ) . '</strong>';
 		return sprintf(
-			'<div class="byline">%s<span><a href="%s"><strong>%s</strong></a>%s</span></div>',
+			'<div class="byline">%s<span>%s%s</span></div>',
 			( $o['avatar'] ?? true ) ? self::avatar( $au, 'sm' ) : '',
-			esc_url( $au['url'] ),
-			esc_html( $au['name'] ),
+			$name,
 			$date
 		);
 	}
@@ -276,7 +278,13 @@ final class Render {
 				),
 				self::chip( $a['cat'], false ),
 				$title,
-				self::byline( $a, array( 'avatar' => false ) )
+				self::byline(
+					$a,
+					array(
+						'avatar' => false,
+						'link'   => false,
+					)
+				)
 			);
 		}
 		if ( 'text' === $variant ) {
@@ -308,7 +316,7 @@ final class Render {
 			self::meta_line( $a ),
 			$title,
 			! empty( $o['noExcerpt'] ) ? '' : '<p class="card-excerpt">' . ( $q ? self::hl( $a['excerpt'], $q ) : esc_html( $a['excerpt'] ) ) . '</p>',
-			self::byline( $a )
+			self::byline( $a, array( 'link' => false ) )
 		);
 	}
 

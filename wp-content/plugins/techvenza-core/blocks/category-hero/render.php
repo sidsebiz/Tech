@@ -27,9 +27,9 @@ $tv_trail[] = array( $tv_c['name'], '' );
 $tv_subs   = '';
 $tv_active = sanitize_title( \Techvenza\Core\Blocks\Params::get( 'sub' ) );
 if ( $tv_c['sub'] ) {
-	$tv_subs = sprintf( '<a class="filter-chip" href="%s" aria-pressed="%s">%s</a>', esc_url( $tv_c['url'] . '#latest' ), $tv_active ? 'false' : 'true', esc_html__( 'All', 'techvenza-core' ) );
+	$tv_subs = sprintf( '<a class="filter-chip" href="%s" aria-current="%s">%s</a>', esc_url( $tv_c['url'] . '#latest' ), $tv_active ? 'false' : 'true', esc_html__( 'All', 'techvenza-core' ) );
 	foreach ( $tv_c['sub'] as $tv_s ) {
-		$tv_subs .= sprintf( '<a class="filter-chip" href="%s" aria-pressed="%s">%s</a>', esc_url( add_query_arg( 'sub', $tv_s['slug'], $tv_c['url'] ) . '#latest' ), $tv_active === $tv_s['slug'] ? 'true' : 'false', esc_html( $tv_s['name'] ) );
+		$tv_subs .= sprintf( '<a class="filter-chip" href="%s" aria-current="%s">%s</a>', esc_url( add_query_arg( 'sub', $tv_s['slug'], $tv_c['url'] ) . '#latest' ), $tv_active === $tv_s['slug'] ? 'true' : 'false', esc_html( $tv_s['name'] ) );
 	}
 	$tv_subs = '<div class="chip-scroll mt-6" role="group" aria-label="' . esc_attr__( 'Subcategories', 'techvenza-core' ) . '">' . $tv_subs . '</div>';
 }
