@@ -66,4 +66,12 @@
 			</property>
 		</properties>
 	</rule>
+	<!-- Block render.php files are included inside WP_Block::render(), so their variables are local, not globals. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>*/blocks/*/render.php</exclude-pattern>
+	</rule>
+	<!-- PHPStan generics such as WP_REST_Request<array<string,mixed>> confuse this sniff. -->
+	<rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint">
+		<severity>0</severity>
+	</rule>
 </ruleset>

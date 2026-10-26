@@ -1,0 +1,117 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/split-hero",
+	"title": "Split hero",
+	"category": "techvenza",
+	"icon": "cover-image",
+	"description": "Large headline and buttons beside a numbered steps card (e.g. Become an Author).",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Contributor programme"
+		},
+		"title": {
+			"type": "string",
+			"default": "Share Your Expertise with Techvenza."
+		},
+		"lead": {
+			"type": "string",
+			"default": "Reach readers who build, lead and invest in technology. Work with editors who help you sharpen your thinking and say it clearly."
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Apply to write"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "/apply/"
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "Read the guidelines"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "/editorial-guidelines/"
+		},
+		"caption": {
+			"type": "string",
+			"default": "Publication is always subject to editorial review and approval."
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				"Apply with your expertise",
+				"Get access to the author portal",
+				"Draft and submit articles",
+				"Revise with editor feedback",
+				"Publish after approval"
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "title",
+			"type": "textarea",
+			"label": "Title"
+		},
+		{
+			"key": "lead",
+			"type": "textarea",
+			"label": "Introduction"
+		},
+		{
+			"key": "primaryLabel",
+			"type": "text",
+			"label": "Primary button",
+			"panel": "Buttons"
+		},
+		{
+			"key": "primaryUrl",
+			"type": "url",
+			"label": "Primary link",
+			"panel": "Buttons"
+		},
+		{
+			"key": "secondaryLabel",
+			"type": "text",
+			"label": "Secondary button",
+			"panel": "Buttons"
+		},
+		{
+			"key": "secondaryUrl",
+			"type": "url",
+			"label": "Secondary link",
+			"panel": "Buttons"
+		},
+		{
+			"key": "caption",
+			"type": "text",
+			"label": "Caption"
+		},
+		{
+			"key": "steps",
+			"type": "repeater",
+			"scalar": true,
+			"label": "Steps",
+			"panel": "Steps",
+			"addLabel": "Add step"
+		}
+	]
+}

@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/footer-about",
+	"title": "Footer about",
+	"category": "techvenza",
+	"icon": "info",
+	"description": "Logo, about text and social links (Settings → Header & Footer).",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "text",
+			"type": "textarea",
+			"label": "About text",
+			"help": "Empty = Settings → Header & Footer."
+		}
+	]
+}

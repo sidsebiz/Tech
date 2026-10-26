@@ -3,10 +3,6 @@
  */
 .review-grid.media-layout{grid-template-columns:minmax(0,1fr) 320px;padding:var(--s4)}
 
-.sidebar-sticky{position:sticky;top:calc(var(--header-h) + 24px);display:grid;gap:var(--s5)}
-
-.editor-note{border-left:3px solid var(--amber);padding:var(--s2) 0 var(--s2) var(--s5);font-family:var(--font-serif);font-size:1.1875rem;line-height:1.5;color:var(--ink);max-width:64ch}
-
 /* =====================================================================
    16. APP SHELL (READER DASHBOARD / AUTHOR PORTAL / ADMIN CMS)
    ===================================================================== */

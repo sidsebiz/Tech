@@ -1,0 +1,212 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/feature-items",
+	"title": "Feature items",
+	"category": "techvenza",
+	"icon": "screenoptions",
+	"description": "Icon + title + text items (community, benefits, principles, formats).",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Our contributor community"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Practitioners first. Editors always."
+		},
+		"lead": {
+			"type": "string",
+			"default": "Techvenza pairs people doing the work with editors who help them say it clearly. Every article is reviewed before it is published."
+		},
+		"align": {
+			"type": "string",
+			"default": "center"
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"style": {
+			"type": "string",
+			"default": "plain"
+		},
+		"items": {
+			"type": "array",
+			"default": [
+				{
+					"icon": "users",
+					"title": "Written by practitioners",
+					"text": "Engineers, operators, analysts and leaders sharing what they have learned firsthand.",
+					"soft": "#EFF6FF",
+					"ink": "#1D4ED8"
+				},
+				{
+					"icon": "checkCircle",
+					"title": "Edited for accuracy",
+					"text": "Every submission is reviewed for clarity, sourcing and originality before publication.",
+					"soft": "#ECFDF5",
+					"ink": "#047857"
+				},
+				{
+					"icon": "shield",
+					"title": "Independent by design",
+					"text": "Sponsored content, if any, is always labelled. Editorial decisions are never for sale.",
+					"soft": "#F3F0FF",
+					"ink": "#6D28D9"
+				}
+			]
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading"
+		},
+		{
+			"key": "lead",
+			"type": "textarea",
+			"label": "Introduction"
+		},
+		{
+			"key": "align",
+			"type": "select",
+			"label": "Heading alignment",
+			"options": [
+				{
+					"value": "center",
+					"label": "Centre"
+				},
+				{
+					"value": "left",
+					"label": "Left"
+				}
+			]
+		},
+		{
+			"key": "columns",
+			"type": "number",
+			"label": "Columns",
+			"min": 2,
+			"max": 4
+		},
+		{
+			"key": "style",
+			"type": "select",
+			"label": "Item style",
+			"options": [
+				{
+					"value": "plain",
+					"label": "Icon + text"
+				},
+				{
+					"value": "panel",
+					"label": "Panels with label"
+				}
+			]
+		},
+		{
+			"key": "items",
+			"type": "repeater",
+			"label": "Items",
+			"panel": "Items",
+			"fields": [
+				{
+					"key": "icon",
+					"type": "icon",
+					"label": "Icon"
+				},
+				{
+					"key": "label",
+					"type": "text",
+					"label": "Small label (panel style)"
+				},
+				{
+					"key": "title",
+					"type": "text",
+					"label": "Title"
+				},
+				{
+					"key": "text",
+					"type": "textarea",
+					"label": "Text"
+				},
+				{
+					"key": "soft",
+					"type": "color",
+					"label": "Icon background"
+				},
+				{
+					"key": "ink",
+					"type": "color",
+					"label": "Icon colour"
+				}
+			],
+			"addLabel": "Add item"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,92 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/guides-grid",
+	"title": "Guides grid",
+	"category": "techvenza",
+	"icon": "welcome-learn-more",
+	"description": "How-to guides with level tabs.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "How-to guides"
+		},
+		"count": {
+			"type": "number",
+			"default": 12
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading"
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Maximum guides",
+			"min": 3,
+			"max": 24
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	],
+	"viewScript": "techvenza-live"
+}

@@ -1,0 +1,129 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/process-steps",
+	"title": "Process steps",
+	"category": "techvenza",
+	"icon": "editor-ol",
+	"description": "Numbered process cards.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Process"
+		},
+		"heading": {
+			"type": "string",
+			"default": "How submission works"
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				{
+					"title": "Apply",
+					"text": "Tell us about your expertise and share writing samples."
+				},
+				{
+					"title": "Pitch or draft",
+					"text": "Use the author portal to draft an article or outline a pitch."
+				},
+				{
+					"title": "Editorial review",
+					"text": "An editor reviews for accuracy, clarity, originality and fit."
+				},
+				{
+					"title": "Revise & publish",
+					"text": "Address feedback. Approved articles are scheduled for publication."
+				}
+			]
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading"
+		},
+		{
+			"key": "steps",
+			"type": "repeater",
+			"label": "Steps",
+			"panel": "Steps",
+			"fields": [
+				{
+					"key": "title",
+					"type": "text",
+					"label": "Title"
+				},
+				{
+					"key": "text",
+					"type": "textarea",
+					"label": "Text"
+				}
+			],
+			"addLabel": "Add step"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

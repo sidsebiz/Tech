@@ -1,0 +1,131 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/team-grid",
+	"title": "Team grid",
+	"category": "techvenza",
+	"icon": "groups",
+	"description": "Editorial team members.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Editorial leadership"
+		},
+		"heading": {
+			"type": "string",
+			"default": "The editorial team"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"members": {
+			"type": "array",
+			"default": []
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description"
+		},
+		{
+			"key": "members",
+			"type": "repeater",
+			"label": "Members",
+			"panel": "Members",
+			"fields": [
+				{
+					"key": "name",
+					"type": "text",
+					"label": "Name"
+				},
+				{
+					"key": "role",
+					"type": "text",
+					"label": "Role"
+				},
+				{
+					"key": "photo",
+					"type": "image",
+					"label": "Photo"
+				},
+				{
+					"key": "url",
+					"type": "url",
+					"label": "Profile link"
+				}
+			],
+			"addLabel": "Add member"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

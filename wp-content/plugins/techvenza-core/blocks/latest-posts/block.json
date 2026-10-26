@@ -1,0 +1,184 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/latest-posts",
+	"title": "Latest stories",
+	"category": "techvenza",
+	"icon": "grid-view",
+	"description": "Grid of the newest stories, optionally filtered by category.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Latest"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Fresh from the newsroom"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": "View all stories"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/explore/"
+		},
+		"count": {
+			"type": "number",
+			"default": 6
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"excludeShown": {
+			"type": "boolean",
+			"default": true
+		},
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"variant": {
+			"type": "string",
+			"default": "default"
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow",
+			"panel": "Heading"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkUrl",
+			"type": "url",
+			"label": "Link URL",
+			"panel": "Heading"
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Number of stories",
+			"min": 1,
+			"max": 24
+		},
+		{
+			"key": "columns",
+			"type": "number",
+			"label": "Columns",
+			"min": 1,
+			"max": 4
+		},
+		{
+			"key": "excludeShown",
+			"type": "toggle",
+			"label": "Skip stories already shown above"
+		},
+		{
+			"key": "categories",
+			"type": "categories",
+			"label": "Only these categories"
+		},
+		{
+			"key": "variant",
+			"type": "select",
+			"label": "Card style",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "boxed",
+					"label": "Boxed"
+				},
+				{
+					"value": "row",
+					"label": "Compact rows"
+				}
+			]
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

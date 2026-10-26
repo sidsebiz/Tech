@@ -57,7 +57,7 @@
 
 .prose{--fs:1.125rem;font-size:var(--fs);line-height:1.75;color:#334155}
 
-.prose>*+*{margin-top:1.25em}
+.prose>*+*,:root .prose>*+*{margin-top:1.25em}
 
 .prose h2{font-size:1.65em;line-height:1.2;margin-top:2em;letter-spacing:-.025em}
 

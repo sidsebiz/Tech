@@ -107,7 +107,7 @@ function techvenza_block_styles(): void {
 	[ $article_url, $article_ver ] = techvenza_asset( 'assets/css/article.css' );
 	[ $app_url, $app_ver ]         = techvenza_asset( 'assets/css/app.css' );
 
-	$article_blocks = array( 'techvenza/article-header', 'techvenza/article-layout', 'techvenza/toc', 'techvenza/article-tools', 'techvenza/author-bio', 'core/post-content' );
+	$article_blocks = array( 'techvenza/article-header', 'techvenza/article-figure', 'techvenza/article-layout', 'techvenza/article-end', 'techvenza/toc', 'techvenza/doc-layout', 'techvenza/reading-progress', 'core/post-content' );
 	foreach ( $article_blocks as $block ) {
 		wp_enqueue_block_style(
 			$block,

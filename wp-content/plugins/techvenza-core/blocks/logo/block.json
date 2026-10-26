@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/logo",
+	"title": "Techvenza logo",
+	"category": "techvenza",
+	"icon": "admin-site",
+	"description": "Site logo: uploaded logo from Settings → Brand, or the Techvenza wordmark.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"variant": {
+			"type": "string",
+			"default": "auto"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "variant",
+			"type": "select",
+			"label": "Colour",
+			"options": [
+				{
+					"value": "auto",
+					"label": "Automatic"
+				},
+				{
+					"value": "light",
+					"label": "For light backgrounds"
+				},
+				{
+					"value": "dark",
+					"label": "For dark backgrounds"
+				}
+			]
+		}
+	]
+}

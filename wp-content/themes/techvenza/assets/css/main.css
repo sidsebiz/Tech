@@ -882,7 +882,7 @@ to{background-position:-200% 0}}
 
 .cta-band{position:relative;border-radius:var(--r-xl);padding:clamp(32px,2rem + 3vw,80px);overflow:hidden;background:#FFF7F5;isolation:isolate}
 
-.cta-band::before{content:"";position:absolute;inset:0;z-index:-1;background:
+.cta-band::before,.wp-block-group.is-style-cta-band::before{content:"";position:absolute;inset:0;z-index:-1;background:
   radial-gradient(40% 70% at 95% 10%,rgba(249,115,98,.30),transparent 70%),radial-gradient(40% 60% at 80% 100%,rgba(124,58,237,.22),transparent 70%),radial-gradient(30% 50% at 60% 40%,rgba(245,158,11,.18),transparent 70%)}
 
 .cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--s7);align-items:center}
@@ -1276,7 +1276,7 @@ main:focus{outline:none}
 
 .tv-flow>.alignwide{max-width:var(--container);margin-inline:auto;padding-inline:var(--gutter)}
 
-.tv-flow>*+*{margin-top:1.25em}
+:root .tv-flow>*+*{margin-top:1.25em}
 
 .tv-flow>.tv-block+*{margin-top:0}
 
@@ -1341,3 +1341,97 @@ main:focus{outline:none}
 [dir="rtl"] .toc ol{border-left:0;border-right:1px solid var(--border)}
 
 [dir="rtl"] .sec-link svg,[dir="rtl"] .btn svg.arrow{transform:scaleX(-1)}
+
+/* Shared public components */
+.sidebar-sticky{position:sticky;top:calc(var(--header-h) + 24px);display:grid;gap:var(--s5)}
+
+.editor-note{border-left:3px solid var(--amber);padding:var(--s2) 0 var(--s2) var(--s5);font-family:var(--font-serif);font-size:1.1875rem;line-height:1.5;color:var(--ink);max-width:64ch}
+
+/* Spacing modifiers used by block "spacing" settings */
+.section.tv-pt-0{padding-top:0}
+
+.section.tv-pb-0{padding-bottom:0}
+
+/* Link-based controls (server-rendered filters work without JavaScript) */
+.seg a.seg-btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:999px;font-size:.85rem;font-weight:500;color:var(--text);text-decoration:none}
+
+.seg a.seg-btn:hover{color:var(--ink)}
+
+.seg a.seg-btn[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--sh-1);font-weight:600}
+
+a.filter-chip{text-decoration:none}
+
+.tag.is-active,a.tag[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+.pagination .pg{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:.875rem;font-weight:500;color:var(--ink);text-decoration:none}
+
+.pagination a.pg:hover{border-color:var(--ink)}
+
+.pagination .pg[aria-current="page"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.pagination .pg[aria-disabled="true"],.pagination .pg.dots{opacity:.4}
+
+.pagination .pg svg{width:16px;height:16px}
+
+a.tab{text-decoration:none}
+
+.tab[aria-current="true"]{color:var(--ink);font-weight:600}
+
+.tab[aria-current="true"]::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;border-radius:2px;background:var(--ink)}
+
+/* No-JS fallbacks are hidden once JavaScript runs */
+.tv-js .tv-nojs{display:none!important}
+
+/* In-place updates */
+.tv-live.is-loading [data-live-top],.tv-live.is-loading .grid{opacity:.55;transition:opacity .15s}
+
+.tv-live[aria-busy="true"]{cursor:progress}
+
+/* Logo mark (uploaded logo or SVG) */
+.logo-mark img,.logo img{display:block;height:32px;width:auto}
+
+/* FAQ answers written in the editor may contain paragraphs */
+.faq .ans p+p{margin-top:.75em}
+
+/* Article main column (inner blocks) */
+.tv-article-main>.wp-block-post-content{margin:0}
+
+.tv-article-main>*+*{margin-top:0}
+
+/* Icons placed inline in headings */
+h2.row>svg,h3.row>svg{width:22px;height:22px;flex:none;color:var(--muted)}
+
+/* Display page hero (About) */
+.page-hero.hero{padding:clamp(48px,3rem + 4vw,120px) 0 var(--s8)}
+
+.page-hero.hero h1{margin-top:var(--s6)}
+
+/* Section block body: full container width, prototype rhythm */
+:root .tv-section-body>*+*{margin-top:var(--s5)}
+
+.tv-section-body>.wp-block-columns{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8);align-items:start;margin-bottom:0}
+
+.tv-section-body>.wp-block-columns.are-vertically-aligned-center{align-items:center;gap:var(--s7)}
+
+.tv-section-body>.wp-block-columns>.wp-block-column>*+*{margin-top:var(--s4)}
+
+.tv-section-body>.wp-block-columns>.wp-block-column>.wp-block-group+.wp-block-group{margin-top:var(--s4)}
+
+.tv-section-body ul.wp-block-list,.tv-section-body ol.wp-block-list{padding-left:1.2em;line-height:1.75}
+
+.tv-section-body li+li{margin-top:.5em}
+
+.tv-section-body li::marker{color:var(--violet)}
+
+.tv-section-body .wp-block-heading+.wp-block-list{margin-top:var(--s5)}
+
+.wp-block-group.is-style-panel .eyebrow+p{margin-top:var(--s4);font-size:1.125rem;color:var(--ink)}
+
+.wp-block-group.is-style-cta-band .wp-block-buttons{margin-top:var(--s6)}
+
+@media (max-width:1024px){
+
+.tv-section-body>.wp-block-columns{grid-template-columns:1fr;gap:var(--s6)}}
+
+/* Narrow wrapper inside a container (FAQ, forms) */
+.container>.narrow{max-width:var(--container-narrow);margin-inline:auto}

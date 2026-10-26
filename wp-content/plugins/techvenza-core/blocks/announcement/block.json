@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/announcement",
+	"title": "Announcement strip",
+	"category": "techvenza",
+	"icon": "megaphone",
+	"description": "Compact editorial highlight strip. Uses Settings → Header & Footer by default, with optional scheduling.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"useSettings": {
+			"type": "boolean",
+			"default": true
+		},
+		"pill": {
+			"type": "string",
+			"default": "New"
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "useSettings",
+			"type": "toggle",
+			"label": "Use Settings → Header & Footer",
+			"help": "Switch off to set the text here."
+		},
+		{
+			"key": "pill",
+			"type": "text",
+			"label": "Label",
+			"showIf": {
+				"useSettings": false
+			}
+		},
+		{
+			"key": "text",
+			"type": "text",
+			"label": "Text",
+			"showIf": {
+				"useSettings": false
+			}
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"showIf": {
+				"useSettings": false
+			}
+		},
+		{
+			"key": "linkUrl",
+			"type": "url",
+			"label": "Link URL",
+			"showIf": {
+				"useSettings": false
+			}
+		}
+	]
+}

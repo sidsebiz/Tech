@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/footer-bottom",
+	"title": "Footer bottom bar",
+	"category": "techvenza",
+	"icon": "editor-insertmore",
+	"description": "Copyright with dynamic year, legal links menu and cookie preferences link.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "text",
+			"type": "text",
+			"label": "Copyright text",
+			"help": "Merge tags {year} {site} {company}. Empty = Settings."
+		}
+	]
+}

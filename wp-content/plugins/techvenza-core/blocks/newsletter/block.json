@@ -1,0 +1,126 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/newsletter",
+	"title": "Newsletter sign-up",
+	"category": "techvenza",
+	"icon": "email",
+	"description": "Double opt-in newsletter form (compact or full width).",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"layout": {
+			"type": "string",
+			"default": "full"
+		},
+		"wrap": {
+			"type": "boolean",
+			"default": true
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "The Weekly Brief"
+		},
+		"heading": {
+			"type": "string",
+			"default": "One thoughtful email a week."
+		},
+		"text": {
+			"type": "string",
+			"default": "The most useful stories on AI, software, business and industry — selected by our editors, with no sponsored filler."
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "tight"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "layout",
+			"type": "select",
+			"label": "Layout",
+			"options": [
+				{
+					"value": "full",
+					"label": "Full"
+				},
+				{
+					"value": "compact",
+					"label": "Compact"
+				}
+			]
+		},
+		{
+			"key": "wrap",
+			"type": "toggle",
+			"label": "Wrap in a page section"
+		},
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading"
+		},
+		{
+			"key": "text",
+			"type": "textarea",
+			"label": "Text"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

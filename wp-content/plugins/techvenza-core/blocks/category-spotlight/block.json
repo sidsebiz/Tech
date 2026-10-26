@@ -1,0 +1,180 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/category-spotlight",
+	"title": "Category spotlight",
+	"category": "techvenza",
+	"icon": "format-aside",
+	"description": "Highlights one category in one of four compositions.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"category": {
+			"type": "string",
+			"default": "ai"
+		},
+		"extraCategories": {
+			"type": "array",
+			"default": []
+		},
+		"variant": {
+			"type": "string",
+			"default": "dark"
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": ""
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"quote": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"count": {
+			"type": "number",
+			"default": 4
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "category",
+			"type": "category",
+			"label": "Category"
+		},
+		{
+			"key": "extraCategories",
+			"type": "categories",
+			"label": "Also include"
+		},
+		{
+			"key": "variant",
+			"type": "select",
+			"label": "Layout",
+			"options": [
+				{
+					"value": "dark",
+					"label": "Dark spotlight with list"
+				},
+				{
+					"value": "split",
+					"label": "Split with quote"
+				},
+				{
+					"value": "grid",
+					"label": "Boxed card grid"
+				},
+				{
+					"value": "tint",
+					"label": "Category tint band"
+				}
+			]
+		},
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow",
+			"panel": "Text"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Text"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description",
+			"panel": "Text"
+		},
+		{
+			"key": "quote",
+			"type": "textarea",
+			"label": "Pull quote",
+			"panel": "Text",
+			"showIf": {
+				"variant": "split"
+			}
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"panel": "Text"
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Stories",
+			"min": 2,
+			"max": 6
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

@@ -22,6 +22,22 @@ final class Icons {
 	private static bool $printed = false;
 
 	/**
+	 * Render full inline SVGs instead of sprite references (editor previews).
+	 *
+	 * @var bool
+	 */
+	private static bool $inline = false;
+
+	/**
+	 * Toggle inline mode.
+	 *
+	 * @param bool $on Inline icons.
+	 */
+	public static function use_inline( bool $on ): void {
+		self::$inline = $on;
+	}
+
+	/**
 	 * Icon paths keyed by name.
 	 *
 	 * @return array<string,string>
@@ -139,6 +155,9 @@ final class Icons {
 	public static function svg( string $name, string $class_name = '' ): string {
 		if ( ! isset( self::paths()[ $name ] ) ) {
 			$name = 'info';
+		}
+		if ( self::$inline ) {
+			return self::inline( $name, $class_name );
 		}
 		return sprintf(
 			'<svg%s viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#tv-i-%s"></use></svg>',

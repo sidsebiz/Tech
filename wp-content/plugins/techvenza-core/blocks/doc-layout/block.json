@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/doc-layout",
+	"title": "Document with side navigation",
+	"category": "techvenza",
+	"icon": "media-document",
+	"description": "Legal/guideline layout: side navigation built from the H2 headings inside, optional draft banner.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"draftBanner": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "draftBanner",
+			"type": "toggle",
+			"label": "Show “draft — requires legal review” banner",
+			"help": "Also controlled globally in Settings → Privacy."
+		}
+	],
+	"viewScript": "techvenza-article",
+	"tvInner": {
+		"label": "document content (use H2 headings for sections)",
+		"template": [
+			[
+				"core/heading",
+				{
+					"level": 2,
+					"content": "Section"
+				}
+			],
+			[
+				"core/paragraph",
+				{}
+			]
+		]
+	}
+}

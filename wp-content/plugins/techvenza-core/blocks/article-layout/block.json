@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/article-layout",
+	"title": "Article layout",
+	"category": "techvenza",
+	"icon": "columns",
+	"description": "Three-column reading layout: sticky table of contents, article body and trending rail.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"showToc": {
+			"type": "boolean",
+			"default": true
+		},
+		"showRail": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "showToc",
+			"type": "toggle",
+			"label": "Table of contents"
+		},
+		{
+			"key": "showRail",
+			"type": "toggle",
+			"label": "Trending rail"
+		}
+	],
+	"viewScript": "techvenza-article",
+	"tvInner": {
+		"label": "article body and end matter",
+		"template": [
+			[
+				"core/post-content",
+				{
+					"className": "prose tv-article-body",
+					"layout": {
+						"type": "default"
+					}
+				}
+			],
+			[
+				"techvenza/article-end",
+				{}
+			]
+		]
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

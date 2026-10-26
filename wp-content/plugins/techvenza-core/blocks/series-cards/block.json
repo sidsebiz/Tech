@@ -1,0 +1,158 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/series-cards",
+	"title": "Featured series",
+	"category": "techvenza",
+	"icon": "images-alt2",
+	"description": "Cards for multi-part series (Series taxonomy or manual).",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Featured series"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Read it in order"
+		},
+		"description": {
+			"type": "string",
+			"default": "Multi-part series that build a topic from first principles."
+		},
+		"mode": {
+			"type": "string",
+			"default": "auto"
+		},
+		"items": {
+			"type": "array",
+			"default": []
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description"
+		},
+		{
+			"key": "mode",
+			"type": "select",
+			"label": "Source",
+			"options": [
+				{
+					"value": "auto",
+					"label": "Series taxonomy"
+				},
+				{
+					"value": "manual",
+					"label": "Manual cards"
+				}
+			]
+		},
+		{
+			"key": "items",
+			"type": "repeater",
+			"label": "Cards",
+			"panel": "Cards",
+			"showIf": {
+				"mode": "manual"
+			},
+			"fields": [
+				{
+					"key": "title",
+					"type": "text",
+					"label": "Title"
+				},
+				{
+					"key": "parts",
+					"type": "text",
+					"label": "Parts label"
+				},
+				{
+					"key": "text",
+					"type": "textarea",
+					"label": "Description"
+				},
+				{
+					"key": "category",
+					"type": "category",
+					"label": "Accent category"
+				},
+				{
+					"key": "url",
+					"type": "url",
+					"label": "Link"
+				}
+			],
+			"addLabel": "Add card"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

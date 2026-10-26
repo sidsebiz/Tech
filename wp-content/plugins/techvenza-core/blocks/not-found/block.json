@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/not-found",
+	"title": "404 content",
+	"category": "techvenza",
+	"icon": "warning",
+	"description": "Branded not-found page with search and suggestions.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "This page wandered off."
+		},
+		"text": {
+			"type": "string",
+			"default": "The link may be broken or the page may have moved. Try searching, or head somewhere useful below."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "title",
+			"type": "text",
+			"label": "Title"
+		},
+		{
+			"key": "text",
+			"type": "textarea",
+			"label": "Text"
+		}
+	]
+}

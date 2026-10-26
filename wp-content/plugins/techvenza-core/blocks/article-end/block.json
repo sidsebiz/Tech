@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/article-end",
+	"title": "Article end matter",
+	"category": "techvenza",
+	"icon": "editor-insertmore",
+	"description": "Tags, corrections, disclosures, share row, author bio, more from author and newsletter.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"showNewsletter": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMore": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "showNewsletter",
+			"type": "toggle",
+			"label": "Newsletter"
+		},
+		{
+			"key": "showMore",
+			"type": "toggle",
+			"label": "More from this author"
+		}
+	],
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

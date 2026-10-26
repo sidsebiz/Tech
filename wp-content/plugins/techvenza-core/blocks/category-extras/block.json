@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/category-extras",
+	"title": "Category tags, related & authors",
+	"category": "techvenza",
+	"icon": "tag",
+	"description": "Topic tags, related categories and authors writing in this category.",
+	"textdomain": "techvenza-core",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": []
+}

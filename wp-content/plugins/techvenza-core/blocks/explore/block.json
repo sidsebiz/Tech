@@ -1,0 +1,53 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/explore",
+	"title": "Explore (filterable archive)",
+	"category": "techvenza",
+	"icon": "filter",
+	"description": "Search, category/topic/format filters, sort and pagination. Filters are URL parameters (shareable, crawlable) and update in place.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"perPage": {
+			"type": "number",
+			"default": 9
+		},
+		"showSidebar": {
+			"type": "boolean",
+			"default": true
+		},
+		"showFeatured": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "perPage",
+			"type": "number",
+			"label": "Stories per page",
+			"min": 3,
+			"max": 30
+		},
+		{
+			"key": "showSidebar",
+			"type": "toggle",
+			"label": "Trending + newsletter sidebar"
+		},
+		{
+			"key": "showFeatured",
+			"type": "toggle",
+			"label": "Featured story on page one"
+		}
+	],
+	"viewScript": "techvenza-live"
+}

@@ -1,0 +1,151 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/editors-picks",
+	"title": "Editor's picks",
+	"category": "techvenza",
+	"icon": "awards",
+	"description": "Mosaic of stories flagged as Editor's pick, with optional category filter chips.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Editor's Picks"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Worth your full attention"
+		},
+		"description": {
+			"type": "string",
+			"default": "Selected by our editors for depth, originality and practical value."
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": "All editor's picks"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/editors-picks/"
+		},
+		"count": {
+			"type": "number",
+			"default": 5
+		},
+		"filter": {
+			"type": "boolean",
+			"default": false
+		},
+		"excludeShown": {
+			"type": "boolean",
+			"default": false
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow",
+			"panel": "Heading"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkUrl",
+			"type": "url",
+			"label": "Link URL",
+			"panel": "Heading"
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Stories",
+			"min": 2,
+			"max": 12
+		},
+		{
+			"key": "filter",
+			"type": "toggle",
+			"label": "Category filter chips"
+		},
+		{
+			"key": "excludeShown",
+			"type": "toggle",
+			"label": "Skip stories already shown"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	],
+	"viewScript": "techvenza-live"
+}

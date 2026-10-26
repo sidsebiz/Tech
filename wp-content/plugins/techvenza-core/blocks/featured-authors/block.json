@@ -1,0 +1,132 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/featured-authors",
+	"title": "Featured authors",
+	"category": "techvenza",
+	"icon": "groups",
+	"description": "Row of featured author cards.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Featured authors"
+		},
+		"heading": {
+			"type": "string",
+			"default": "The people behind the analysis"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": "Meet all authors"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/authors/"
+		},
+		"count": {
+			"type": "number",
+			"default": 4
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow",
+			"panel": "Heading"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkUrl",
+			"type": "url",
+			"label": "Link URL",
+			"panel": "Heading"
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Authors",
+			"min": 2,
+			"max": 8
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

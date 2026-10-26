@@ -1,0 +1,195 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/category-tiles",
+	"title": "Category tiles",
+	"category": "techvenza",
+	"icon": "category",
+	"description": "Colourful category tiles with icon and story count.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Explore by category"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Find your field"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": "All categories"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/explore/"
+		},
+		"mode": {
+			"type": "string",
+			"default": "homepage"
+		},
+		"categories": {
+			"type": "array",
+			"default": []
+		},
+		"count": {
+			"type": "number",
+			"default": 8
+		},
+		"countType": {
+			"type": "string",
+			"default": ""
+		},
+		"compact": {
+			"type": "boolean",
+			"default": false
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow",
+			"panel": "Heading"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkUrl",
+			"type": "url",
+			"label": "Link URL",
+			"panel": "Heading"
+		},
+		{
+			"key": "mode",
+			"type": "select",
+			"label": "Categories",
+			"options": [
+				{
+					"value": "homepage",
+					"label": "Those marked “Show on homepage”"
+				},
+				{
+					"value": "all",
+					"label": "All top-level categories"
+				},
+				{
+					"value": "manual",
+					"label": "Choose"
+				}
+			]
+		},
+		{
+			"key": "categories",
+			"type": "categories",
+			"label": "Categories",
+			"showIf": {
+				"mode": "manual"
+			}
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Maximum tiles",
+			"min": 2,
+			"max": 24
+		},
+		{
+			"key": "countType",
+			"type": "select",
+			"label": "Count",
+			"options": [
+				{
+					"value": "",
+					"label": "All stories"
+				},
+				{
+					"value": "guide",
+					"label": "Guides only (links to filtered Explore)"
+				}
+			]
+		},
+		{
+			"key": "compact",
+			"type": "toggle",
+			"label": "Compact tiles (no count)"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}
