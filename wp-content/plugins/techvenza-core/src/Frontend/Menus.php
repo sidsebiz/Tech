@@ -60,9 +60,9 @@ final class Menus {
 		foreach ( $items as $item ) {
 			$by_parent[ (int) $item->menu_item_parent ][] = $item;
 		}
-		$build = static function ( int $parent ) use ( &$build, $by_parent ): array {
+		$build = static function ( int $parent_id ) use ( &$build, $by_parent ): array {
 			$out = array();
-			foreach ( $by_parent[ $parent ] ?? array() as $item ) {
+			foreach ( $by_parent[ $parent_id ] ?? array() as $item ) {
 				$classes = array_filter( (array) $item->classes );
 				$icon    = '';
 				foreach ( $classes as $c ) {

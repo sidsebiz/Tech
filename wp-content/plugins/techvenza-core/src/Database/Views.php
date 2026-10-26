@@ -77,7 +77,7 @@ final class Views {
 			$stale = ( new \WP_Query(
 				array(
 					'post_type'      => 'post',
-					'posts_per_page' => 500,
+					'posts_per_page' => 500, // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page
 					'fields'         => 'ids',
 					'post__not_in'   => $seen ? $seen : array( 0 ),
 					'meta_key'       => $key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key

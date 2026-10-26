@@ -35,11 +35,11 @@ foreach ( array_slice( $tv_cats, 0, (int) $attributes['count'] ) as $tv_c ) {
 				array(
 					'posts_per_page' => 50,
 					'cat'            => $tv_c['id'],
-					'meta_key'       => 'tv_article_type',
-					'meta_value'     => 'guide',
+					'meta_key'       => 'tv_article_type', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+					'meta_value'     => 'guide', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 				)
 			)
-		); // phpcs:ignore WordPress.DB.SlowDBQuery
+		);
 		if ( ! $tv_n ) {
 			continue;
 		}
