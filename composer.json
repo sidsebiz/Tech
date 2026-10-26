@@ -37,7 +37,7 @@
         ],
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
-        "phpstan": "phpstan analyse --memory-limit=1G",
+        "phpstan": "phpstan analyse --memory-limit=3G",
         "test": "phpunit -c phpunit.xml.dist"
     }
 }
