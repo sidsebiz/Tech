@@ -6,6 +6,7 @@
 		"font-weight-notation": null,
 		"declaration-block-no-redundant-longhand-properties": null,
 		"selector-id-pattern": null,
-		"custom-property-pattern": null
+		"custom-property-pattern": null,
+		"no-duplicate-selectors": null
 	}
 }
