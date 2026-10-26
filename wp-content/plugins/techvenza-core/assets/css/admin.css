@@ -1,0 +1,869 @@
+/*!
+ * Techvenza Core — editorial CMS screens in wp-admin.
+ * Scoped to .tv-admin so core admin screens are untouched. Uses the brand tokens of the prototype.
+ */
+.tv-admin {
+	--ink: #0f172a;
+	--text: #334155;
+	--muted: #526077;
+	--border: #e2e8f0;
+	--surface: #fff;
+	--surface-2: #f1f5f9;
+	--blue: #2563eb;
+	--violet: #7c3aed;
+	--teal: #0d9488;
+	--emerald: #059669;
+	--amber: #f59e0b;
+	--coral: #ea580c;
+	--r: 12px;
+	--s: 16px;
+	--soft-blue: #eff6ff;
+	max-width: 1320px;
+	margin: 20px 20px 0 2px;
+	color: var(--text);
+	font-size: 14px;
+}
+
+.tv-admin * {
+	box-sizing: border-box;
+}
+
+.tv-admin svg {
+	width: 18px;
+	height: 18px;
+	flex: none;
+	fill: none;
+	stroke: currentcolor;
+	stroke-width: 1.8;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.tv-admin svg.chart,
+.tv-admin svg[width] {
+	width: 100%;
+	height: auto;
+	stroke: none;
+}
+
+.tv-admin svg[width] {
+	width: auto;
+}
+
+.tv-admin .tva-head {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: var(--s);
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+}
+
+.tv-admin .tva-head h1 {
+	font-size: 26px;
+	line-height: 1.2;
+	font-weight: 700;
+	color: var(--ink);
+	letter-spacing: -0.02em;
+	margin: 4px 0 6px;
+	padding: 0;
+}
+
+.tv-admin .tva-head p {
+	margin: 0;
+	color: var(--muted);
+}
+
+.tv-admin .tva-crumbs {
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.tv-admin .tva-crumbs a {
+	color: var(--muted);
+	text-decoration: none;
+}
+
+.tv-admin .tva-actions {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.tv-admin .button svg {
+	width: 16px;
+	height: 16px;
+	vertical-align: -3px;
+	margin-right: 4px;
+}
+
+.tv-admin .stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 14px;
+}
+
+.tv-admin .stat {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--r);
+	padding: 18px;
+	display: grid;
+	gap: 6px;
+	text-decoration: none;
+	color: inherit;
+}
+
+.tv-admin a.stat:hover {
+	border-color: #94a3b8;
+}
+
+.tv-admin .stat .k {
+	font-size: 12px;
+	color: var(--muted);
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.tv-admin .stat .k i {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--c, var(--blue));
+}
+
+.tv-admin .stat .v {
+	font-size: 28px;
+	font-weight: 700;
+	color: var(--ink);
+	letter-spacing: -0.03em;
+	line-height: 1.1;
+	font-variant-numeric: tabular-nums;
+}
+
+.tv-admin .stat .d {
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.tv-admin .dash-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+	gap: 16px;
+	margin-top: 16px;
+}
+
+.tv-admin .dash-grid.even {
+	grid-template-columns: 1fr 1fr;
+}
+
+.tv-admin .review-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 340px;
+	gap: 16px;
+	align-items: start;
+}
+
+.tv-admin .panel {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--r);
+	padding: 18px;
+	min-width: 0;
+}
+
+.tv-admin .panel + .panel {
+	margin-top: 16px;
+}
+
+.tv-admin .panel-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--ink);
+	margin: 0 0 14px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.tv-admin .badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 22px;
+	padding: 0 9px;
+	border-radius: 999px;
+	font-size: 11px;
+	font-weight: 600;
+	white-space: nowrap;
+	background: #f1f5f9;
+	color: #334155;
+}
+
+.tv-admin .badge::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: currentcolor;
+}
+
+.tv-admin .badge.submitted,
+.tv-admin .badge.pending {
+	background: #eff6ff;
+	color: #1d4ed8;
+}
+
+.tv-admin .badge.in_review {
+	background: #f3f0ff;
+	color: #6d28d9;
+}
+
+.tv-admin .badge.changes_requested,
+.tv-admin .badge.info_requested {
+	background: #fff7ed;
+	color: #c2410c;
+}
+
+.tv-admin .badge.resubmitted {
+	background: #ecfeff;
+	color: #0e7490;
+}
+
+.tv-admin .badge.approved {
+	background: #ecfdf5;
+	color: #047857;
+}
+
+.tv-admin .badge.scheduled {
+	background: #fffbeb;
+	color: #b45309;
+}
+
+.tv-admin .badge.published,
+.tv-admin .badge.active,
+.tv-admin .badge.sent {
+	background: #dcfce7;
+	color: #15803d;
+}
+
+.tv-admin .badge.rejected,
+.tv-admin .badge.suspended {
+	background: #fff1f2;
+	color: #be123c;
+}
+
+.tv-admin .chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 2px 9px;
+	border-radius: 999px;
+	font-size: 11px;
+	font-weight: 600;
+	background: var(--cs, var(--soft-blue));
+	color: var(--ci, #1d4ed8);
+}
+
+.tv-admin .chip::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--c, var(--blue));
+}
+
+.tv-admin .avatar {
+	--sz: 36px;
+	width: var(--sz);
+	height: var(--sz);
+	flex: none;
+	border-radius: 50%;
+	display: inline-grid;
+	place-items: center;
+	font-weight: 600;
+	color: #fff;
+	font-size: calc(var(--sz) * 0.38);
+	background: linear-gradient(135deg, var(--a1, #2563eb), var(--a2, #7c3aed));
+	object-fit: cover;
+}
+
+.tv-admin .avatar.sm {
+	--sz: 28px;
+}
+
+.tv-admin .avatar.lg {
+	--sz: 56px;
+}
+
+.tv-admin .row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.tv-admin .muted {
+	color: var(--muted);
+}
+
+.tv-admin .meta {
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.tv-admin .activity {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.tv-admin .activity li {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 10px;
+	padding: 10px 0;
+	border-top: 1px solid var(--border);
+	margin: 0;
+}
+
+.tv-admin .activity li:first-child {
+	border-top: 0;
+}
+
+.tv-admin .activity .when {
+	display: block;
+	font-size: 11px;
+	color: var(--muted);
+	margin-top: 2px;
+}
+
+.tv-admin .act-ico {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	background: var(--surface-2);
+	color: var(--ink);
+}
+
+.tv-admin .act-ico svg {
+	width: 15px;
+	height: 15px;
+}
+
+.tv-admin .queue {
+	display: grid;
+}
+
+.tv-admin .queue-item {
+	display: grid;
+	grid-template-columns: auto auto 1fr auto;
+	gap: 12px;
+	align-items: center;
+	padding: 14px 16px;
+	border-top: 1px solid var(--border);
+	background: var(--surface);
+}
+
+.tv-admin .queue-item:first-child {
+	border-top: 0;
+}
+
+.tv-admin .queue-item .t {
+	font-weight: 600;
+	color: var(--ink);
+	font-size: 15px;
+	text-decoration: none;
+}
+
+.tv-admin .tabs {
+	display: flex;
+	gap: 2px;
+	border-bottom: 1px solid var(--border);
+	overflow-x: auto;
+	padding: 0 8px;
+	background: var(--surface);
+	border-radius: var(--r) var(--r) 0 0;
+}
+
+.tv-admin .tab {
+	position: relative;
+	padding: 12px 12px;
+	font-weight: 500;
+	color: var(--muted);
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.tv-admin .tab[aria-current="page"] {
+	color: var(--ink);
+	font-weight: 600;
+}
+
+.tv-admin .tab[aria-current="page"]::after {
+	content: "";
+	position: absolute;
+	left: 8px;
+	right: 8px;
+	bottom: -1px;
+	height: 2px;
+	border-radius: 2px;
+	background: var(--ink);
+}
+
+.tv-admin .tab .count {
+	margin-left: 6px;
+	font-size: 11px;
+	background: var(--surface-2);
+	padding: 1px 7px;
+	border-radius: 999px;
+}
+
+.tv-admin .table-wrap {
+	border: 1px solid var(--border);
+	border-radius: var(--r);
+	overflow: hidden;
+	background: var(--surface);
+}
+
+.tv-admin .table-wrap .widefat {
+	border: 0;
+	box-shadow: none;
+}
+
+.tv-admin .bulk {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	padding: 10px 16px;
+	border-bottom: 1px solid var(--border);
+	background: #fafbfc;
+	flex-wrap: wrap;
+}
+
+.tv-admin .kv {
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	gap: 8px 12px;
+	margin: 0;
+}
+
+.tv-admin .kv dt {
+	color: var(--muted);
+}
+
+.tv-admin .kv dd {
+	margin: 0;
+	color: var(--ink);
+	font-weight: 500;
+	word-break: break-word;
+}
+
+.tv-admin .feedback {
+	border-radius: 8px;
+	padding: 12px;
+	background: #fff7ed;
+	border: 1px solid #fed7aa;
+	color: #7c2d12;
+	margin-bottom: 10px;
+}
+
+.tv-admin .feedback .who {
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+
+.tv-admin .feedback p {
+	margin: 0;
+}
+
+.tv-admin .timeline {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.tv-admin .timeline li {
+	position: relative;
+	padding: 0 0 16px 26px;
+	margin: 0;
+}
+
+.tv-admin .timeline li::before {
+	content: "";
+	position: absolute;
+	left: 7px;
+	top: 6px;
+	bottom: -6px;
+	width: 2px;
+	background: var(--border);
+}
+
+.tv-admin .timeline li:last-child::before {
+	display: none;
+}
+
+.tv-admin .timeline li::after {
+	content: "";
+	position: absolute;
+	left: 2px;
+	top: 4px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: #fff;
+	border: 2px solid var(--c, var(--blue));
+}
+
+.tv-admin .timeline .when {
+	font-size: 11px;
+	color: var(--muted);
+}
+
+.tv-admin .checklist {
+	display: grid;
+	gap: 8px;
+}
+
+.tv-admin .preview {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--r);
+	padding: 32px clamp(16px, 4vw, 56px);
+}
+
+.tv-admin .preview h1 {
+	font-size: 30px;
+	line-height: 1.2;
+	color: var(--ink);
+	margin: 12px 0;
+}
+
+.tv-admin .preview .lead {
+	font-size: 17px;
+	color: var(--muted);
+}
+
+.tv-admin .preview .body {
+	font-size: 16px;
+	line-height: 1.7;
+	max-width: 70ch;
+}
+
+.tv-admin .preview .body img {
+	max-width: 100%;
+	height: auto;
+}
+
+.tv-admin .chart text {
+	font: 500 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	fill: #64748b;
+	stroke: none;
+}
+
+.tv-admin .chart .gridline {
+	stroke: #e2e8f0;
+	stroke-width: 1;
+}
+
+.tv-admin .legend {
+	display: flex;
+	gap: 14px;
+	flex-wrap: wrap;
+	font-size: 12px;
+	color: var(--muted);
+	margin-top: 10px;
+}
+
+.tv-admin .legend i {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 3px;
+	margin-right: 6px;
+	vertical-align: -1px;
+}
+
+.tv-admin .hbar {
+	display: grid;
+	gap: 10px;
+}
+
+.tv-admin .hbar-row {
+	display: grid;
+	grid-template-columns: 150px 1fr 64px;
+	gap: 10px;
+	align-items: center;
+	font-size: 12px;
+}
+
+.tv-admin .hbar-row .track {
+	height: 10px;
+	border-radius: 5px;
+	background: var(--surface-2);
+	overflow: hidden;
+}
+
+.tv-admin .hbar-row .track span {
+	display: block;
+	height: 100%;
+	border-radius: 5px;
+	background: var(--c, var(--blue));
+}
+
+.tv-admin .hbar-row b {
+	text-align: right;
+	color: var(--ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.tv-admin .empty {
+	text-align: center;
+	padding: 40px 16px;
+	display: grid;
+	justify-items: center;
+	gap: 8px;
+}
+
+.tv-admin .empty .ico {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	background: var(--surface-2);
+	color: var(--muted);
+}
+
+.tv-admin .empty h3 {
+	margin: 0;
+	color: var(--ink);
+}
+
+.tv-admin .empty p {
+	margin: 0;
+	color: var(--muted);
+}
+
+/* Calendar */
+.tv-admin .cal {
+	display: grid;
+	grid-template-columns: repeat(7, minmax(0, 1fr));
+	border: 1px solid var(--border);
+	border-radius: var(--r);
+	overflow: hidden;
+	background: var(--border);
+	gap: 1px;
+}
+
+.tv-admin .cal .dow {
+	background: #fafbfc;
+	padding: 8px 10px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--muted);
+}
+
+.tv-admin .cal .day {
+	background: var(--surface);
+	min-height: 118px;
+	padding: 6px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+
+.tv-admin .cal .day.out {
+	background: #fafbfc;
+}
+
+.tv-admin .cal .day.out .dn {
+	color: #64748b;
+	font-weight: 400;
+}
+
+.tv-admin .cal .day.today .dn {
+	background: var(--ink);
+	color: #fff;
+}
+
+.tv-admin .cal .day.drop {
+	background: #eff6ff;
+	outline: 2px dashed var(--blue);
+	outline-offset: -3px;
+}
+
+.tv-admin .cal .dn {
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--ink);
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+}
+
+.tv-admin .cal-item {
+	display: block;
+	width: 100%;
+	text-align: left;
+	font-size: 11px;
+	line-height: 1.3;
+	padding: 4px 6px;
+	border-radius: 5px;
+	background: var(--cs, #eff6ff);
+	color: var(--ci, #1d4ed8);
+	font-weight: 600;
+	border: 0;
+	border-left: 3px solid var(--c, var(--blue));
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.tv-admin .cal-item[draggable="true"] {
+	cursor: grab;
+}
+
+.tv-admin .cal-item.published {
+	background: #f1f5f9;
+	color: #334155;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.tv-admin .cal-item:focus-visible {
+	outline: 2px solid var(--ink);
+	outline-offset: 1px;
+}
+
+.tv-admin .cal-legend {
+	display: flex;
+	gap: 14px;
+	flex-wrap: wrap;
+	font-size: 12px;
+	color: var(--muted);
+	margin: 10px 0 0;
+}
+
+/* Roles matrix */
+.tv-admin .matrix th,
+.tv-admin .matrix td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.tv-admin .matrix th:first-child,
+.tv-admin .matrix td:first-child {
+	text-align: left;
+}
+
+.tv-admin .matrix code {
+	font-size: 11px;
+}
+
+.tv-admin .sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@media (max-width: 960px) {
+
+	.tv-admin .dash-grid,
+	.tv-admin .dash-grid.even,
+	.tv-admin .review-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.tv-admin .queue-item {
+		grid-template-columns: auto 1fr;
+	}
+
+	.tv-admin .cal .day {
+		min-height: 76px;
+	}
+
+	.tv-admin .hbar-row {
+		grid-template-columns: 100px 1fr 48px;
+	}
+}
+
+/* Analytics & authors */
+.tv-admin .delta {
+	font-weight: 600;
+	font-size: 12px;
+}
+
+.tv-admin .delta.up {
+	color: #047857;
+}
+
+.tv-admin .delta.down {
+	color: #b91c1c;
+}
+
+.tv-admin td.num,
+.tv-admin th.num {
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+.tv-admin .button.tva-danger {
+	color: #b91c1c;
+	border-color: #fca5a5;
+}
+
+.tv-admin .button.tva-danger:hover,
+.tv-admin .button.tva-danger:focus {
+	color: #fff;
+	background: #b91c1c;
+	border-color: #b91c1c;
+}
+
+.tv-admin .cal .day.drop-over {
+	background: #dbeafe;
+}
+
+.tv-admin .cal-item.saving {
+	opacity: 0.5;
+}
+
+.wp-list-table .column-title {
+	width: 30%;
+}
+
+.wp-list-table .column-tv_status {
+	width: 150px;
+}
+
+.wp-list-table .column-taxonomy-tv_series {
+	width: 90px;
+}
+
+.wp-list-table .column-tv_editor {
+	width: 120px;
+}
+
+.wp-list-table .column-tv_views {
+	width: 70px;
+	text-align: right;
+}
