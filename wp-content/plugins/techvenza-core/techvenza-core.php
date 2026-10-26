@@ -48,4 +48,4 @@ spl_autoload_register(
 register_activation_hook( __FILE__, array( \Techvenza\Core\Plugin::class, 'activate' ) );
 register_deactivation_hook( __FILE__, array( \Techvenza\Core\Plugin::class, 'deactivate' ) );
 
-add_action( 'plugins_loaded', array( \Techvenza\Core\Plugin::class, 'instance' ) );
+add_action( 'plugins_loaded', array( \Techvenza\Core\Plugin::class, 'boot_plugin' ) );

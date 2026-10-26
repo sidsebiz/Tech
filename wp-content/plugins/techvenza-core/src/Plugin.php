@@ -61,6 +61,13 @@ final class Plugin {
 	);
 
 	/**
+	 * Hook callback for plugins_loaded (actions must not return a value).
+	 */
+	public static function boot_plugin(): void {
+		self::instance();
+	}
+
+	/**
 	 * Get (and boot) the plugin.
 	 */
 	public static function instance(): Plugin {
