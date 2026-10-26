@@ -75,7 +75,7 @@ test( 'article page has table of contents and reading tools', async ( { page } )
 	await page.goto( '/the-agentic-enterprise/' );
 	await dismissConsent( page );
 	await expect( page.locator( '.toc a' ).first() ).toBeVisible();
-	await page.getByRole( 'button', { name: 'Increase text size' } ).click();
+	await page.getByRole( 'button', { name: /Increase text size/ } ).click();
 	await page.getByRole( 'button', { name: 'Dark reading theme' } ).click();
 	await expect( page.locator( '.tv-article' ) ).toHaveClass( /reading-dark/ );
 } );
