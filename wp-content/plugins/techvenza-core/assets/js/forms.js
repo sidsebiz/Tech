@@ -141,7 +141,27 @@
 		return out;
 	}
 
+	/**
+	 * Error banner for a form (inside it, or in its card/panel).
+	 *
+	 * @param {HTMLFormElement} form Form.
+	 */
+	function errorNote( form ) {
+		for ( const sel of [ '[data-form-box]', '.panel', '.auth-card' ] ) {
+			const box = form.closest( sel );
+			const note = box && $( '[data-form-error]', box );
+			if ( note ) {
+				return note;
+			}
+		}
+		return null;
+	}
+
 	async function submit( form ) {
+		const note0 = errorNote( form );
+		if ( note0 ) {
+			note0.hidden = true;
+		}
 		const btn = $( '[type=submit]', form );
 		const label = btn ? btn.innerHTML : '';
 		if ( btn ) {
@@ -149,15 +169,9 @@
 			btn.setAttribute( 'aria-busy', 'true' );
 		}
 		try {
-			if (
-				window.turnstile &&
-				form.querySelector( '.cf-turnstile' ) &&
-				! form.querySelector( '[name="cf-turnstile-response"]' )
-			) {
-				throw new Error( t.captcha || t.error );
-			}
+			await recaptchaToken( form );
 			const data = await tv.api( form.dataset.endpoint, {
-				method: 'POST',
+				method: form.dataset.method || 'POST',
 				body: serialize( form ),
 			} );
 			if ( data.redirect ) {
@@ -179,6 +193,8 @@
 			}
 			if ( data.message ) {
 				tv.toast( data.message, 'ok' );
+			} else if ( ! data.html ) {
+				tv.toast( t.savedOk || 'Saved.', 'ok' );
 			}
 			form.dispatchEvent(
 				new CustomEvent( 'techvenza:submitted', {
@@ -207,7 +223,7 @@
 					f.focus();
 				}
 			}
-			const note = $( '[data-form-error]', form );
+			const note = errorNote( form );
 			if ( note ) {
 				note.hidden = false;
 				note.querySelector( 'span' ).textContent = e.message;
@@ -222,6 +238,30 @@
 		}
 	}
 
+	/**
+	 * reCAPTCHA v3: fetch a fresh token into the hidden field right before submitting.
+	 *
+	 * @param {HTMLFormElement} form Form.
+	 */
+	function recaptchaToken( form ) {
+		const input = $( '[data-recaptcha]', form );
+		if ( ! input || ! window.grecaptcha ) {
+			return Promise.resolve();
+		}
+		return new Promise( ( resolve ) => {
+			window.grecaptcha.ready( () => {
+				window.grecaptcha
+					.execute( input.dataset.recaptcha, {
+						action: input.dataset.action || 'submit',
+					} )
+					.then( ( token ) => {
+						input.value = token;
+						resolve();
+					}, resolve );
+			} );
+		} );
+	}
+
 	document.addEventListener( 'submit', ( e ) => {
 		const form = e.target.closest( 'form[data-tv-form]' );
 		if ( ! form ) {
@@ -234,6 +274,12 @@
 		if ( form.dataset.endpoint ) {
 			e.preventDefault();
 			submit( form );
+		} else if ( $( '[data-recaptcha]', form ) && ! form.dataset.tvReady ) {
+			e.preventDefault();
+			recaptchaToken( form ).then( () => {
+				form.dataset.tvReady = '1';
+				form.submit();
+			} );
 		}
 	} );
 

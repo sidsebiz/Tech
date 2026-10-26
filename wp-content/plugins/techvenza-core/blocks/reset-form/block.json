@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/reset-form",
+	"title": "Reset password form",
+	"category": "techvenza",
+	"icon": "unlock",
+	"description": "Sets a new password from a reset link (handles expired links).",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"sideTitle": {
+			"type": "string",
+			"default": "Choose a strong new password."
+		},
+		"sideText": {
+			"type": "string",
+			"default": "Use a password manager if you can — and turn on passkeys when your device supports them."
+		},
+		"heading": {
+			"type": "string",
+			"default": "Set a new password"
+		},
+		"intro": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Content"
+		},
+		{
+			"key": "intro",
+			"type": "textarea",
+			"label": "Intro",
+			"panel": "Content"
+		},
+		{
+			"key": "sideTitle",
+			"type": "text",
+			"label": "Side panel title",
+			"panel": "Side panel"
+		},
+		{
+			"key": "sideText",
+			"type": "textarea",
+			"label": "Side panel text",
+			"panel": "Side panel"
+		}
+	],
+	"viewScript": "techvenza-forms"
+}

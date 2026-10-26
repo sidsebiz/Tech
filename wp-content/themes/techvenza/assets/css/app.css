@@ -427,3 +427,25 @@ body.app-mode .site-header,body.app-mode .site-footer,body.app-mode .demo-fab{di
 
   .dt.cards td.actions-cell::before{display:none}
 }
+
+/* =====================================================================
+   WordPress integration (server-rendered app views)
+   ===================================================================== */
+.feedback .who svg{width:16px;height:16px;flex:none}
+
+.dt th a.th-sort{display:inline-flex;align-items:center;gap:4px;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;text-decoration:none}
+
+.dt th a.th-sort svg{width:12px;height:12px;opacity:.5;transition:transform var(--dur)}
+
+.dt th[aria-sort="ascending"] a.th-sort svg{opacity:1;color:var(--ink);transform:rotate(180deg)}
+
+.dt th[aria-sort="descending"] a.th-sort svg{opacity:1;color:var(--ink)}
+
+.tv-app .app{min-height:100vh}
+
+.admin-bar .tv-app .sidebar{top:var(--admin-bar,32px);height:calc(100vh - var(--admin-bar,32px))}
+
+.notif .act-ico svg,.activity .act-ico svg{width:16px;height:16px}
+
+/* App canvas is slightly darker than the page: keep secondary text at 4.5:1 */
+.app-content{--muted:#536075}

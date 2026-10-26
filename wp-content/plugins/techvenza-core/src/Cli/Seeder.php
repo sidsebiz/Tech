@@ -70,6 +70,13 @@ final class Seeder {
 	 */
 	public array $credentials = array();
 
+	/**
+	 * Fixed password for demo accounts (tests only; empty = random per account).
+	 *
+	 * @var string
+	 */
+	private string $demo_password = '';
+
 
 	/**
 	 * Constructor.
@@ -94,10 +101,11 @@ final class Seeder {
 	/**
 	 * Run everything.
 	 *
-	 * @param array<string,bool> $opts skip-images.
+	 * @param array<string,bool|string> $opts skip-images, demo-password.
 	 */
 	public function run( array $opts = array() ): void {
-		Notifier::$muted = true;
+		$this->demo_password = (string) ( $opts['demo-password'] ?? '' );
+		Notifier::$muted     = true;
 		Schema::install();
 		Roles::install();
 		$this->settings();
@@ -241,7 +249,7 @@ final class Seeder {
 	private function user( string $login, string $email, string $name, string $role, array $meta = array(), string $bio = '', bool $remember = false ): int {
 		$existing = get_user_by( 'login', $login );
 		$parts    = explode( ' ', $name, 2 );
-		$password = wp_generate_password( 20, true, false );
+		$password = '' !== $this->demo_password ? $this->demo_password : wp_generate_password( 20, true, false );
 		$args     = array(
 			'user_login'   => $login,
 			'user_email'   => $email,

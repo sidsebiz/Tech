@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/login-form",
+	"title": "Login form",
+	"category": "techvenza",
+	"icon": "lock",
+	"description": "Branded login with rate limiting, captcha and optional Google sign-in.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"sideTitle": {
+			"type": "string",
+			"default": "Your reading list, topics and drafts in one place."
+		},
+		"sideText": {
+			"type": "string",
+			"default": "Sign in to save stories, follow topics and — for authors — manage submissions."
+		},
+		"heading": {
+			"type": "string",
+			"default": "Welcome back"
+		},
+		"intro": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Content"
+		},
+		{
+			"key": "intro",
+			"type": "textarea",
+			"label": "Intro",
+			"panel": "Content"
+		},
+		{
+			"key": "sideTitle",
+			"type": "text",
+			"label": "Side panel title",
+			"panel": "Side panel"
+		},
+		{
+			"key": "sideText",
+			"type": "textarea",
+			"label": "Side panel text",
+			"panel": "Side panel"
+		}
+	],
+	"viewScript": "techvenza-forms"
+}

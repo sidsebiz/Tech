@@ -113,7 +113,7 @@ jobs:
       - if: steps.gate.outputs.ok == 'true'
         name: Seed demo content
         run: |
-          npx wp-env run cli wp techvenza seed --skip-images
+          npx wp-env run cli wp techvenza seed --skip-images --demo-password=e2e-Techvenza-2026
           npx wp-env run cli wp rewrite structure '/%postname%/' --hard
       - if: steps.gate.outputs.ok == 'true'
         run: npm run test:e2e
@@ -148,7 +148,7 @@ jobs:
         run: npx wp-env start
       - if: steps.gate.outputs.ok == 'true'
         run: |
-          npx wp-env run cli wp techvenza seed --skip-images
+          npx wp-env run cli wp techvenza seed --skip-images --demo-password=e2e-Techvenza-2026
           npx wp-env run cli wp rewrite structure '/%postname%/' --hard
       - if: steps.gate.outputs.ok == 'true'
         run: npm run lighthouse

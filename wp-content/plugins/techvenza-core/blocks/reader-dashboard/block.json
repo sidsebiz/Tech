@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/reader-dashboard",
+	"title": "Reader dashboard",
+	"category": "techvenza",
+	"icon": "dashboard",
+	"description": "Private reader area: saved, history, topics, newsletter preferences, profile.",
+	"textdomain": "techvenza-core",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [],
+	"viewScript": "techvenza-portal",
+	"tvPreview": "placeholder",
+	"tvHint": "Only visible to signed-in readers. Assign the “App screen” template to this page."
+}

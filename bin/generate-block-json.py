@@ -187,10 +187,15 @@ F('apply-form','Author application form','Contributor application with validatio
 F('contact-form','Contact form','Inquiry form routed by type to the emails in Settings → Forms & Spam.',{'showAside':B(True)},[{'key':'showAside','type':'toggle','label':'Side information panels'}],'email-alt')
 F('newsletter-signup','Newsletter sign-up page','Full sign-up with topic and frequency choice, consent and double opt-in.',{'eyebrow':S('The Weekly Brief'),'title':S('The week in technology, edited.'),'lead':S("Every Thursday: the stories worth your time, a short editor's note, and one deep dive to save for the weekend. No sponsored filler.")},
   [{'key':'eyebrow','type':'text','label':'Eyebrow'},{'key':'title','type':'text','label':'Title'},{'key':'lead','type':'textarea','label':'Introduction'}],'email')
-F('login-form','Login form','Branded login with rate limiting, captcha and optional Google sign-in.',{},[],'lock')
-F('register-form','Registration form','Reader registration with email verification.',{},[],'id')
-F('forgot-form','Forgot password form','Requests a password reset email.',{},[],'unlock')
-F('reset-form','Reset password form','Sets a new password from a reset link (handles expired links).',{},[],'unlock')
+def AUTH(side_title, side_text, heading, intro):
+    a = {'sideTitle':S(side_title),'sideText':S(side_text),'heading':S(heading),'intro':S(intro)}
+    c = [{'key':'heading','type':'text','label':'Heading','panel':'Content'},{'key':'intro','type':'textarea','label':'Intro','panel':'Content'},
+         {'key':'sideTitle','type':'text','label':'Side panel title','panel':'Side panel'},{'key':'sideText','type':'textarea','label':'Side panel text','panel':'Side panel'}]
+    return a, c
+F('login-form','Login form','Branded login with rate limiting, captcha and optional Google sign-in.',*AUTH('Your reading list, topics and drafts in one place.','Sign in to save stories, follow topics and — for authors — manage submissions.','Welcome back',''),'lock')
+F('register-form','Registration form','Reader registration with email verification.',*AUTH('Read smarter. Follow what matters.','A free account lets you save stories, follow topics and apply to become a contributor.','Create your account',''),'id')
+F('forgot-form','Forgot password form','Requests a password reset email.',*AUTH('Locked out? It happens.','Enter your email and we will send a secure link to reset your password.','Forgot your password?','Enter the email you use for Techvenza.'),'unlock')
+F('reset-form','Reset password form','Sets a new password from a reset link (handles expired links).',*AUTH('Choose a strong new password.','Use a password manager if you can — and turn on passkeys when your device supports them.','Set a new password',''),'unlock')
 blk('reader-dashboard','Reader dashboard','Private reader area: saved, history, topics, newsletter preferences, profile.',{},[],'dashboard',script='techvenza-portal',surface=False,extra={'tvPreview':'placeholder','tvHint':'Only visible to signed-in readers. Assign the “App screen” template to this page.'})
 blk('author-portal','Author portal','Contributor workspace: dashboard, articles, submissions, profile, analytics, notifications, settings.',{},[],'edit-page',script='techvenza-portal',surface=False,extra={'tvPreview':'placeholder','tvHint':'Only visible to authors and editors. Assign the “App screen” template to this page.'})
 
