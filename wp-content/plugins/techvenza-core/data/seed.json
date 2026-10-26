@@ -1,0 +1,1778 @@
+{
+ "version": 1,
+ "source": "prototype/index.html",
+ "images": {
+  "aiAbstract": "1677442136019-21780ecad995",
+  "circuit": "1518770660439-4636190af475",
+  "code": "1555949963-aa79dcee981c",
+  "office": "1504384308090-c894fdcc538d",
+  "robotArm": "1581091226825-a6a2a5aee158",
+  "network": "1451187580459-43490279c0fa",
+  "analytics": "1460925895917-afdab827c52f",
+  "cyber": "1550751827-4bd374c3f58b",
+  "servers": "1544197150-b99a580bb7a8",
+  "team": "1522071820081-009f0129c71c",
+  "robot": "1485827404703-89b55fcc595e",
+  "card": "1563986768609-322da13575f3",
+  "health": "1576091160550-2173dba999ef",
+  "laptop": "1531297484001-80022131f5a1",
+  "devDesk": "1498050108023-c5249f4df085",
+  "startup": "1553877522-43269d4ea984",
+  "factory": "1565043666747-69f6646db940",
+  "welding": "1504917595217-d4dc5ebe6122",
+  "solar": "1473341304170-971dccb5ac1e",
+  "meeting": "1517245386807-bb43f82c33c4",
+  "chip": "1591799264318-7e6ef8ddb7ea",
+  "vr": "1593508512255-86ab42a8e620",
+  "whiteboard": "1531403009284-440f080d1e12",
+  "city": "1480714378408-67cf0d13bc1b"
+ },
+ "categories": [
+  {
+   "slug": "ai",
+   "name": "Artificial Intelligence",
+   "short": "AI",
+   "color": "#7C3AED",
+   "ink": "#6D28D9",
+   "soft": "#F3F0FF",
+   "icon": "sparkle",
+   "intro": "Machine learning, generative AI and AI agents — what actually works in production, how to evaluate it, and what it means for teams and strategy.",
+   "sub": [
+    "Generative AI",
+    "AI Agents",
+    "Machine Learning",
+    "LLM Ops",
+    "Responsible AI"
+   ],
+   "watch": "Expect the conversation to shift from model capability to operational reliability: evaluation, cost control, and governance are where teams are now investing."
+  },
+  {
+   "slug": "business",
+   "name": "Business & Leadership",
+   "short": "Business",
+   "color": "#0D9488",
+   "ink": "#0F766E",
+   "soft": "#F0FDFA",
+   "icon": "briefcase",
+   "intro": "Strategy, management and leadership for people running technology-driven organisations.",
+   "sub": [
+    "Leadership",
+    "Strategy",
+    "Operations",
+    "Management"
+   ],
+   "watch": "The leaders who stand out are the ones turning uncertainty into an explicit operating rhythm rather than waiting for clarity that never arrives."
+  },
+  {
+   "slug": "technology",
+   "name": "Technology & Innovation",
+   "short": "Technology",
+   "color": "#2563EB",
+   "ink": "#1D4ED8",
+   "soft": "#EFF6FF",
+   "icon": "zap",
+   "intro": "Emerging platforms, hardware and the innovations moving from labs into everyday products.",
+   "sub": [
+    "Emerging Tech",
+    "Hardware",
+    "Spatial Computing",
+    "Innovation"
+   ],
+   "watch": "Watch for the unglamorous enablers — battery density, chip supply and developer tooling — that decide which innovations reach scale."
+  },
+  {
+   "slug": "software",
+   "name": "Software Development",
+   "short": "Software",
+   "color": "#4F46E5",
+   "ink": "#4338CA",
+   "soft": "#EEF2FF",
+   "icon": "code",
+   "intro": "Engineering practice, architecture and developer experience from people who ship software for a living.",
+   "sub": [
+    "Architecture",
+    "DevOps",
+    "Developer Experience",
+    "Languages"
+   ],
+   "watch": "Developer experience is becoming a measurable engineering investment, with platform teams treated as product teams."
+  },
+  {
+   "slug": "startups",
+   "name": "SaaS & Startups",
+   "short": "Startups",
+   "color": "#F97362",
+   "ink": "#C2410C",
+   "soft": "#FFF4F1",
+   "icon": "rocket",
+   "intro": "Building, pricing and scaling software companies — from first customers to durable growth.",
+   "sub": [
+    "SaaS",
+    "Pricing",
+    "Go-to-Market",
+    "Fundraising"
+   ],
+   "watch": "Capital efficiency remains the defining constraint; pricing and packaging decisions are getting the attention once reserved for fundraising."
+  },
+  {
+   "slug": "manufacturing",
+   "name": "Manufacturing & Industry 4.0",
+   "short": "Manufacturing",
+   "color": "#F59E0B",
+   "ink": "#B45309",
+   "soft": "#FFFBEB",
+   "icon": "factory",
+   "intro": "Smart factories, industrial IoT, digital twins and the operational reality of modernising production.",
+   "sub": [
+    "Industry 4.0",
+    "Industrial IoT",
+    "Digital Twins",
+    "Supply Chain"
+   ],
+   "watch": "The winners are pairing modest automation with excellent data foundations, rather than chasing fully autonomous plants."
+  },
+  {
+   "slug": "cybersecurity",
+   "name": "Cybersecurity",
+   "short": "Security",
+   "color": "#E11D48",
+   "ink": "#BE123C",
+   "soft": "#FFF1F2",
+   "icon": "shield",
+   "intro": "Threats, defences and security programmes explained for both practitioners and decision-makers.",
+   "sub": [
+    "Zero Trust",
+    "Identity",
+    "AppSec",
+    "Threat Intelligence"
+   ],
+   "watch": "Identity has become the primary security perimeter, and phishing-resistant authentication is moving from best practice to baseline."
+  },
+  {
+   "slug": "cloud",
+   "name": "Cloud Computing",
+   "short": "Cloud",
+   "color": "#0284C7",
+   "ink": "#0369A1",
+   "soft": "#F0F9FF",
+   "icon": "cloud",
+   "intro": "Cloud architecture, cost management and the platforms underneath modern applications.",
+   "sub": [
+    "FinOps",
+    "Kubernetes",
+    "Serverless",
+    "Multi-cloud"
+   ],
+   "watch": "Cost visibility is now an architectural concern, and engineering teams are increasingly accountable for the bill."
+  },
+  {
+   "slug": "data",
+   "name": "Data Science & Analytics",
+   "short": "Data",
+   "color": "#059669",
+   "ink": "#047857",
+   "soft": "#ECFDF5",
+   "icon": "database",
+   "intro": "Analytics engineering, data platforms and the practice of turning data into decisions.",
+   "sub": [
+    "Analytics Engineering",
+    "Data Platforms",
+    "Visualisation",
+    "Data Governance"
+   ],
+   "watch": "Data quality is being treated as a product problem, with explicit ownership and contracts between producers and consumers."
+  },
+  {
+   "slug": "digital-transformation",
+   "name": "Digital Transformation",
+   "short": "Transformation",
+   "color": "#9333EA",
+   "ink": "#7E22CE",
+   "soft": "#FAF5FF",
+   "icon": "refresh",
+   "intro": "How organisations modernise processes, systems and culture — and why so many programmes stall.",
+   "sub": [
+    "Change Management",
+    "Modernisation",
+    "Operating Models"
+   ],
+   "watch": "Programmes are being restructured into smaller, outcome-funded increments instead of multi-year big-bang plans."
+  },
+  {
+   "slug": "martech",
+   "name": "Marketing Technology",
+   "short": "MarTech",
+   "color": "#DB2777",
+   "ink": "#BE185D",
+   "soft": "#FDF2F8",
+   "icon": "megaphone",
+   "intro": "Marketing operations, customer data and the tools behind modern growth teams.",
+   "sub": [
+    "Marketing Ops",
+    "Customer Data",
+    "Automation"
+   ],
+   "watch": "First-party data and consent management are reshaping how marketing stacks are designed."
+  },
+  {
+   "slug": "fintech",
+   "name": "FinTech",
+   "short": "FinTech",
+   "color": "#0891B2",
+   "ink": "#0E7490",
+   "soft": "#ECFEFF",
+   "icon": "wallet",
+   "intro": "Payments, embedded finance and the infrastructure reshaping financial services.",
+   "sub": [
+    "Payments",
+    "Embedded Finance",
+    "RegTech"
+   ],
+   "watch": "Regulatory clarity, more than technology, is setting the pace for embedded finance."
+  },
+  {
+   "slug": "healthtech",
+   "name": "HealthTech",
+   "short": "HealthTech",
+   "color": "#DC2626",
+   "ink": "#B91C1C",
+   "soft": "#FEF2F2",
+   "icon": "heart",
+   "intro": "Digital health, clinical software and the data infrastructure of modern care.",
+   "sub": [
+    "Interoperability",
+    "Digital Health",
+    "Clinical AI"
+   ],
+   "watch": "Standards-based interoperability is quietly becoming the precondition for every other digital health ambition."
+  },
+  {
+   "slug": "robotics",
+   "name": "Robotics & Automation",
+   "short": "Robotics",
+   "color": "#EA580C",
+   "ink": "#C2410C",
+   "soft": "#FFF7ED",
+   "icon": "bot",
+   "intro": "Industrial robots, cobots and automation systems working alongside people.",
+   "sub": [
+    "Cobots",
+    "Process Automation",
+    "Autonomous Systems"
+   ],
+   "watch": "Ease of redeployment, not raw speed, is becoming the deciding factor in automation investments."
+  },
+  {
+   "slug": "product",
+   "name": "Product Management",
+   "short": "Product",
+   "color": "#2563EB",
+   "ink": "#1D4ED8",
+   "soft": "#EFF6FF",
+   "icon": "target",
+   "intro": "Discovery, strategy and the craft of building products customers value.",
+   "sub": [
+    "Discovery",
+    "Strategy",
+    "Roadmapping"
+   ],
+   "watch": "Continuous discovery habits are spreading beyond product teams into sales and customer success."
+  },
+  {
+   "slug": "future-of-work",
+   "name": "Future of Work",
+   "short": "Work",
+   "color": "#0D9488",
+   "ink": "#0F766E",
+   "soft": "#F0FDFA",
+   "icon": "users",
+   "intro": "How work, teams and careers are changing alongside technology.",
+   "sub": [
+    "Remote Work",
+    "Skills",
+    "Workplace Tech"
+   ],
+   "watch": "Measured experiments, not ideology, are shaping the next generation of working arrangements."
+  },
+  {
+   "slug": "sustainability",
+   "name": "Sustainability & Emerging Tech",
+   "short": "Sustainability",
+   "color": "#16A34A",
+   "ink": "#15803D",
+   "soft": "#F0FDF4",
+   "icon": "leaf",
+   "intro": "Climate technology, sustainable operations and the emerging tools for measuring impact.",
+   "sub": [
+    "Climate Tech",
+    "Carbon Accounting",
+    "Energy"
+   ],
+   "watch": "Measurement credibility is the bottleneck: auditable data now matters more than ambitious targets."
+  }
+ ],
+ "authors": [
+  {
+   "slug": "ananya-rao",
+   "name": "Ananya Rao",
+   "title": "AI Research Editor",
+   "initials": "AR",
+   "a1": "#7C3AED",
+   "a2": "#2563EB",
+   "cats": [
+    "ai",
+    "technology"
+   ],
+   "expertise": [
+    "Generative AI",
+    "AI Agents",
+    "LLM Evaluation",
+    "Responsible AI"
+   ],
+   "role": "Editor",
+   "staff": true,
+   "bio": "Ananya leads Techvenza's artificial intelligence coverage, translating research and production experience into practical guidance for teams adopting AI. She previously worked on applied machine-learning products and writes about evaluation, agent design and governance.",
+   "website": "https://example.com/ananya",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": "Staff editor — identity verified by Techvenza (demo)",
+   "joined": "2025-02-10",
+   "featured": true
+  },
+  {
+   "slug": "marcus-bell",
+   "name": "Marcus Bell",
+   "title": "Senior Writer, Business & Leadership",
+   "initials": "MB",
+   "a1": "#0D9488",
+   "a2": "#059669",
+   "cats": [
+    "business",
+    "future-of-work",
+    "digital-transformation"
+   ],
+   "expertise": [
+    "Leadership",
+    "Operating Models",
+    "Organisational Design"
+   ],
+   "role": "Author",
+   "staff": true,
+   "bio": "Marcus writes about leadership, decision-making and how organisations change. He spent a decade in operations roles at growing technology companies before moving into editorial work.",
+   "website": "https://example.com/marcus",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": "Staff writer (demo)",
+   "joined": "2025-03-01",
+   "featured": true
+  },
+  {
+   "slug": "priya-natarajan",
+   "name": "Priya Natarajan",
+   "title": "Principal Engineer, Contributor",
+   "initials": "PN",
+   "a1": "#4F46E5",
+   "a2": "#0284C7",
+   "cats": [
+    "software",
+    "cloud",
+    "ai"
+   ],
+   "expertise": [
+    "Platform Engineering",
+    "Cloud Architecture",
+    "TypeScript",
+    "FinOps"
+   ],
+   "role": "Author",
+   "staff": false,
+   "bio": "Priya is a principal engineer who has built internal developer platforms and cloud infrastructure for product organisations. She contributes hands-on articles about architecture, developer experience and cost-aware engineering.",
+   "website": "https://example.com/priya",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": null,
+   "joined": "2025-05-18",
+   "featured": true
+  },
+  {
+   "slug": "tomas-ferreira",
+   "name": "Tomás Ferreira",
+   "title": "Industry 4.0 Correspondent",
+   "initials": "TF",
+   "a1": "#F59E0B",
+   "a2": "#EA580C",
+   "cats": [
+    "manufacturing",
+    "robotics"
+   ],
+   "expertise": [
+    "Smart Manufacturing",
+    "Digital Twins",
+    "Industrial IoT",
+    "Cobots"
+   ],
+   "role": "Author",
+   "staff": true,
+   "bio": "Tomás covers manufacturing technology and automation. He has reported from production lines across Europe and Asia and focuses on what separates successful modernisation programmes from expensive pilots.",
+   "website": "https://example.com/tomas",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": "Staff correspondent (demo)",
+   "joined": "2025-04-07",
+   "featured": true
+  },
+  {
+   "slug": "leila-haddad",
+   "name": "Leila Haddad",
+   "title": "Security Practitioner, Contributor",
+   "initials": "LH",
+   "a1": "#E11D48",
+   "a2": "#7C3AED",
+   "cats": [
+    "cybersecurity"
+   ],
+   "expertise": [
+    "Zero Trust",
+    "Identity & Access",
+    "Security Programmes"
+   ],
+   "role": "Author",
+   "staff": false,
+   "bio": "Leila is a security practitioner who has designed identity and zero-trust programmes for mid-sized organisations. She writes pragmatic guides that bridge security teams and business leadership.",
+   "website": "https://example.com/leila",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": null,
+   "joined": "2025-06-22",
+   "featured": false
+  },
+  {
+   "slug": "daniel-okafor",
+   "name": "Daniel Okafor",
+   "title": "Analytics Lead, Contributor",
+   "initials": "DO",
+   "a1": "#059669",
+   "a2": "#0284C7",
+   "cats": [
+    "data",
+    "ai",
+    "cloud"
+   ],
+   "expertise": [
+    "Analytics Engineering",
+    "Data Contracts",
+    "Experimentation"
+   ],
+   "role": "Author",
+   "staff": false,
+   "bio": "Daniel leads analytics engineering for a consumer software company and writes about data platforms, metrics design and making analytics useful to decision-makers.",
+   "website": "https://example.com/daniel",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": null,
+   "joined": "2025-07-03",
+   "featured": false
+  },
+  {
+   "slug": "hana-kim",
+   "name": "Hana Kim",
+   "title": "Product Strategist, Contributor",
+   "initials": "HK",
+   "a1": "#2563EB",
+   "a2": "#DB2777",
+   "cats": [
+    "product",
+    "startups",
+    "martech",
+    "technology"
+   ],
+   "expertise": [
+    "Product Discovery",
+    "SaaS Pricing",
+    "Go-to-Market"
+   ],
+   "role": "Author",
+   "staff": false,
+   "bio": "Hana advises SaaS companies on product strategy and pricing. Her writing focuses on discovery practices, packaging decisions and the craft of product management under real constraints.",
+   "website": "https://example.com/hana",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": null,
+   "joined": "2025-08-11",
+   "featured": false
+  },
+  {
+   "slug": "elena-vasquez",
+   "name": "Elena Vásquez",
+   "title": "Contributing Editor, Sustainability & FinTech",
+   "initials": "EV",
+   "a1": "#16A34A",
+   "a2": "#0891B2",
+   "cats": [
+    "sustainability",
+    "fintech",
+    "healthtech"
+   ],
+   "expertise": [
+    "Climate Tech",
+    "Embedded Finance",
+    "Health Interoperability"
+   ],
+   "role": "Author",
+   "staff": true,
+   "bio": "Elena covers climate technology, financial infrastructure and digital health. She is interested in the data and standards problems that sit beneath headline innovations.",
+   "website": "https://example.com/elena",
+   "linkedin": "https://www.linkedin.com/",
+   "verified": "Contributing editor (demo)",
+   "joined": "2025-03-15",
+   "featured": false
+  }
+ ],
+ "articles": [
+  {
+   "id": 1,
+   "slug": "the-agentic-enterprise",
+   "title": "The Agentic Enterprise: What Changes When Software Starts Taking Actions",
+   "excerpt": "AI agents are moving from demos to production workflows. Here is what organisations need to rethink — from permissions and evaluation to how teams measure value.",
+   "category": "ai",
+   "author": "ananya-rao",
+   "publishedAt": "2026-10-09",
+   "updatedAt": "2026-10-11",
+   "readingTime": 14,
+   "image": "aiAbstract",
+   "imageAlt": "Abstract visualisation of interconnected neural network nodes in violet light",
+   "featured": true,
+   "trending": true,
+   "pick": true,
+   "type": "deep-dive",
+   "views": 48200,
+   "tags": [
+    "AI Agents",
+    "Governance",
+    "Enterprise AI"
+   ],
+   "points": [],
+   "level": ""
+  },
+  {
+   "id": 2,
+   "slug": "small-language-models-at-the-edge",
+   "title": "Small Language Models Are Quietly Winning the Edge",
+   "excerpt": "Compact models running on laptops, phones and factory gateways are changing the economics of AI deployment. The trade-offs are more nuanced than size alone.",
+   "category": "ai",
+   "author": "ananya-rao",
+   "publishedAt": "2026-10-02",
+   "updatedAt": "2026-10-02",
+   "readingTime": 8,
+   "image": "chip",
+   "imageAlt": "Close-up of a processor chip on a circuit board",
+   "featured": false,
+   "trending": true,
+   "pick": false,
+   "type": "analysis",
+   "views": 21400,
+   "tags": [
+    "Edge AI",
+    "Small Models",
+    "Inference"
+   ],
+   "points": [
+    "Smaller models reduce latency and per-request cost dramatically for narrow, well-defined tasks.",
+    "Privacy and offline operation are often the deciding factors, not raw accuracy.",
+    "Teams still need evaluation suites that reflect their own data before replacing larger models."
+   ],
+   "level": ""
+  },
+  {
+   "id": 3,
+   "slug": "evaluating-llm-applications",
+   "title": "Evaluating LLM Applications: A Practical Framework for Teams",
+   "excerpt": "Vibes are not a test plan. A step-by-step approach to building evaluation sets, choosing metrics and catching regressions before users do.",
+   "category": "ai",
+   "author": "daniel-okafor",
+   "publishedAt": "2026-09-24",
+   "updatedAt": "2026-10-05",
+   "readingTime": 12,
+   "image": "analytics",
+   "imageAlt": "Laptop displaying analytics charts and dashboards",
+   "featured": false,
+   "trending": false,
+   "pick": true,
+   "type": "guide",
+   "views": 17900,
+   "tags": [
+    "LLM Evaluation",
+    "Testing",
+    "LLM Ops"
+   ],
+   "points": [
+    "Start with 50–100 real examples curated with domain experts rather than synthetic benchmarks.",
+    "Separate deterministic checks (format, policy) from judgement-based scoring.",
+    "Track evaluation results per release so regressions are visible in code review."
+   ],
+   "level": "Intermediate"
+  },
+  {
+   "id": 4,
+   "slug": "rag-explained",
+   "title": "Retrieval-Augmented Generation, Explained Without the Hype",
+   "excerpt": "What RAG is, when it helps, when it doesn't, and the design decisions that matter most for answer quality.",
+   "category": "ai",
+   "author": "priya-natarajan",
+   "publishedAt": "2026-09-12",
+   "updatedAt": "2026-09-12",
+   "readingTime": 9,
+   "image": "network",
+   "imageAlt": "Glowing network lines across a dark globe",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "guide",
+   "views": 15100,
+   "tags": [
+    "RAG",
+    "Generative AI",
+    "Search"
+   ],
+   "points": [
+    "Retrieval quality usually limits answer quality more than the choice of language model.",
+    "Chunking strategy and metadata filters deserve as much attention as embeddings.",
+    "Citations shown to users build trust and make failures easier to diagnose."
+   ],
+   "level": "Beginner"
+  },
+  {
+   "id": 5,
+   "slug": "leading-through-ambiguity",
+   "title": "Leading Through Ambiguity: Better Decisions With Incomplete Data",
+   "excerpt": "Waiting for certainty is itself a decision. Practical techniques managers can use to decide well when the data will never be complete.",
+   "category": "business",
+   "author": "marcus-bell",
+   "publishedAt": "2026-10-07",
+   "updatedAt": "2026-10-07",
+   "readingTime": 7,
+   "image": "meeting",
+   "imageAlt": "Team gathered around a table in a bright meeting room",
+   "featured": false,
+   "trending": true,
+   "pick": false,
+   "type": "opinion",
+   "views": 19800,
+   "tags": [
+    "Leadership",
+    "Decision-making",
+    "Management"
+   ],
+   "points": [
+    "Separate reversible from irreversible decisions and move quickly on the former.",
+    "Write down what would change your mind before you decide.",
+    "Review decisions on a fixed cadence instead of revisiting them whenever anxiety rises."
+   ],
+   "level": ""
+  },
+  {
+   "id": 6,
+   "slug": "operating-cadence-high-performing-teams",
+   "title": "The Operating Cadence of High-Performing Teams",
+   "excerpt": "Rituals are not bureaucracy when they are designed well. How strong teams structure planning, review and communication.",
+   "category": "business",
+   "author": "marcus-bell",
+   "publishedAt": "2026-09-18",
+   "updatedAt": "2026-09-20",
+   "readingTime": 10,
+   "image": "team",
+   "imageAlt": "Colleagues collaborating around laptops",
+   "featured": false,
+   "trending": false,
+   "pick": true,
+   "type": "deep-dive",
+   "views": 14300,
+   "tags": [
+    "Operating Models",
+    "Teams",
+    "Planning"
+   ],
+   "points": [
+    "Weekly, monthly and quarterly rhythms should each answer a distinct question.",
+    "Written pre-reads shorten meetings and widen participation.",
+    "Cadence should be pruned regularly — rituals accumulate faster than they retire."
+   ],
+   "level": ""
+  },
+  {
+   "id": 7,
+   "slug": "platform-engineering-paved-roads",
+   "title": "Platform Engineering in 2026: Building Paved Roads Developers Actually Use",
+   "excerpt": "Internal developer platforms fail when they are built as mandates. The teams succeeding treat their platform as a product with real users.",
+   "category": "software",
+   "author": "priya-natarajan",
+   "publishedAt": "2026-10-05",
+   "updatedAt": "2026-10-08",
+   "readingTime": 11,
+   "image": "devDesk",
+   "imageAlt": "Developer workstation with code on screen",
+   "featured": true,
+   "trending": true,
+   "pick": false,
+   "type": "deep-dive",
+   "views": 26700,
+   "tags": [
+    "Platform Engineering",
+    "Developer Experience",
+    "DevOps"
+   ],
+   "points": [],
+   "level": ""
+  },
+  {
+   "id": 8,
+   "slug": "typescript-at-scale",
+   "title": "TypeScript at Scale: Lessons From a Large Codebase Migration",
+   "excerpt": "Migrating a large JavaScript codebase incrementally — the sequencing, tooling and team agreements that kept delivery moving.",
+   "category": "software",
+   "author": "priya-natarajan",
+   "publishedAt": "2026-08-28",
+   "updatedAt": "2026-09-02",
+   "readingTime": 13,
+   "image": "code",
+   "imageAlt": "Colourful source code on a dark editor",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "analysis",
+   "views": 12600,
+   "tags": [
+    "TypeScript",
+    "Migration",
+    "Architecture"
+   ],
+   "points": [
+    "Migrate leaf modules first and let strictness ratchet up file by file.",
+    "Track type coverage as a team metric rather than a one-off project goal.",
+    "Shared lint and compiler settings prevent the migration from drifting across teams."
+   ],
+   "level": ""
+  },
+  {
+   "id": 9,
+   "slug": "lights-out-factory-myth",
+   "title": "The Lights-Out Factory Is Still a Myth — Here's What's Real",
+   "excerpt": "Fully autonomous plants make great headlines. On real shop floors, the gains come from something less dramatic and far more achievable.",
+   "category": "manufacturing",
+   "author": "tomas-ferreira",
+   "publishedAt": "2026-10-03",
+   "updatedAt": "2026-10-04",
+   "readingTime": 10,
+   "image": "robotArm",
+   "imageAlt": "Engineer working alongside an industrial robotic arm",
+   "featured": true,
+   "trending": false,
+   "pick": true,
+   "type": "deep-dive",
+   "views": 22900,
+   "tags": [
+    "Industry 4.0",
+    "Automation",
+    "Operations"
+   ],
+   "points": [],
+   "level": ""
+  },
+  {
+   "id": 10,
+   "slug": "digital-twins-pilot-to-production",
+   "title": "Digital Twins on the Shop Floor: From Pilot to Production",
+   "excerpt": "Most digital twin pilots never scale. A field guide to scoping, data foundations and the organisational ownership that makes them stick.",
+   "category": "manufacturing",
+   "author": "tomas-ferreira",
+   "publishedAt": "2026-09-15",
+   "updatedAt": "2026-09-16",
+   "readingTime": 12,
+   "image": "factory",
+   "imageAlt": "Modern factory floor with automated equipment",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "guide",
+   "views": 11800,
+   "tags": [
+    "Digital Twins",
+    "Industrial IoT",
+    "Data"
+   ],
+   "points": [
+    "Start with one asset class and a single decision the twin will improve.",
+    "Sensor data quality and historian access are the usual blockers, not modelling.",
+    "Assign an operations owner, not only an IT sponsor."
+   ],
+   "level": "Intermediate"
+  },
+  {
+   "id": 11,
+   "slug": "cobots-assembly-work",
+   "title": "Cobots and the Changing Shape of Assembly Work",
+   "excerpt": "Collaborative robots are changing assembly roles more than replacing them. What operators, engineers and managers are learning.",
+   "category": "robotics",
+   "author": "tomas-ferreira",
+   "publishedAt": "2026-08-30",
+   "updatedAt": "2026-08-30",
+   "readingTime": 8,
+   "image": "robot",
+   "imageAlt": "White humanoid robot in a laboratory setting",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "analysis",
+   "views": 9400,
+   "tags": [
+    "Cobots",
+    "Automation",
+    "Workforce"
+   ],
+   "points": [
+    "Cobots are most valuable on repetitive, ergonomically difficult tasks.",
+    "Redeployment speed matters more than cycle time for high-mix production.",
+    "Operator involvement in programming improves adoption and uptime."
+   ],
+   "level": ""
+  },
+  {
+   "id": 12,
+   "slug": "zero-trust-12-month-roadmap",
+   "title": "Zero Trust Is a Journey: A Pragmatic 12-Month Roadmap",
+   "excerpt": "Zero trust is a direction, not a product. A phased roadmap for organisations starting from a traditional network perimeter.",
+   "category": "cybersecurity",
+   "author": "leila-haddad",
+   "publishedAt": "2026-09-29",
+   "updatedAt": "2026-10-01",
+   "readingTime": 15,
+   "image": "cyber",
+   "imageAlt": "Abstract digital security visualisation with lock icon",
+   "featured": false,
+   "trending": true,
+   "pick": true,
+   "type": "guide",
+   "views": 18600,
+   "tags": [
+    "Zero Trust",
+    "Identity",
+    "Security Strategy"
+   ],
+   "points": [
+    "Begin with an inventory of identities, devices and critical applications.",
+    "Phishing-resistant MFA for administrators is the highest-leverage early step.",
+    "Measure progress by policy coverage, not by tools purchased."
+   ],
+   "level": "Intermediate"
+  },
+  {
+   "id": 13,
+   "slug": "passkeys-login-flow",
+   "title": "Passkeys Are Ready. Is Your Login Flow?",
+   "excerpt": "Passkeys remove passwords from the equation, but rollout details — recovery, device changes and fallback — decide whether users adopt them.",
+   "category": "cybersecurity",
+   "author": "leila-haddad",
+   "publishedAt": "2026-09-08",
+   "updatedAt": "2026-09-08",
+   "readingTime": 7,
+   "image": "laptop",
+   "imageAlt": "Person typing on a laptop in low light",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "analysis",
+   "views": 10200,
+   "tags": [
+    "Passkeys",
+    "Authentication",
+    "UX"
+   ],
+   "points": [
+    "Offer passkeys at moments of success, such as after a successful sign-in.",
+    "Account recovery design is where most passkey rollouts stumble.",
+    "Keep a fallback method but make it progressively less prominent."
+   ],
+   "level": ""
+  },
+  {
+   "id": 14,
+   "slug": "finops-for-engineers",
+   "title": "FinOps for Engineers: Making Cloud Costs Visible Without Slowing Delivery",
+   "excerpt": "Cost awareness works best when it lives in the tools engineers already use. A practical playbook for engineering-led FinOps.",
+   "category": "cloud",
+   "author": "priya-natarajan",
+   "publishedAt": "2026-09-21",
+   "updatedAt": "2026-09-21",
+   "readingTime": 9,
+   "image": "servers",
+   "imageAlt": "Rows of servers in a data centre with blue lighting",
+   "featured": false,
+   "trending": true,
+   "pick": false,
+   "type": "guide",
+   "views": 13300,
+   "tags": [
+    "FinOps",
+    "Cloud Costs",
+    "Engineering Culture"
+   ],
+   "points": [
+    "Tag resources by team and service from day one; retrofitting is painful.",
+    "Show cost per request or per customer, not just monthly totals.",
+    "Put cost signals into pull requests and dashboards engineers already open."
+   ],
+   "level": "Beginner"
+  },
+  {
+   "id": 15,
+   "slug": "multi-cloud-vs-cloud-smart",
+   "title": "Multi-Cloud vs. Cloud-Smart: Choosing the Right Strategy",
+   "excerpt": "Multi-cloud is often a reaction rather than a strategy. How to decide where portability is worth its cost.",
+   "category": "cloud",
+   "author": "daniel-okafor",
+   "publishedAt": "2026-08-22",
+   "updatedAt": "2026-08-25",
+   "readingTime": 8,
+   "image": "network",
+   "imageAlt": "Glowing network lines across a dark globe",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "analysis",
+   "views": 8100,
+   "tags": [
+    "Multi-cloud",
+    "Architecture",
+    "Strategy"
+   ],
+   "points": [
+    "Portability has real engineering cost; buy it only where risk justifies it.",
+    "Data gravity usually decides more than compute pricing.",
+    "Standardise observability and identity before considering workload portability."
+   ],
+   "level": ""
+  },
+  {
+   "id": 16,
+   "slug": "data-contracts",
+   "title": "Data Contracts: The Missing Layer in Modern Analytics",
+   "excerpt": "Broken dashboards are usually a coordination problem. Data contracts make the agreement between producers and consumers explicit.",
+   "category": "data",
+   "author": "daniel-okafor",
+   "publishedAt": "2026-10-06",
+   "updatedAt": "2026-10-06",
+   "readingTime": 10,
+   "image": "analytics",
+   "imageAlt": "Laptop displaying analytics charts and dashboards",
+   "featured": false,
+   "trending": false,
+   "pick": true,
+   "type": "analysis",
+   "views": 12900,
+   "tags": [
+    "Data Contracts",
+    "Analytics Engineering",
+    "Data Quality"
+   ],
+   "points": [
+    "A contract defines schema, semantics, freshness and ownership.",
+    "Enforce contracts in CI for the producing team, not after the fact.",
+    "Start with the five datasets that break most often."
+   ],
+   "level": ""
+  },
+  {
+   "id": 17,
+   "slug": "dashboards-to-decisions",
+   "title": "From Dashboards to Decisions: Designing Analytics People Use",
+   "excerpt": "Most dashboards are opened once. How to design analytics around the decisions people actually make.",
+   "category": "data",
+   "author": "daniel-okafor",
+   "publishedAt": "2026-09-03",
+   "updatedAt": "2026-09-03",
+   "readingTime": 8,
+   "image": "whiteboard",
+   "imageAlt": "Hands sketching diagrams on a whiteboard",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "guide",
+   "views": 9900,
+   "tags": [
+    "Visualisation",
+    "Metrics",
+    "Decision-making"
+   ],
+   "points": [
+    "Begin from a decision and its owner, then choose the metric.",
+    "Fewer charts with clear thresholds outperform comprehensive dashboards.",
+    "Annotate changes so trends carry context."
+   ],
+   "level": "Beginner"
+  },
+  {
+   "id": 18,
+   "slug": "saas-pricing-models",
+   "title": "Pricing Your SaaS Product: Usage-Based, Seat-Based, or Hybrid?",
+   "excerpt": "Pricing is a product decision. A framework for choosing a value metric that grows with customer success.",
+   "category": "startups",
+   "author": "hana-kim",
+   "publishedAt": "2026-09-26",
+   "updatedAt": "2026-09-27",
+   "readingTime": 11,
+   "image": "startup",
+   "imageAlt": "Startup team working together at a shared desk",
+   "featured": false,
+   "trending": true,
+   "pick": false,
+   "type": "guide",
+   "views": 16400,
+   "tags": [
+    "Pricing",
+    "SaaS",
+    "Go-to-Market"
+   ],
+   "points": [
+    "Choose a value metric customers understand and can predict.",
+    "Hybrid models reduce bill shock while preserving expansion revenue.",
+    "Revisit packaging annually; pricing debt compounds quietly."
+   ],
+   "level": "Intermediate"
+  },
+  {
+   "id": 19,
+   "slug": "product-discovery-habits",
+   "title": "Product Discovery Habits That Survive Deadline Pressure",
+   "excerpt": "Discovery is the first thing cut when deadlines loom. Small, durable habits that keep teams learning anyway.",
+   "category": "product",
+   "author": "hana-kim",
+   "publishedAt": "2026-09-10",
+   "updatedAt": "2026-09-10",
+   "readingTime": 7,
+   "image": "whiteboard",
+   "imageAlt": "Hands sketching diagrams on a whiteboard",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "opinion",
+   "views": 8800,
+   "tags": [
+    "Discovery",
+    "Product Practice",
+    "Research"
+   ],
+   "points": [
+    "A weekly customer conversation beats a quarterly research sprint.",
+    "Write assumptions down before building, then check them after launch.",
+    "Share raw customer quotes widely; summaries lose nuance."
+   ],
+   "level": ""
+  },
+  {
+   "id": 20,
+   "slug": "embedded-finance-b2b",
+   "title": "Embedded Finance Is Rewiring B2B Software",
+   "excerpt": "Payments, lending and accounts are becoming features inside vertical software. What this means for builders and incumbents.",
+   "category": "fintech",
+   "author": "elena-vasquez",
+   "publishedAt": "2026-09-30",
+   "updatedAt": "2026-09-30",
+   "readingTime": 9,
+   "image": "card",
+   "imageAlt": "Contactless payment card held near a terminal",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "analysis",
+   "views": 11100,
+   "tags": [
+    "Embedded Finance",
+    "Payments",
+    "B2B SaaS"
+   ],
+   "points": [
+    "Vertical SaaS platforms are natural distribution for financial products.",
+    "Compliance responsibilities shift but never disappear.",
+    "Partner selection determines speed to market more than API quality."
+   ],
+   "level": ""
+  },
+  {
+   "id": 21,
+   "slug": "health-interoperability-bottleneck",
+   "title": "Interoperability Is the Real Bottleneck in Digital Health",
+   "excerpt": "New clinical tools struggle to deliver value when data cannot move. Why standards like FHIR matter — and where they fall short.",
+   "category": "healthtech",
+   "author": "elena-vasquez",
+   "publishedAt": "2026-09-17",
+   "updatedAt": "2026-09-18",
+   "readingTime": 10,
+   "image": "health",
+   "imageAlt": "Clinician using a digital tablet in a hospital setting",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "deep-dive",
+   "views": 9700,
+   "tags": [
+    "Interoperability",
+    "FHIR",
+    "Digital Health"
+   ],
+   "points": [
+    "Standards adoption varies widely between systems and regions.",
+    "Workflow integration matters as much as data exchange.",
+    "Data governance agreements often take longer than technical integration."
+   ],
+   "level": ""
+  },
+  {
+   "id": 22,
+   "slug": "measuring-scope-3-emissions",
+   "title": "Measuring Scope 3 Emissions With Software: What Works Today",
+   "excerpt": "Supply-chain emissions are hard to measure. A clear-eyed look at methods, data sources and tools.",
+   "category": "sustainability",
+   "author": "elena-vasquez",
+   "publishedAt": "2026-08-26",
+   "updatedAt": "2026-08-29",
+   "readingTime": 11,
+   "image": "solar",
+   "imageAlt": "Solar panels under a clear blue sky",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "guide",
+   "views": 7600,
+   "tags": [
+    "Carbon Accounting",
+    "Supply Chain",
+    "Climate Tech"
+   ],
+   "points": [
+    "Spend-based estimates are a starting point, not an endpoint.",
+    "Supplier-specific data improves accuracy where emissions concentrate.",
+    "Document assumptions so figures can be audited and improved."
+   ],
+   "level": "Intermediate"
+  },
+  {
+   "id": 23,
+   "slug": "four-day-week-tech-teams",
+   "title": "The Four-Day Week Experiment: What Technology Teams Learned",
+   "excerpt": "Shorter weeks force sharper priorities. What changed for teams that ran structured trials — and what didn't.",
+   "category": "future-of-work",
+   "author": "marcus-bell",
+   "publishedAt": "2026-09-05",
+   "updatedAt": "2026-09-05",
+   "readingTime": 8,
+   "image": "office",
+   "imageAlt": "Modern open-plan office with people working",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "analysis",
+   "views": 13700,
+   "tags": [
+    "Future of Work",
+    "Productivity",
+    "Teams"
+   ],
+   "points": [
+    "Meeting reduction delivered most of the reclaimed time.",
+    "On-call and customer support needed explicit coverage design.",
+    "Measured outcomes mattered more than hours worked."
+   ],
+   "level": ""
+  },
+  {
+   "id": 24,
+   "slug": "marketing-ops-meets-ai",
+   "title": "Marketing Ops Meets AI: Automating the Right Things",
+   "excerpt": "Not every marketing task should be automated. A practical way to decide where AI helps and where human judgement matters.",
+   "category": "martech",
+   "author": "hana-kim",
+   "publishedAt": "2026-08-19",
+   "updatedAt": "2026-08-19",
+   "readingTime": 7,
+   "image": "analytics",
+   "imageAlt": "Laptop displaying analytics charts and dashboards",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "guide",
+   "views": 7300,
+   "tags": [
+    "Marketing Ops",
+    "Automation",
+    "AI"
+   ],
+   "points": [
+    "Automate data hygiene and routing first — the gains are immediate.",
+    "Keep humans in review for brand voice and claims.",
+    "Consent and data provenance must travel with automated workflows."
+   ],
+   "level": "Beginner"
+  },
+  {
+   "id": 25,
+   "slug": "spatial-computing-at-work",
+   "title": "Spatial Computing at Work: Where Headsets Earn Their Keep",
+   "excerpt": "Beyond demos, spatial computing is finding real roles in training, design review and remote assistance.",
+   "category": "technology",
+   "author": "hana-kim",
+   "publishedAt": "2026-09-14",
+   "updatedAt": "2026-09-14",
+   "readingTime": 8,
+   "image": "vr",
+   "imageAlt": "Person wearing a virtual reality headset",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "analysis",
+   "views": 8400,
+   "tags": [
+    "Spatial Computing",
+    "Hardware",
+    "Enterprise Tech"
+   ],
+   "points": [
+    "Training and remote assistance show the clearest returns today.",
+    "Device comfort and session length remain practical limits.",
+    "Content pipelines, not hardware, are the bottleneck for scale."
+   ],
+   "level": ""
+  },
+  {
+   "id": 26,
+   "slug": "digital-transformation-year-two",
+   "title": "Why Digital Transformation Programmes Stall in Year Two",
+   "excerpt": "Early wins fade, budgets tighten and attention moves on. How to design transformation programmes that keep momentum.",
+   "category": "digital-transformation",
+   "author": "marcus-bell",
+   "publishedAt": "2026-08-15",
+   "updatedAt": "2026-08-18",
+   "readingTime": 9,
+   "image": "city",
+   "imageAlt": "City skyline at dusk with illuminated buildings",
+   "featured": false,
+   "trending": false,
+   "pick": false,
+   "type": "opinion",
+   "views": 10500,
+   "tags": [
+    "Change Management",
+    "Strategy",
+    "Operating Models"
+   ],
+   "points": [
+    "Fund outcomes in quarterly increments rather than multi-year plans.",
+    "Retire legacy systems on a visible schedule so value is realised.",
+    "Keep sponsors close to delivery, not only to steering committees."
+   ],
+   "level": ""
+  }
+ ],
+ "workflow": [
+  {
+   "id": 101,
+   "slug": "kubernetes-cost-guardrails",
+   "title": "Kubernetes Cost Guardrails That Engineers Will Not Hate",
+   "excerpt": "A practical set of guardrails for keeping cluster costs predictable without slowing delivery.",
+   "category": "cloud",
+   "author": "priya-natarajan",
+   "status": "in_review",
+   "date": "2026-10-08",
+   "image": "servers",
+   "editor": "James Whitaker",
+   "scheduledFor": ""
+  },
+  {
+   "id": 102,
+   "slug": "observability-budgets",
+   "title": "Observability Budgets: Paying for the Signals You Use",
+   "excerpt": "Telemetry costs grow silently. How to set budgets for logs, metrics and traces.",
+   "category": "software",
+   "author": "priya-natarajan",
+   "status": "changes_requested",
+   "date": "2026-10-01",
+   "image": "code",
+   "editor": "Ananya Rao",
+   "scheduledFor": ""
+  },
+  {
+   "id": 103,
+   "slug": "internal-platform-metrics",
+   "title": "Measuring an Internal Platform Like a Product",
+   "excerpt": "Adoption, satisfaction and lead time — choosing platform metrics that drive the right behaviour.",
+   "category": "software",
+   "author": "priya-natarajan",
+   "status": "draft",
+   "date": "2026-10-10",
+   "image": "devDesk",
+   "editor": "",
+   "scheduledFor": ""
+  },
+  {
+   "id": 104,
+   "slug": "vector-database-selection",
+   "title": "Choosing a Vector Database Without Regret",
+   "excerpt": "The criteria that matter when selecting vector storage for retrieval systems.",
+   "category": "ai",
+   "author": "priya-natarajan",
+   "status": "scheduled",
+   "date": "2026-10-12",
+   "image": "network",
+   "editor": "Ananya Rao",
+   "scheduledFor": "2026-10-20"
+  },
+  {
+   "id": 105,
+   "slug": "ai-procurement-checklist",
+   "title": "An AI Procurement Checklist for Non-Technical Buyers",
+   "excerpt": "Questions to ask AI vendors about data, evaluation and liability before signing.",
+   "category": "ai",
+   "author": "ananya-rao",
+   "status": "submitted",
+   "date": "2026-10-12",
+   "image": "aiAbstract",
+   "editor": "",
+   "scheduledFor": ""
+  },
+  {
+   "id": 106,
+   "slug": "supplier-risk-analytics",
+   "title": "Supplier Risk Analytics After the Disruption Years",
+   "excerpt": "How manufacturers are rebuilding supplier risk models with better data.",
+   "category": "manufacturing",
+   "author": "tomas-ferreira",
+   "status": "resubmitted",
+   "date": "2026-10-11",
+   "image": "factory",
+   "editor": "Sofia Lindqvist",
+   "scheduledFor": ""
+  },
+  {
+   "id": 107,
+   "slug": "security-champions-programme",
+   "title": "Running a Security Champions Programme That Lasts",
+   "excerpt": "Embedding security expertise inside product teams without burning people out.",
+   "category": "cybersecurity",
+   "author": "leila-haddad",
+   "status": "approved",
+   "date": "2026-10-09",
+   "image": "cyber",
+   "editor": "James Whitaker",
+   "scheduledFor": ""
+  },
+  {
+   "id": 108,
+   "slug": "growth-loops-b2b",
+   "title": "Growth Loops for B2B SaaS: Beyond the Funnel",
+   "excerpt": "Designing compounding acquisition loops for business software.",
+   "category": "startups",
+   "author": "hana-kim",
+   "status": "rejected",
+   "date": "2026-09-28",
+   "image": "startup",
+   "editor": "Sofia Lindqvist",
+   "scheduledFor": ""
+  },
+  {
+   "id": 109,
+   "slug": "metrics-layer-explained",
+   "title": "The Metrics Layer, Explained",
+   "excerpt": "Why a shared semantic layer reduces metric disputes across teams.",
+   "category": "data",
+   "author": "daniel-okafor",
+   "status": "submitted",
+   "date": "2026-10-13",
+   "image": "analytics",
+   "editor": "",
+   "scheduledFor": ""
+  },
+  {
+   "id": 110,
+   "slug": "fhir-apis-in-practice",
+   "title": "FHIR APIs in Practice: A Builder's Notes",
+   "excerpt": "Lessons from integrating with real-world FHIR endpoints.",
+   "category": "healthtech",
+   "author": "elena-vasquez",
+   "status": "in_review",
+   "date": "2026-10-10",
+   "image": "health",
+   "editor": "Ananya Rao",
+   "scheduledFor": ""
+  },
+  {
+   "id": 111,
+   "slug": "esg-reporting-software",
+   "title": "ESG Reporting Software: A Buyer's Map",
+   "excerpt": "Categories, capabilities and questions for teams selecting ESG reporting tools.",
+   "category": "sustainability",
+   "author": "elena-vasquez",
+   "status": "scheduled",
+   "date": "2026-10-07",
+   "image": "solar",
+   "editor": "Sofia Lindqvist",
+   "scheduledFor": "2026-10-27"
+  }
+ ],
+ "feedback": {
+  "observability-budgets": [
+   {
+    "by": "Ananya Rao",
+    "at": "2026-10-03",
+    "text": "Strong argument. Please add one concrete cost example with figures, cite the source for the telemetry growth claim, and tighten the introduction to under 120 words."
+   }
+  ],
+  "supplier-risk-analytics": [
+   {
+    "by": "Sofia Lindqvist",
+    "at": "2026-10-05",
+    "text": "Please clarify the methodology section and add sourcing for the survey figures."
+   },
+   {
+    "by": "Author",
+    "at": "2026-10-11",
+    "text": "Methodology clarified and three sources added."
+   }
+  ],
+  "growth-loops-b2b": [
+   {
+    "by": "Sofia Lindqvist",
+    "at": "2026-09-30",
+    "text": "This topic overlaps heavily with a piece already scheduled. We would welcome a pitch focused on a specific industry case instead."
+   }
+  ]
+ },
+ "bodies": {
+  "the-agentic-enterprise": "\n<p>For most of the past few years, enterprise AI has meant software that <em>suggests</em>: a draft email, a summarised document, a recommended next step. A human read the output and decided what to do. AI agents change that relationship. An agent is given a goal, a set of tools and some boundaries, and it decides which actions to take — querying a database, filing a ticket, updating a record — often across several steps.</p>\n<p>That shift from suggestion to action is small in a demo and enormous in production. It changes how software must be permissioned, tested, observed and governed. This article sets out what organisations deploying agents are learning, and the questions leaders should be asking before scaling them.</p>\n<h2 id=\"what-an-agent-is\">What we mean by an “agent”</h2>\n<p>The term is used loosely, so it helps to be precise. In this article, an agent is a system in which a language model chooses actions from a defined set of tools, observes the results, and continues until it reaches a goal or a stopping condition. Three properties distinguish it from a chatbot:</p>\n<ul>\n<li><strong>Tool use.</strong> The model can call functions — search, read, write, or trigger workflows — rather than only producing text.</li>\n<li><strong>Multi-step planning.</strong> The model decides the sequence of actions itself, adapting to intermediate results.</li>\n<li><strong>Delegated authority.</strong> Some actions take effect without a human approving each one.</li>\n</ul>\n<p>It is the third property that makes agents an organisational question rather than only a technical one.</p>\n<h3 id=\"spectrum-of-autonomy\">A spectrum of autonomy</h3>\n<p>Few production systems are fully autonomous. Most sit somewhere on a spectrum, and choosing the right point for each workflow is the most important design decision teams make.</p>\n<table>\n<thead><tr><th>Level</th><th>What the agent does</th><th>Typical use</th></tr></thead>\n<tbody>\n<tr><td>Assist</td><td>Proposes actions; a human executes them</td><td>Drafting replies, preparing reports</td></tr>\n<tr><td>Approve</td><td>Executes after explicit human approval</td><td>Refunds, account changes, outbound messages</td></tr>\n<tr><td>Supervise</td><td>Executes within limits; humans review samples</td><td>Ticket triage, data enrichment</td></tr>\n<tr><td>Autonomous</td><td>Executes and reports outcomes</td><td>Low-risk, easily reversible internal tasks</td></tr>\n</tbody>\n</table>\n<h2 id=\"permissions\">Permissions become product design</h2>\n<p>Traditional software permissions are attached to people. Agents need permissions of their own, and those permissions must be narrower than the user they act for. An agent that summarises a customer’s account does not need permission to close it.</p>\n<p>Teams that do this well define tools around business actions rather than raw system access. Instead of granting an agent general database write access, they expose a single <code>issue_credit(account_id, amount, reason)</code> function with its own limits, logging and approval rules.</p>\n<pre><code>// Illustrative tool definition with built-in guardrails\n{\n  \"name\": \"issue_credit\",\n  \"description\": \"Issue a service credit to a customer account.\",\n  \"limits\": { \"max_amount\": 50, \"currency\": \"USD\" },\n  \"requires_approval_above\": 20,\n  \"audit\": true\n}</code></pre>\n<p>This pattern keeps the blast radius of a mistake small and makes the agent’s capabilities legible to the people responsible for it.</p>\n<blockquote>The question is not whether the model is smart enough. It is whether the system around the model is designed for the moments when it is wrong.<cite>— A recurring theme in conversations with teams running agents in production</cite></blockquote>\n<h2 id=\"evaluation\">Evaluation moves from outputs to trajectories</h2>\n<p>Evaluating a chatbot means judging its answers. Evaluating an agent means judging its <em>path</em>: which tools it chose, in what order, with which arguments, and whether it stopped at the right moment. A correct final answer reached through an unsafe action is still a failure.</p>\n<h3 id=\"building-eval-sets\">Building useful evaluation sets</h3>\n<ol>\n<li>Collect real tasks from the workflow, including the awkward edge cases experienced staff remember.</li>\n<li>Define what a good trajectory looks like for each task, not only the expected result.</li>\n<li>Include tasks where the correct behaviour is to stop and escalate.</li>\n<li>Re-run the full set whenever prompts, tools or models change.</li>\n</ol>\n<p>Our guide to <a href=\"#/article/evaluating-llm-applications\">evaluating LLM applications</a> covers the mechanics in more depth.</p>\n<h2 id=\"observability\">Observability is non-negotiable</h2>\n<p>When an agent does something unexpected, teams need to reconstruct exactly what happened: the instructions it received, the context it retrieved, each tool call and each result. Without this trace, debugging becomes guesswork and accountability becomes impossible.</p>\n<div class=\"callout\"><strong>Practical baseline:</strong> log every tool call with its arguments, result, latency and the identity on whose behalf the agent acted. Retain traces long enough to investigate complaints, and treat them as sensitive data.</div>\n<h2 id=\"measuring-value\">Measuring value honestly</h2>\n<p>It is tempting to report the number of tasks an agent completes. A more honest measure compares the full cost of a workflow — including human review, error correction and escalations — before and after the agent is introduced. Some of the most successful deployments automate less than expected but remove the most tedious steps entirely.</p>\n<h3 id=\"questions-for-leaders\">Questions leaders should ask</h3>\n<ul>\n<li>Which actions can this agent take, and which are reversible?</li>\n<li>Who is accountable when it makes a mistake, and how will we know?</li>\n<li>What does the evaluation set contain, and when was it last updated?</li>\n<li>How does cost per completed task compare with the previous process?</li>\n</ul>\n<h2 id=\"what-comes-next\">What comes next</h2>\n<p>Agents are not a replacement for well-designed software; they are a new kind of component inside it. The organisations getting real value are the ones treating agent design as a discipline that combines product thinking, security engineering and operational rigour. That combination — more than any single model release — will decide which deployments last.</p>",
+  "platform-engineering-paved-roads": "\n<p>Every engineering organisation eventually reaches the point where each team is solving the same infrastructure problems slightly differently. Platform engineering promises a fix: a shared internal platform that makes the right way the easy way. Yet many platforms end up as expensive portals that developers route around.</p>\n<p>The difference between those outcomes is rarely technology. It is whether the platform team behaves like a product team.</p>\n<h2 id=\"paved-roads-not-gates\">Paved roads, not gates</h2>\n<p>A paved road is an opinionated, well-supported path for a common task — creating a service, deploying it, adding observability. Teams may leave the road, but they take on the maintenance burden when they do. A gate, by contrast, forces every team through a process regardless of fit.</p>\n<ul>\n<li>Paved roads earn adoption by being faster than the alternative.</li>\n<li>Gates earn compliance, and often resentment.</li>\n</ul>\n<h2 id=\"treat-developers-as-users\">Treat developers as users</h2>\n<p>Successful platform teams interview developers, watch them use the tooling and measure friction directly. They maintain a roadmap, publish release notes and retire features that nobody uses.</p>\n<h3 id=\"metrics-that-matter\">Metrics that matter</h3>\n<table>\n<thead><tr><th>Metric</th><th>What it tells you</th></tr></thead>\n<tbody>\n<tr><td>Time to first deploy</td><td>How quickly a new service reaches production</td></tr>\n<tr><td>Voluntary adoption</td><td>Whether teams choose the platform when they could opt out</td></tr>\n<tr><td>Developer satisfaction</td><td>Perceived friction, measured with short regular surveys</td></tr>\n</tbody>\n</table>\n<h2 id=\"start-small\">Start with one golden path</h2>\n<p>The most reliable way to start is to pick a single high-frequency workflow — often “create and deploy a new service” — and make it excellent. A scaffolding command can encode many decisions at once:</p>\n<pre><code>platform new service --name billing-events --template event-consumer\n# creates repo, CI pipeline, dashboards, alerts and on-call rota</code></pre>\n<blockquote>If developers need a meeting to use your platform, it is not a platform yet.</blockquote>\n<h2 id=\"avoid-common-traps\">Avoid common traps</h2>\n<ol>\n<li>Building a portal before the underlying automation works.</li>\n<li>Abstracting so heavily that debugging requires the platform team.</li>\n<li>Measuring success by features shipped rather than friction removed.</li>\n</ol>\n<p>Cost visibility is increasingly part of the platform’s job too; see our playbook on <a href=\"#/article/finops-for-engineers\">FinOps for engineers</a>.</p>\n<h2 id=\"the-long-game\">The long game</h2>\n<p>Platforms compound. Each paved road makes the next one cheaper to build and easier to adopt. The teams that succeed are patient, user-obsessed and willing to delete what isn’t working.</p>",
+  "lights-out-factory-myth": "\n<p>The image is compelling: a factory running in darkness, robots working through the night without a single person on site. It appears in investor presentations and conference keynotes. On real shop floors, it remains rare — and chasing it can distract from the improvements that matter most.</p>\n<h2 id=\"why-full-autonomy-is-rare\">Why full autonomy is rare</h2>\n<p>Highly automated lines exist, particularly for stable, high-volume products. But most manufacturers operate in a world of product variation, supply disruption and equipment that ages unevenly. Each of those introduces exceptions, and exceptions still need people.</p>\n<ul>\n<li><strong>Product mix changes</strong> faster than automation can be reconfigured.</li>\n<li><strong>Maintenance and quality issues</strong> require judgement on the spot.</li>\n<li><strong>Material variation</strong> creates edge cases rigid systems handle poorly.</li>\n</ul>\n<h2 id=\"what-is-working\">What is actually working</h2>\n<p>The plants showing measurable gains tend to combine modest automation with excellent information flow.</p>\n<h3 id=\"connected-equipment\">Connected equipment and visible data</h3>\n<p>Connecting machines so that downtime, scrap and throughput are visible in near real time often delivers more value than adding new robots. Operators and supervisors can respond to problems in minutes rather than shifts.</p>\n<h3 id=\"targeted-automation\">Targeted automation</h3>\n<p>Automation applied to the most repetitive, dangerous or ergonomically difficult tasks frees skilled people for problem-solving. Collaborative robots are well suited here — see our report on <a href=\"#/article/cobots-assembly-work\">cobots and assembly work</a>.</p>\n<table>\n<thead><tr><th>Approach</th><th>Typical payback driver</th><th>Main risk</th></tr></thead>\n<tbody>\n<tr><td>Machine connectivity</td><td>Reduced unplanned downtime</td><td>Data not acted upon</td></tr>\n<tr><td>Targeted cobots</td><td>Labour reallocation, ergonomics</td><td>Poor task selection</td></tr>\n<tr><td>Full line automation</td><td>Throughput on stable products</td><td>Inflexibility when demand shifts</td></tr>\n</tbody>\n</table>\n<blockquote>The plants that impressed me most were not the darkest. They were the ones where everyone could see what was happening.</blockquote>\n<h2 id=\"people-remain-central\">People remain central</h2>\n<p>As automation increases, roles shift towards monitoring, maintenance and continuous improvement. That transition requires training and deliberate job design; it does not happen by default.</p>\n<h2 id=\"a-practical-roadmap\">A practical roadmap</h2>\n<ol>\n<li>Instrument the constraint: find and measure the bottleneck operation.</li>\n<li>Make losses visible to the people who can act on them.</li>\n<li>Automate the tasks people least want to do.</li>\n<li>Build data foundations that later initiatives — like <a href=\"#/article/digital-twins-pilot-to-production\">digital twins</a> — can rely on.</li>\n</ol>\n<p>The lights-out factory may arrive for some products. For most manufacturers, the better goal is a factory where problems surface early and people have the time and tools to solve them.</p>"
+ },
+ "applications": [
+  {
+   "id": "app-1",
+   "name": "Ravi Menon",
+   "email": "ravi.menon@example.com",
+   "title": "Head of Data Engineering",
+   "org": "Northwind Logistics (illustrative)",
+   "expertise": [
+    "Data Platforms",
+    "Streaming"
+   ],
+   "cats": [
+    "data",
+    "cloud"
+   ],
+   "bio": "Leads a data engineering team responsible for real-time logistics analytics. Speaks regularly at internal engineering forums.",
+   "links": [
+    "https://example.com/ravi"
+   ],
+   "samples": [
+    "https://example.com/ravi/streaming-lessons",
+    "https://example.com/ravi/data-quality"
+   ],
+   "reason": "I want to share practical lessons on running streaming pipelines at moderate scale, which is under-covered compared with big-tech case studies.",
+   "submitted": "2026-10-11",
+   "status": "pending"
+  },
+  {
+   "id": "app-2",
+   "name": "Grace Mwangi",
+   "email": "grace.m@example.com",
+   "title": "Product Security Lead",
+   "org": "",
+   "expertise": [
+    "AppSec",
+    "Threat Modelling"
+   ],
+   "cats": [
+    "cybersecurity"
+   ],
+   "bio": "Product security lead focused on threat modelling for SaaS teams.",
+   "links": [
+    "https://example.com/grace"
+   ],
+   "samples": [
+    "https://example.com/grace/threat-modelling"
+   ],
+   "reason": "Threat modelling is often taught abstractly; I would like to publish worked examples.",
+   "submitted": "2026-10-09",
+   "status": "pending"
+  },
+  {
+   "id": "app-3",
+   "name": "Oliver Brandt",
+   "email": "o.brandt@example.com",
+   "title": "Manufacturing Systems Consultant",
+   "org": "Independent",
+   "expertise": [
+    "MES",
+    "Industrial IoT"
+   ],
+   "cats": [
+    "manufacturing",
+    "robotics"
+   ],
+   "bio": "Consultant implementing manufacturing execution systems for mid-sized plants.",
+   "links": [
+    "https://example.com/oliver"
+   ],
+   "samples": [
+    "https://example.com/oliver/mes-rollout"
+   ],
+   "reason": "To write about MES implementation realities for plant managers.",
+   "submitted": "2026-10-04",
+   "status": "info_requested"
+  },
+  {
+   "id": "app-4",
+   "name": "Mei Chen",
+   "email": "mei.chen@example.com",
+   "title": "Staff Product Manager",
+   "org": "Brightline Health (illustrative)",
+   "expertise": [
+    "Product Strategy",
+    "HealthTech"
+   ],
+   "cats": [
+    "product",
+    "healthtech"
+   ],
+   "bio": "Product leader building clinical workflow software.",
+   "links": [
+    "https://example.com/mei"
+   ],
+   "samples": [
+    "https://example.com/mei/clinical-discovery",
+    "https://example.com/mei/roadmaps"
+   ],
+   "reason": "I would like to write about product discovery in regulated environments.",
+   "submitted": "2026-09-27",
+   "status": "approved"
+  },
+  {
+   "id": "app-5",
+   "name": "Alex Turner",
+   "email": "alex.t@example.com",
+   "title": "Growth Marketer",
+   "org": "",
+   "expertise": [
+    "SEO"
+   ],
+   "cats": [
+    "martech"
+   ],
+   "bio": "Growth marketer.",
+   "links": [
+    "https://example.com/alex"
+   ],
+   "samples": [],
+   "reason": "Looking to publish articles with backlinks to client sites.",
+   "submitted": "2026-09-22",
+   "status": "rejected"
+  }
+ ],
+ "subscribers": [
+  {
+   "id": 1,
+   "email": "n.sharma@example.com",
+   "joined": "2026-10-12",
+   "topics": [
+    "ai",
+    "software"
+   ],
+   "status": "active"
+  },
+  {
+   "id": 2,
+   "email": "j.oconnor@example.com",
+   "joined": "2026-10-11",
+   "topics": [
+    "business"
+   ],
+   "status": "active"
+  },
+  {
+   "id": 3,
+   "email": "m.garcia@example.com",
+   "joined": "2026-10-09",
+   "topics": [
+    "manufacturing",
+    "robotics"
+   ],
+   "status": "active"
+  },
+  {
+   "id": 4,
+   "email": "k.tan@example.com",
+   "joined": "2026-10-06",
+   "topics": [
+    "cybersecurity"
+   ],
+   "status": "active"
+  },
+  {
+   "id": 5,
+   "email": "l.dubois@example.com",
+   "joined": "2026-10-02",
+   "topics": [
+    "data",
+    "ai"
+   ],
+   "status": "unsubscribed"
+  },
+  {
+   "id": 6,
+   "email": "s.ahmed@example.com",
+   "joined": "2026-09-29",
+   "topics": [
+    "startups",
+    "product"
+   ],
+   "status": "active"
+  },
+  {
+   "id": 7,
+   "email": "p.novak@example.com",
+   "joined": "2026-09-25",
+   "topics": [
+    "cloud"
+   ],
+   "status": "active"
+  },
+  {
+   "id": 8,
+   "email": "r.silva@example.com",
+   "joined": "2026-09-21",
+   "topics": [
+    "fintech",
+    "healthtech"
+   ],
+   "status": "active"
+  },
+  {
+   "id": 9,
+   "email": "a.kowalski@example.com",
+   "joined": "2026-09-18",
+   "topics": [
+    "sustainability"
+   ],
+   "status": "unsubscribed"
+  },
+  {
+   "id": 10,
+   "email": "t.ito@example.com",
+   "joined": "2026-09-15",
+   "topics": [
+    "ai",
+    "technology"
+   ],
+   "status": "active"
+  }
+ ],
+ "campaigns": [
+  {
+   "id": 1,
+   "name": "The Weekly Brief — 9 Oct",
+   "subject": "Agents get real, factories get connected",
+   "status": "sent",
+   "date": "2026-10-09",
+   "audience": "All subscribers",
+   "openRate": "48% (demo)"
+  },
+  {
+   "id": 2,
+   "name": "AI Digest — October",
+   "subject": "Evaluating LLM apps without the guesswork",
+   "status": "scheduled",
+   "date": "2026-10-16",
+   "audience": "AI topic",
+   "openRate": "—"
+  },
+  {
+   "id": 3,
+   "name": "The Weekly Brief — 16 Oct",
+   "subject": "Draft: Platform engineering and zero trust",
+   "status": "draft",
+   "date": "—",
+   "audience": "All subscribers",
+   "openRate": "—"
+  }
+ ],
+ "redirects": [
+  {
+   "from": "/ai-agents-guide/",
+   "to": "/the-agentic-enterprise/",
+   "type": 301,
+   "hits": "124 (demo)"
+  },
+  {
+   "from": "/category/devops/",
+   "to": "/category/software/",
+   "type": 301,
+   "hits": "58 (demo)"
+  },
+  {
+   "from": "/old-newsletter/",
+   "to": "/newsletter/",
+   "type": 302,
+   "hits": "12 (demo)"
+  }
+ ],
+ "notifications": [
+  {
+   "id": 1,
+   "type": "revision",
+   "title": "Revision requested: Observability Budgets",
+   "text": "Ananya Rao left feedback on your submission. Review the notes and resubmit when ready.",
+   "at": "2026-10-03",
+   "unread": true,
+   "link": "#/portal/submission/102"
+  },
+  {
+   "id": 2,
+   "type": "status",
+   "title": "Now in review: Kubernetes Cost Guardrails",
+   "text": "James Whitaker has started reviewing your article.",
+   "at": "2026-10-09",
+   "unread": true,
+   "link": "#/portal/submission/101"
+  },
+  {
+   "id": 3,
+   "type": "approved",
+   "title": "Scheduled: Choosing a Vector Database Without Regret",
+   "text": "Your article was approved and is scheduled for 20 Oct 2026.",
+   "at": "2026-10-12",
+   "unread": false,
+   "link": "#/portal/submission/104"
+  },
+  {
+   "id": 4,
+   "type": "published",
+   "title": "Published: FinOps for Engineers",
+   "text": "Your article is live on Techvenza.",
+   "at": "2026-09-21",
+   "unread": false,
+   "link": "#/article/finops-for-engineers"
+  },
+  {
+   "id": 5,
+   "type": "account",
+   "title": "Profile reminder",
+   "text": "Add a short professional headline to improve how your byline appears.",
+   "at": "2026-09-02",
+   "unread": false,
+   "link": "#/portal/profile"
+  },
+  {
+   "id": 6,
+   "type": "account",
+   "title": "Updated editorial guidelines",
+   "text": "The AI-assisted writing disclosure policy was clarified.",
+   "at": "2026-08-20",
+   "unread": false,
+   "link": "#/guidelines"
+  }
+ ],
+ "editors": [
+  "Ananya Rao",
+  "Sofia Lindqvist",
+  "James Whitaker"
+ ]
+}

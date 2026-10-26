@@ -58,3 +58,12 @@ the same style). The WPCS underscore rule is disabled for this reason only.
 The editor sidebar and the generic block editor UI are plain ES2019 against `wp.*` globals,
 so the plugin works straight from Git. `@wordpress/scripts` is still used for ESLint/Prettier,
 and `npm run build` produces minified copies that load when `SCRIPT_DEBUG` is off.
+
+## D12 — Server-side workflow state machine
+Article statuses (`submitted`, `in_review`, `changes_requested`, `resubmitted`, `approved`, `rejected`, `archived`, plus core `draft`/`future`/`publish`) only change through `Workflow::transition()`, which checks the source status, the actor's capability, required notes and dates, and the submission checklist. Core saves that try to set `pending` are mapped to `submitted`; authors lose edit rights outside `draft`/`changes_requested`/`rejected` via `map_meta_cap`. Every change is appended to the post's timeline and fires `techvenza/workflow/transition`, which the notifier turns into in-app notifications and template emails.
+
+## D13 — Link-based filters use `aria-current`
+Filters, sort switches and pagination are real links so they work without JavaScript and can be shared. Links cannot carry `aria-pressed`, so the active option is marked with `aria-current="true"` and styled from that attribute.
+
+## D14 — Seeder marks everything it creates
+`wp techvenza seed` flags every post, page, attachment, term, menu, user and subscriber it creates (`tv_seed` meta / `is_seed` column). `wp techvenza reset --yes` deletes exactly those objects and never touches content created by editors.
