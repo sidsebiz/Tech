@@ -38,6 +38,8 @@ final class Admin {
 			'techvenza-calendar'     => array( __( 'Editorial calendar', 'techvenza-core' ), 'tv_review_posts', array( Calendar::class, 'render' ) ),
 			'techvenza-applications' => array( __( 'Author applications', 'techvenza-core' ), 'tv_manage_applications', array( Applications::class, 'render' ) ),
 			'techvenza-authors'      => array( __( 'Authors', 'techvenza-core' ), 'tv_manage_authors', array( Authors::class, 'render' ) ),
+			'techvenza-newsletter'   => array( __( 'Newsletter', 'techvenza-core' ), 'tv_manage_newsletter', array( NewsletterScreen::class, 'render' ) ),
+			'techvenza-messages'     => array( __( 'Messages', 'techvenza-core' ), 'tv_manage_messages', array( Messages::class, 'render' ) ),
 			'techvenza-analytics'    => array( __( 'Analytics', 'techvenza-core' ), 'tv_view_analytics', array( Analytics::class, 'render' ) ),
 			'techvenza-roles'        => array( __( 'Roles & permissions', 'techvenza-core' ), 'manage_options', array( RolesScreen::class, 'render' ) ),
 		);
@@ -56,6 +58,8 @@ final class Admin {
 		add_action( 'admin_post_techvenza_analytics_csv', array( Analytics::class, 'csv' ) );
 		PostsList::register();
 		Calendar::register();
+		NewsletterScreen::register();
+		Messages::register();
 	}
 
 	/**
@@ -80,6 +84,9 @@ final class Admin {
 			}
 			if ( 'techvenza-applications' === $slug && $apps ) {
 				$label .= ' <span class="awaiting-mod">' . (int) $apps . '</span>';
+			}
+			if ( 'techvenza-messages' === $slug && current_user_can( 'tv_manage_messages' ) && Messages::unread() ) {
+				$label .= ' <span class="awaiting-mod">' . (int) Messages::unread() . '</span>';
 			}
 			add_submenu_page( self::SLUG, $title, $label, $cap, $slug, array( self::class, 'dispatch' ) );
 		}

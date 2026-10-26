@@ -67,3 +67,15 @@ Filters, sort switches and pagination are real links so they work without JavaSc
 
 ## D14 — Seeder marks everything it creates
 `wp techvenza seed` flags every post, page, attachment, term, menu, user and subscriber it creates (`tv_seed` meta / `is_seed` column). `wp techvenza reset --yes` deletes exactly those objects and never touches content created by editors.
+
+## D15 — Double opt-in in WordPress, providers receive confirmed contacts only
+Sign-ups (newsletter page, compact forms, reader dashboard) are stored as `pending` with a consent record (time, wording, salted IP hash) and confirmed by a tokenised link. Only confirmed contacts are pushed to Brevo/Mailchimp, from a background cron event so forms stay fast; unsubscribes and erasures follow the same path. The confirmation response is identical for new and existing addresses, so the form never reveals who is subscribed.
+
+## D16 — Campaign delivery: provider for the whole list, WordPress mail for topic audiences
+"All subscribers" campaigns are created and sent through the connected provider (its own unsubscribe merge tag, its own reporting). Topic-targeted campaigns, and every campaign when no provider is connected, are sent with `wp_mail` in background batches of 40, each with a personal unsubscribe link plus RFC 8058 `List-Unsubscribe`/`List-Unsubscribe-Post` headers. Topic segments would otherwise need provider-specific segment set-up that editors cannot see from WordPress.
+
+## D17 — Scanner-safe unsubscribe
+Unsubscribe links in emails open the newsletter page with a one-button confirmation (POST), because mail security scanners pre-fetch links. Mail clients that support one-click unsubscribe POST to `techvenza/v1/newsletter/unsubscribe/{token}` directly.
+
+## D18 — Form URL checks do not resolve DNS
+`wp_http_validate_url()` resolves hostnames and rejects anything it cannot reach, which fails on hosts without outbound DNS and adds latency. Applicant links are checked syntactically (absolute http/https URL with a dotted host) and are only ever displayed, never fetched by the server.

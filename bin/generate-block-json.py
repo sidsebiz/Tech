@@ -183,7 +183,7 @@ blk('author-profile','Author profile','Author header (photo, title, bio, experti
 
 # ---------- Forms & accounts ----------
 F = lambda n,t,d,a=None,c=None,icon='feedback': blk(n,t,d,a or {},c or [],icon,script='techvenza-forms',surface=False)
-F('apply-form','Author application form','Contributor application with validation, spam protection and confirmation email.',{'intro':S('Tell us about your expertise.')},[{'key':'intro','type':'textarea','label':'Introduction'}])
+F('apply-form','Author application form','Contributor application with validation, spam protection and confirmation email.',{'intro':S('')},[{'key':'intro','type':'textarea','label':'Introduction'}])
 F('contact-form','Contact form','Inquiry form routed by type to the emails in Settings → Forms & Spam.',{'showAside':B(True)},[{'key':'showAside','type':'toggle','label':'Side information panels'}],'email-alt')
 F('newsletter-signup','Newsletter sign-up page','Full sign-up with topic and frequency choice, consent and double opt-in.',{'eyebrow':S('The Weekly Brief'),'title':S('The week in technology, edited.'),'lead':S("Every Thursday: the stories worth your time, a short editor's note, and one deep dive to save for the weekend. No sponsored filler.")},
   [{'key':'eyebrow','type':'text','label':'Eyebrow'},{'key':'title','type':'text','label':'Title'},{'key':'lead','type':'textarea','label':'Introduction'}],'email')

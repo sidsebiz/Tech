@@ -96,6 +96,36 @@ final class Fields {
 				'subject'  => __( 'A question about your {site_name} application', 'techvenza-core' ),
 				'body'     => __( "Hi {applicant_first_name},\n\nAn editor has a question about your application:\n\n{note}\n\nPlease reply to this email.", 'techvenza-core' ),
 			),
+			'application_team'     => array(
+				'label'    => __( 'New application (to editors)', 'techvenza-core' ),
+				'audience' => 'editors',
+				'subject'  => __( 'New author application: {applicant_name}', 'techvenza-core' ),
+				'body'     => __( "{applicant_name} ({applicant_title}) applied to write for {site_name}.\n\nReference: {reference}\nCategories: {categories}\n\nReview the application: {review_url}", 'techvenza-core' ),
+			),
+			'newsletter_confirm'   => array(
+				'label'    => __( 'Confirm newsletter subscription (double opt-in)', 'techvenza-core' ),
+				'audience' => 'subscriber',
+				'subject'  => __( 'Confirm your subscription to {newsletter_name}', 'techvenza-core' ),
+				'body'     => __( "Hi,\n\nPlease confirm that you want to receive {newsletter_name} ({frequency}) at this address:\n\n{confirm_url}\n\nIf you did not sign up, ignore this email and you will not hear from us again.", 'techvenza-core' ),
+			),
+			'newsletter_welcome'   => array(
+				'label'    => __( 'Newsletter welcome (after confirming)', 'techvenza-core' ),
+				'audience' => 'subscriber',
+				'subject'  => __( 'You are subscribed to {newsletter_name}', 'techvenza-core' ),
+				'body'     => __( "Thanks for confirming. Your first issue arrives with the next edition.\n\nTopics: {topics}\n\nChange your topics or unsubscribe at any time: {manage_url}", 'techvenza-core' ),
+			),
+			'contact_ack'          => array(
+				'label'    => __( 'Contact form acknowledgement (to sender)', 'techvenza-core' ),
+				'audience' => 'visitor',
+				'subject'  => __( 'We received your message: {subject}', 'techvenza-core' ),
+				'body'     => __( "Hi {first_name},\n\nThanks for contacting {site_name}. Your message has been passed to our {team} team, who usually reply within two working days.\n\nYour message:\n{message}", 'techvenza-core' ),
+			),
+			'contact_team'         => array(
+				'label'    => __( 'New contact message (to the routed team)', 'techvenza-core' ),
+				'audience' => 'editors',
+				'subject'  => __( '[{type_label}] {subject}', 'techvenza-core' ),
+				'body'     => __( "From: {name} <{email}>\nType: {type_label}\n\n{message}\n\nReply directly to this email, or open the inbox: {inbox_url}", 'techvenza-core' ),
+			),
 			'verify_email'         => array(
 				'label'    => __( 'Confirm email address (new account)', 'techvenza-core' ),
 				'audience' => 'reader',

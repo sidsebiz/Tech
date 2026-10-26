@@ -434,6 +434,7 @@ final class Render {
 			'unsubscribed'      => __( 'Unsubscribed', 'techvenza-core' ),
 			'confirmed'         => __( 'Active', 'techvenza-core' ),
 			'sent'              => __( 'Sent', 'techvenza-core' ),
+			'sending'           => __( 'Sending', 'techvenza-core' ),
 		);
 		$css    = array(
 			'future'    => 'scheduled',
@@ -656,7 +657,7 @@ final class Render {
 		$compact = ! empty( $o['compact'] );
 		return sprintf(
 			'<section class="newsletter %1$s reveal" aria-labelledby="%2$s-h"><div><span class="eyebrow" style="--accent:var(--blue)">%3$s</span><h2 class="%4$s mt-4" id="%2$s-h">%5$s</h2><p class="mt-4" style="max-width:46ch">%6$s</p></div>
-			<form method="post" action="%7$s" data-form="newsletterQuick" novalidate><input type="hidden" name="action" value="techvenza_subscribe"><input type="hidden" name="source" value="%8$s">%9$s
+			<form method="post" action="%7$s" data-form="newsletterQuick" data-tv-form data-endpoint="newsletter/subscribe" novalidate><input type="hidden" name="action" value="techvenza_subscribe"><input type="hidden" name="source" value="%8$s">%9$s
 			<div class="field" data-field="email"><label class="sr-only" for="%2$s">%10$s</label><div class="nl-form"><input class="input" id="%2$s" name="email" type="email" required autocomplete="email" placeholder="you@company.com" aria-describedby="%2$s-e"><button class="btn btn-primary" type="submit">%11$s</button></div>
 			<span class="error" id="%2$s-e" role="alert">%12$s %13$s</span></div>
 			<label class="tv-hp" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
@@ -669,7 +670,7 @@ final class Render {
 			esc_html( $o['text'] ?? __( 'The most useful stories on AI, software, business and industry — selected by our editors, with no sponsored filler.', 'techvenza-core' ) ),
 			esc_url( admin_url( 'admin-post.php' ) ),
 			esc_attr( $o['source'] ?? 'block' ),
-			wp_nonce_field( 'techvenza_subscribe', '_tvnonce', false, false ),
+			\Techvenza\Core\Support\Captcha::widget( 'newsletter' ),
 			esc_html__( 'Email address', 'techvenza-core' ),
 			esc_html__( 'Subscribe', 'techvenza-core' ),
 			self::icon( 'alert' ),
