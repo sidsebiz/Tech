@@ -1,0 +1,44 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/author-directory",
+	"title": "Author directory",
+	"category": "techvenza",
+	"icon": "groups",
+	"description": "Featured contributors plus searchable, filterable author cards with load more.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"perPage": {
+			"type": "number",
+			"default": 6
+		},
+		"showFeatured": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "perPage",
+			"type": "number",
+			"label": "Authors per page",
+			"min": 3,
+			"max": 24
+		},
+		{
+			"key": "showFeatured",
+			"type": "toggle",
+			"label": "Featured contributors row"
+		}
+	],
+	"viewScript": "techvenza-live"
+}

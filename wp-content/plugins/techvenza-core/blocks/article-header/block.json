@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/article-header",
+	"title": "Article header",
+	"category": "techvenza",
+	"icon": "heading",
+	"description": "Breadcrumbs, category, headline, summary, byline, dates, reading time and article tools.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"showTools": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "showTools",
+			"type": "toggle",
+			"label": "Share / save / text size / dark mode tools"
+		}
+	],
+	"viewScript": "techvenza-article",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

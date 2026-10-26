@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/category-featured",
+	"title": "Category featured + trending",
+	"category": "techvenza",
+	"icon": "star-half",
+	"description": "Lead story and trending list for the current category.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"count": {
+			"type": "number",
+			"default": 4
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Trending stories",
+			"min": 2,
+			"max": 8
+		}
+	]
+}

@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/trending-page",
+	"title": "Trending (ranked page)",
+	"category": "techvenza",
+	"icon": "chart-line",
+	"description": "Lead story, most-read panel and ranked list with a period switcher.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"count": {
+			"type": "number",
+			"default": 10
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Ranked stories",
+			"min": 5,
+			"max": 25
+		}
+	],
+	"viewScript": "techvenza-live"
+}

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/article-figure",
+	"title": "Article hero image",
+	"category": "techvenza",
+	"icon": "format-image",
+	"description": "Featured image with caption (or branded placeholder).",
+	"textdomain": "techvenza-core",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [],
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

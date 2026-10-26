@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/header-actions",
+	"title": "Header actions",
+	"category": "techvenza",
+	"icon": "admin-users",
+	"description": "Search button, account menu (guest vs signed-in, role-aware), Become an Author button and mobile menu toggle.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"showSearch": {
+			"type": "boolean",
+			"default": true
+		},
+		"showAccount": {
+			"type": "boolean",
+			"default": true
+		},
+		"ctaLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "showSearch",
+			"type": "toggle",
+			"label": "Search button"
+		},
+		{
+			"key": "showAccount",
+			"type": "toggle",
+			"label": "Account menu"
+		},
+		{
+			"key": "ctaLabel",
+			"type": "text",
+			"label": "Button label",
+			"help": "Empty = Settings → Header & Footer."
+		},
+		{
+			"key": "ctaUrl",
+			"type": "url",
+			"label": "Button link"
+		}
+	]
+}

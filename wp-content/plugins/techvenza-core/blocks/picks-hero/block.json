@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/picks-hero",
+	"title": "Editor's Picks hero",
+	"category": "techvenza",
+	"icon": "awards",
+	"description": "Dark editorial hero with the lead pick.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Editor's Picks"
+		},
+		"title": {
+			"type": "string",
+			"default": "Stories we think you shouldn't miss."
+		},
+		"lead": {
+			"type": "string",
+			"default": "Each week our editors choose the pieces with the most original thinking and practical value. Here is the current selection."
+		},
+		"post": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "title",
+			"type": "textarea",
+			"label": "Title"
+		},
+		{
+			"key": "lead",
+			"type": "textarea",
+			"label": "Introduction"
+		},
+		{
+			"key": "post",
+			"type": "post",
+			"label": "Lead story",
+			"help": "Empty = latest editor’s pick."
+		}
+	]
+}

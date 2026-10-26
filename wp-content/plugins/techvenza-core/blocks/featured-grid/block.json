@@ -1,0 +1,114 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/featured-grid",
+	"title": "Featured stories",
+	"category": "techvenza",
+	"icon": "star-filled",
+	"description": "One large lead story with two supporting stories.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"mode": {
+			"type": "string",
+			"default": "auto"
+		},
+		"lead": {
+			"type": "number",
+			"default": 0
+		},
+		"side": {
+			"type": "array",
+			"default": []
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "mode",
+			"type": "select",
+			"label": "Stories",
+			"options": [
+				{
+					"value": "auto",
+					"label": "Automatic (featured flag / Settings lead)"
+				},
+				{
+					"value": "manual",
+					"label": "Pick stories"
+				}
+			]
+		},
+		{
+			"key": "lead",
+			"type": "post",
+			"label": "Lead story",
+			"showIf": {
+				"mode": "manual"
+			}
+		},
+		{
+			"key": "side",
+			"type": "posts",
+			"label": "Supporting stories (2)",
+			"showIf": {
+				"mode": "manual"
+			}
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

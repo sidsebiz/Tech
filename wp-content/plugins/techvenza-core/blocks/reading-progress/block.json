@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/reading-progress",
+	"title": "Reading progress bar",
+	"category": "techvenza",
+	"icon": "minus",
+	"description": "Thin progress bar at the top of the viewport for articles.",
+	"textdomain": "techvenza-core",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [],
+	"tvPreview": "placeholder",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

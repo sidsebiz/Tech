@@ -1,0 +1,174 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/cta-band",
+	"title": "CTA band",
+	"category": "techvenza",
+	"icon": "megaphone",
+	"description": "Colourful call-to-action with steps (Become an Author).",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Become an author"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Have expertise worth sharing? Write with us."
+		},
+		"text": {
+			"type": "string",
+			"default": "Apply to join our contributor community. Our editors work with you to sharpen your ideas — publication is always subject to editorial review."
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Apply to write"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "/apply/"
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "How it works"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "/become-an-author/"
+		},
+		"layout": {
+			"type": "string",
+			"default": "split"
+		},
+		"steps": {
+			"type": "array",
+			"default": [
+				"Apply with your expertise and writing samples",
+				"Pitch or submit a draft through the author portal",
+				"Revise with an editor's feedback",
+				"Publish once the editorial team approves"
+			]
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading"
+		},
+		{
+			"key": "text",
+			"type": "textarea",
+			"label": "Text"
+		},
+		{
+			"key": "primaryLabel",
+			"type": "text",
+			"label": "Primary button",
+			"panel": "Buttons"
+		},
+		{
+			"key": "primaryUrl",
+			"type": "url",
+			"label": "Primary link",
+			"panel": "Buttons"
+		},
+		{
+			"key": "secondaryLabel",
+			"type": "text",
+			"label": "Secondary button",
+			"panel": "Buttons"
+		},
+		{
+			"key": "secondaryUrl",
+			"type": "url",
+			"label": "Secondary link",
+			"panel": "Buttons"
+		},
+		{
+			"key": "layout",
+			"type": "select",
+			"label": "Layout",
+			"options": [
+				{
+					"value": "split",
+					"label": "Text + steps"
+				},
+				{
+					"value": "center",
+					"label": "Centred"
+				}
+			]
+		},
+		{
+			"key": "steps",
+			"type": "repeater",
+			"scalar": true,
+			"label": "Steps",
+			"panel": "Steps",
+			"addLabel": "Add step"
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,104 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/nav-menu",
+	"title": "Menu",
+	"category": "techvenza",
+	"icon": "menu",
+	"description": "Renders a menu location managed in Appearance → Menus. Nested items become dropdowns; an item with CSS class tv-mega-categories becomes the categories mega-menu.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"location": {
+			"type": "string",
+			"default": "primary"
+		},
+		"variant": {
+			"type": "string",
+			"default": "header"
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": false
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "location",
+			"type": "select",
+			"label": "Menu location",
+			"options": [
+				{
+					"value": "primary",
+					"label": "Header — primary"
+				},
+				{
+					"value": "mobile",
+					"label": "Mobile drawer"
+				},
+				{
+					"value": "footer-1",
+					"label": "Footer column 1"
+				},
+				{
+					"value": "footer-2",
+					"label": "Footer column 2"
+				},
+				{
+					"value": "footer-3",
+					"label": "Footer column 3"
+				},
+				{
+					"value": "footer-4",
+					"label": "Footer column 4"
+				},
+				{
+					"value": "legal",
+					"label": "Legal links"
+				}
+			]
+		},
+		{
+			"key": "variant",
+			"type": "select",
+			"label": "Style",
+			"options": [
+				{
+					"value": "header",
+					"label": "Header navigation"
+				},
+				{
+					"value": "footer",
+					"label": "Footer column"
+				},
+				{
+					"value": "inline",
+					"label": "Inline links"
+				}
+			]
+		},
+		{
+			"key": "showTitle",
+			"type": "toggle",
+			"label": "Show menu name as heading"
+		},
+		{
+			"key": "title",
+			"type": "text",
+			"label": "Heading override"
+		}
+	],
+	"tvHint": "Edit the links in Appearance → Menus. Assign the menu to the chosen location."
+}

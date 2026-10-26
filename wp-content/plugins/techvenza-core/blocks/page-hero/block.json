@@ -1,0 +1,86 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/page-hero",
+	"title": "Page hero",
+	"category": "techvenza",
+	"icon": "heading",
+	"description": "Breadcrumbs, title and introduction. In “automatic” mode it uses the page/archive title and hides itself when the page already starts with a hero.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"auto": {
+			"type": "boolean",
+			"default": false
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": ""
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"lead": {
+			"type": "string",
+			"default": ""
+		},
+		"tint": {
+			"type": "string",
+			"default": ""
+		},
+		"breadcrumbs": {
+			"type": "boolean",
+			"default": true
+		},
+		"display": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "auto",
+			"type": "toggle",
+			"label": "Automatic (use page or archive title)"
+		},
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "title",
+			"type": "text",
+			"label": "Title"
+		},
+		{
+			"key": "lead",
+			"type": "textarea",
+			"label": "Introduction"
+		},
+		{
+			"key": "tint",
+			"type": "color",
+			"label": "Tint background"
+		},
+		{
+			"key": "breadcrumbs",
+			"type": "toggle",
+			"label": "Breadcrumbs"
+		},
+		{
+			"key": "display",
+			"type": "toggle",
+			"label": "Large editorial display title"
+		}
+	]
+}

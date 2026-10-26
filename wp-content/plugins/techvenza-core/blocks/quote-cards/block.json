@@ -1,0 +1,145 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/quote-cards",
+	"title": "Deep dives (quote cards)",
+	"category": "techvenza",
+	"icon": "format-quote",
+	"description": "Quote cards built from each story’s first key point.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Deep dives & perspectives"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Expert perspectives, in their own words"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": "More deep dives"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/explore/?type=deep-dive"
+		},
+		"types": {
+			"type": "array",
+			"default": [
+				"deep-dive",
+				"opinion"
+			]
+		},
+		"count": {
+			"type": "number",
+			"default": 3
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow",
+			"panel": "Heading"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkUrl",
+			"type": "url",
+			"label": "Link URL",
+			"panel": "Heading"
+		},
+		{
+			"key": "types",
+			"type": "list",
+			"label": "Formats (comma-separated)",
+			"help": "deep-dive, analysis, guide, opinion, news"
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Cards",
+			"min": 1,
+			"max": 9
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

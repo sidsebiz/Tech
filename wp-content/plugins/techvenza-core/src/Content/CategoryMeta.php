@@ -141,7 +141,7 @@ final class CategoryMeta {
 			'hero'        => (int) $m( 'tv_hero_image' ),
 			'seo_title'   => (string) $m( 'tv_seo_title' ),
 			'seo_desc'    => (string) $m( 'tv_seo_description' ),
-			'home'        => '' === $m( 'tv_show_on_home' ) ? true : (bool) $m( 'tv_show_on_home' ),
+			'home'        => metadata_exists( 'term', $term->term_id, 'tv_show_on_home' ) ? (bool) $m( 'tv_show_on_home' ) : true,
 			'order'       => (int) $m( 'tv_order' ),
 			'count'       => (int) $term->count,
 			'parent'      => (int) $term->parent,
@@ -402,5 +402,20 @@ final class CategoryMeta {
 		}
 		$c = self::get( $term_id );
 		return $c ? sprintf( '<span style="display:inline-block;width:18px;height:18px;border-radius:5px;background:%s" title="%s"></span>', esc_attr( $c['color'] ), esc_attr( $c['color'] ) ) : $out;
+	}
+	/**
+	 * Category being viewed (archive page, or the term passed to a fragment request).
+	 *
+	 * @return array<string,mixed>|null
+	 */
+	public static function current(): ?array {
+		if ( ! empty( $GLOBALS['techvenza_fragment_term'] ) ) {
+			return self::get( (int) $GLOBALS['techvenza_fragment_term'] );
+		}
+		$term = get_queried_object();
+		if ( $term instanceof \WP_Term && 'category' === $term->taxonomy ) {
+			return self::get( $term );
+		}
+		return null;
 	}
 }

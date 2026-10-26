@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/toc",
+	"title": "Table of contents",
+	"category": "techvenza",
+	"icon": "list-view",
+	"description": "Auto-generated from H2/H3 headings on the page, with active-section highlighting.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "On this page"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "title",
+			"type": "text",
+			"label": "Title"
+		}
+	],
+	"viewScript": "techvenza-article",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

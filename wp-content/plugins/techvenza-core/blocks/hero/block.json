@@ -1,0 +1,178 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/hero",
+	"title": "Hero",
+	"category": "techvenza",
+	"icon": "cover-image",
+	"description": "Homepage hero: display headline with gradient words, introduction, two buttons, stats and topic chips.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Independent technology journalism"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Technology, explained by the people"
+		},
+		"gradientText": {
+			"type": "string",
+			"default": "who build it."
+		},
+		"lead": {
+			"type": "string",
+			"default": "Clear, expert-led analysis of AI, software, business and industry — written by practitioners and edited for depth, accuracy and usefulness."
+		},
+		"primaryLabel": {
+			"type": "string",
+			"default": "Explore stories"
+		},
+		"primaryUrl": {
+			"type": "string",
+			"default": "/explore/"
+		},
+		"secondaryLabel": {
+			"type": "string",
+			"default": "Write for Techvenza"
+		},
+		"secondaryUrl": {
+			"type": "string",
+			"default": "/become-an-author/"
+		},
+		"statsMode": {
+			"type": "string",
+			"default": "auto"
+		},
+		"stats": {
+			"type": "array",
+			"default": []
+		},
+		"showTopics": {
+			"type": "boolean",
+			"default": true
+		},
+		"topics": {
+			"type": "array",
+			"default": [
+				"ai",
+				"software",
+				"manufacturing",
+				"cybersecurity",
+				"business",
+				"data",
+				"cloud",
+				"startups"
+			]
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "heading",
+			"type": "textarea",
+			"label": "Headline"
+		},
+		{
+			"key": "gradientText",
+			"type": "text",
+			"label": "Gradient words (appended)"
+		},
+		{
+			"key": "lead",
+			"type": "textarea",
+			"label": "Introduction"
+		},
+		{
+			"key": "primaryLabel",
+			"type": "text",
+			"label": "Primary button",
+			"panel": "Buttons"
+		},
+		{
+			"key": "primaryUrl",
+			"type": "url",
+			"label": "Primary link",
+			"panel": "Buttons"
+		},
+		{
+			"key": "secondaryLabel",
+			"type": "text",
+			"label": "Secondary button",
+			"panel": "Buttons"
+		},
+		{
+			"key": "secondaryUrl",
+			"type": "url",
+			"label": "Secondary link",
+			"panel": "Buttons"
+		},
+		{
+			"key": "statsMode",
+			"type": "select",
+			"label": "Stats",
+			"panel": "Stats",
+			"options": [
+				{
+					"value": "auto",
+					"label": "Automatic counts"
+				},
+				{
+					"value": "manual",
+					"label": "Manual"
+				},
+				{
+					"value": "none",
+					"label": "Hide"
+				}
+			]
+		},
+		{
+			"key": "stats",
+			"type": "repeater",
+			"label": "Manual stats",
+			"panel": "Stats",
+			"showIf": {
+				"statsMode": "manual"
+			},
+			"fields": [
+				{
+					"key": "value",
+					"type": "text",
+					"label": "Value"
+				},
+				{
+					"key": "label",
+					"type": "text",
+					"label": "Label"
+				}
+			],
+			"addLabel": "Add stat"
+		},
+		{
+			"key": "showTopics",
+			"type": "toggle",
+			"label": "Show topic chips",
+			"panel": "Topics"
+		},
+		{
+			"key": "topics",
+			"type": "categories",
+			"label": "Topics",
+			"panel": "Topics"
+		}
+	]
+}

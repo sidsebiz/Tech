@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/search-overlay",
+	"title": "Search overlay",
+	"category": "techvenza",
+	"icon": "search",
+	"description": "Full-screen search with live suggestions (opened by the header search button or the / key).",
+	"textdomain": "techvenza-core",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [],
+	"tvPreview": "placeholder",
+	"tvHint": "Hidden until opened. Suggestions come from the REST search endpoint."
+}

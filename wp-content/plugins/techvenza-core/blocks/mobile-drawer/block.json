@@ -1,0 +1,44 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/mobile-drawer",
+	"title": "Mobile menu drawer",
+	"category": "techvenza",
+	"icon": "menu-alt",
+	"description": "Slide-in navigation for small screens.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"location": {
+			"type": "string",
+			"default": "mobile"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "location",
+			"type": "select",
+			"label": "Menu location",
+			"options": [
+				{
+					"value": "mobile",
+					"label": "Mobile drawer"
+				},
+				{
+					"value": "primary",
+					"label": "Header — primary"
+				}
+			]
+		}
+	],
+	"tvPreview": "placeholder",
+	"tvHint": "Hidden until the menu button is pressed."
+}

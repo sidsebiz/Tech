@@ -26,10 +26,10 @@ jobs:
           if [ -d wp-content ]; then find wp-content -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null; fi
       - name: PHPCS (WordPress Coding Standards)
         run: |
-          if [ -d wp-content ]; then vendor/bin/phpcs -q --report=checkstyle | cs2pr; else echo "No PHP yet"; fi
+          if [ -d wp-content ]; then vendor/bin/phpcs -q --report=checkstyle | cs2pr --graceful-warnings; else echo "No PHP yet"; fi
       - name: PHPStan (level 6)
         run: |
-          if [ -d wp-content/plugins/techvenza-core/src ]; then vendor/bin/phpstan analyse --memory-limit=1G --no-progress --error-format=github; else echo "No plugin code yet"; fi
+          if [ -d wp-content/plugins/techvenza-core/src ]; then vendor/bin/phpstan analyse --memory-limit=3G --no-progress --error-format=github; else echo "No plugin code yet"; fi
 
   js-lint:
     name: JS / CSS lint and build

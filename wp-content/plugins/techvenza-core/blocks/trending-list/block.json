@@ -1,0 +1,170 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/trending-list",
+	"title": "Trending list",
+	"category": "techvenza",
+	"icon": "chart-line",
+	"description": "Ranked list of the most-read stories for a period.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Trending"
+		},
+		"heading": {
+			"type": "string",
+			"default": "What readers are opening now"
+		},
+		"description": {
+			"type": "string",
+			"default": "Ranked by reading activity over the past seven days."
+		},
+		"linkLabel": {
+			"type": "string",
+			"default": "All trending"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/trending/"
+		},
+		"period": {
+			"type": "string",
+			"default": "7d"
+		},
+		"count": {
+			"type": "number",
+			"default": 6
+		},
+		"columns": {
+			"type": "number",
+			"default": 2
+		},
+		"surface": {
+			"type": "string",
+			"default": "default"
+		},
+		"spacing": {
+			"type": "string",
+			"default": "default"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow",
+			"panel": "Heading"
+		},
+		{
+			"key": "heading",
+			"type": "text",
+			"label": "Heading",
+			"panel": "Heading"
+		},
+		{
+			"key": "description",
+			"type": "textarea",
+			"label": "Description",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkLabel",
+			"type": "text",
+			"label": "Link label",
+			"panel": "Heading"
+		},
+		{
+			"key": "linkUrl",
+			"type": "url",
+			"label": "Link URL",
+			"panel": "Heading"
+		},
+		{
+			"key": "period",
+			"type": "select",
+			"label": "Period",
+			"options": [
+				{
+					"value": "24h",
+					"label": "Last 24 hours"
+				},
+				{
+					"value": "7d",
+					"label": "Last 7 days"
+				},
+				{
+					"value": "30d",
+					"label": "Last 30 days"
+				},
+				{
+					"value": "all",
+					"label": "All time"
+				}
+			]
+		},
+		{
+			"key": "count",
+			"type": "number",
+			"label": "Number of stories",
+			"min": 3,
+			"max": 12
+		},
+		{
+			"key": "columns",
+			"type": "number",
+			"label": "Columns",
+			"min": 1,
+			"max": 2
+		},
+		{
+			"key": "surface",
+			"type": "select",
+			"label": "Background",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Page background"
+				},
+				{
+					"value": "alt",
+					"label": "Surface (white)"
+				}
+			]
+		},
+		{
+			"key": "spacing",
+			"type": "select",
+			"label": "Vertical spacing",
+			"panel": "Layout",
+			"options": [
+				{
+					"value": "default",
+					"label": "Default"
+				},
+				{
+					"value": "tight",
+					"label": "Tight"
+				},
+				{
+					"value": "none-top",
+					"label": "No top padding"
+				},
+				{
+					"value": "none-bottom",
+					"label": "No bottom padding"
+				}
+			]
+		}
+	]
+}

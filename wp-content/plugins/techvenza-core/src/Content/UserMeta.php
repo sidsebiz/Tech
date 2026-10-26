@@ -183,7 +183,7 @@ final class UserMeta {
 			'linkedin'  => (string) $m( 'tv_linkedin' ),
 			'x'         => (string) $m( 'tv_x' ),
 			'photo'     => $photo ? (string) wp_get_attachment_image_url( $photo, 'techvenza-square' ) : '',
-			'visible'   => '' === $visible ? true : (bool) $visible,
+			'visible'   => metadata_exists( 'user', $user->ID, 'tv_visible' ) ? (bool) $visible : true,
 			'featured'  => (bool) $m( 'tv_featured' ),
 			'status'    => $m( 'tv_account_status' ) ? (string) $m( 'tv_account_status' ) : 'active',
 			'joined'    => substr( $user->user_registered, 0, 10 ),
