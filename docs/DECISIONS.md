@@ -40,3 +40,21 @@ element (offset by the admin bar), because a sticky child of an equally tall wra
 ## D7 — Progressive enhancement for reveal animations
 `html.tv-js` is set inline in `<head>`; `.reveal` content is only hidden when that class exists,
 so content is always visible without JavaScript and animations respect `prefers-reduced-motion`.
+
+## D8 — Plugin without a Composer runtime
+`techvenza-core` ships its own PSR-4 autoloader (`Techvenza\Core\…` → `src/`), so it can be
+uploaded as a ZIP to any host. Composer is used only for development tooling.
+
+## D9 — Settings: one option, constants win, secrets encrypted
+All settings live in the `techvenza_settings` option. Any key can be pinned from `wp-config.php`
+with `TECHVENZA_<KEY>` (e.g. `TECHVENZA_SMTP_PASS`). Secret fields are encrypted with libsodium
+using a key derived from the site's `AUTH_KEY`/`SECURE_AUTH_KEY`; rotating salts means re-entering secrets.
+
+## D10 — Namespaced hook names
+Custom actions and filters use `techvenza/<area>/<event>` names (WordPress' own block hooks use
+the same style). The WPCS underscore rule is disabled for this reason only.
+
+## D11 — Editor UI without a build step
+The editor sidebar and the generic block editor UI are plain ES2019 against `wp.*` globals,
+so the plugin works straight from Git. `@wordpress/scripts` is still used for ESLint/Prettier,
+and `npm run build` produces minified copies that load when `SCRIPT_DEBUG` is off.
