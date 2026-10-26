@@ -109,7 +109,7 @@ final class Account {
 			return $id;
 		}
 		if ( ! is_wp_error( $id ) ) {
-			wp_send_user_request( (string) $id );
+			wp_send_user_request( (int) $id );
 		}
 		return rest_ensure_response( array( 'message' => __( 'We sent a confirmation link to your email. Your request is reviewed by an administrator after you confirm it.', 'techvenza-core' ) ) );
 	}
