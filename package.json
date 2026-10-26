@@ -1,0 +1,42 @@
+{
+  "name": "techvenza",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Techvenza — dynamic WordPress publication (block theme + core plugin)",
+  "license": "GPL-2.0-or-later",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "wp-env start && npm run mailpit:hint",
+    "stop": "wp-env stop",
+    "destroy": "wp-env destroy",
+    "mailpit:hint": "node -e \"console.log('\\nWordPress: http://localhost:8888  (admin / password)\\nFor email capture run: docker run -d -p 8025:8025 -p 1025:1025 axllent/mailpit')\"",
+    "build": "node bin/build-assets.mjs",
+    "watch": "node bin/build-assets.mjs --watch",
+    "seed": "wp-env run cli wp techvenza seed",
+    "seed:reset": "wp-env run cli wp techvenza reset --yes",
+    "seed:docker": "docker compose run --rm cli techvenza seed",
+    "wp": "wp-env run cli wp",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:php",
+    "lint:js": "wp-scripts lint-js \"wp-content/**/assets/js/**/*.js\" \"wp-content/plugins/techvenza-core/blocks/**/*.js\" --no-error-on-unmatched-pattern",
+    "lint:css": "wp-scripts lint-style \"wp-content/**/assets/css/**/*.css\" --allow-empty-input",
+    "lint:php": "composer lint",
+    "format": "wp-scripts format",
+    "test": "npm run test:php && npm run test:e2e",
+    "test:php": "wp-env run tests-cli --env-cwd=wp-content/techvenza-repo composer test",
+    "test:e2e": "playwright test -c tests/e2e/playwright.config.ts",
+    "test:a11y": "playwright test -c tests/e2e/playwright.config.ts --grep @a11y",
+    "lighthouse": "lhci autorun --config=.lighthouserc.json",
+    "release": "bash bin/make-release.sh"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@lhci/cli": "^0.14.0",
+    "@playwright/test": "^1.48.0",
+    "@wordpress/env": "^10.10.0",
+    "@wordpress/scripts": "^30.4.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,15 @@
+{
+	"root": true,
+	"extends": [ "plugin:@wordpress/eslint-plugin/recommended" ],
+	"env": { "browser": true, "es2021": true },
+	"globals": { "wp": "readonly" },
+	"rules": {
+		"no-console": "warn"
+	},
+	"overrides": [
+		{
+			"files": [ "tests/e2e/**/*.ts", "tests/e2e/**/*.js" ],
+			"env": { "node": true }
+		}
+	]
+}

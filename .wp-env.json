@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/wp-env.json",
+  "core": "WordPress/WordPress#6.8.3",
+  "phpVersion": "8.2",
+  "themes": [
+    "./wp-content/themes/techvenza"
+  ],
+  "plugins": [
+    "./wp-content/plugins/techvenza-core"
+  ],
+  "port": 8888,
+  "testsPort": 8889,
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "SCRIPT_DEBUG": false,
+    "WP_ENVIRONMENT_TYPE": "local",
+    "TECHVENZA_SMTP_HOST": "host.docker.internal",
+    "TECHVENZA_SMTP_PORT": 1025
+  },
+  "mappings": {
+    "wp-content/mu-plugins/techvenza-local.php": "./docker/mu-plugins/techvenza-local.php",
+    "wp-content/techvenza-repo": "."
+  },
+  "lifecycleScripts": {
+    "afterStart": "npx wp-env run cli wp rewrite structure '/%postname%/' --hard"
+  }
+}
