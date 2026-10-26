@@ -19,17 +19,17 @@ jobs:
         with:
           php-version: '8.2'
           coverage: none
-          tools: composer:v2
+          tools: composer:v2, cs2pr
       - run: composer install --no-progress --prefer-dist
       - name: PHP syntax
         run: |
           if [ -d wp-content ]; then find wp-content -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null; fi
       - name: PHPCS (WordPress Coding Standards)
         run: |
-          if [ -d wp-content ]; then composer phpcs -- --report=full; else echo "No PHP yet"; fi
+          if [ -d wp-content ]; then vendor/bin/phpcs -q --report=checkstyle | cs2pr; else echo "No PHP yet"; fi
       - name: PHPStan (level 6)
         run: |
-          if [ -d wp-content/plugins/techvenza-core/src ]; then composer phpstan -- --no-progress; else echo "No plugin code yet"; fi
+          if [ -d wp-content/plugins/techvenza-core/src ]; then vendor/bin/phpstan analyse --memory-limit=1G --no-progress --error-format=github; else echo "No plugin code yet"; fi
 
   js-lint:
     name: JS / CSS lint and build
@@ -41,8 +41,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run lint:js
-      - run: npm run lint:css
+      - name: ESLint
+        run: npm run lint:js -- --format compact | sed -E 's#^(/[^:]+): line ([0-9]+), col ([0-9]+), (Error|Warning) - (.*)#::\L\4\E file=\1,line=\2,col=\3::\5#'; exit ${PIPESTATUS[0]}
+        shell: bash
+      - name: Stylelint
+        run: npm run lint:css -- --formatter github
       - run: npm run build
       - name: Validate block.json files
         run: |
