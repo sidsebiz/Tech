@@ -42,8 +42,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: ESLint
-        run: npm run lint:js -- --format compact | sed -E 's#^(/[^:]+): line ([0-9]+), col ([0-9]+), (Error|Warning) - (.*)#::\L\4\E file=\1,line=\2,col=\3::\5#'; exit ${PIPESTATUS[0]}
-        shell: bash
+        run: bash bin/lint-js-ci.sh
       - name: Stylelint
         run: npm run lint:css -- --formatter github
       - run: npm run build
