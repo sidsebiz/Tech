@@ -66,8 +66,8 @@ if ( ! empty( $attributes['showTools'] ) ) {
 		esc_attr__( 'Save article', 'techvenza-core' ),
 		R::icon( 'bookmark' ),
 		esc_attr__( 'Text size', 'techvenza-core' ),
-		esc_attr__( 'Decrease text size', 'techvenza-core' ),
-		esc_attr__( 'Increase text size', 'techvenza-core' ),
+		esc_attr__( 'A− Decrease text size', 'techvenza-core' ),
+		esc_attr__( 'A+ Increase text size', 'techvenza-core' ),
 		esc_attr__( 'Dark reading theme', 'techvenza-core' ),
 		R::icon( 'moon' )
 	);

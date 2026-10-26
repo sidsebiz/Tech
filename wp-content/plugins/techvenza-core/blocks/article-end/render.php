@@ -49,7 +49,7 @@ if ( $tv_corr ) {
 }
 
 $tv_out .= sprintf(
-	'<div class="share-row"><span class="label" style="margin-right:8px">%1$s</span><button class="btn btn-secondary btn-sm" type="button" data-action="copyLink" data-url="%2$s">%3$s <span data-copy-label>%4$s</span></button><button class="btn btn-secondary btn-sm" type="button" data-action="share" data-title="%5$s" data-url="%2$s">%6$s %7$s</button><button class="btn btn-secondary btn-sm" type="button" data-action="bookmark" data-id="%8$d" aria-pressed="false">%9$s <span data-bm-label>%10$s</span></button></div>',
+	'<div class="share-row"><span class="label" style="margin-right:8px">%1$s</span><button class="btn btn-secondary btn-sm" type="button" data-action="copyLink" data-url="%2$s">%3$s <span data-copy-label>%4$s</span></button><button class="btn btn-secondary btn-sm" type="button" data-action="share" data-title="%5$s" data-url="%2$s">%6$s %7$s</button><button class="btn btn-secondary btn-sm" type="button" data-action="bookmark" data-id="%8$d" aria-pressed="false">%9$s <span data-bm-label data-on="%11$s" data-off="%10$s">%10$s</span></button></div>',
 	esc_html__( 'Share this story', 'techvenza-core' ),
 	esc_url( $tv_a['url'] ),
 	R::icon( 'link' ),
@@ -59,7 +59,8 @@ $tv_out .= sprintf(
 	esc_html__( 'Share', 'techvenza-core' ),
 	(int) $tv_a['id'],
 	R::icon( 'bookmark' ),
-	esc_html__( 'Save', 'techvenza-core' )
+	esc_html__( 'Save', 'techvenza-core' ),
+	esc_attr__( 'Saved', 'techvenza-core' )
 );
 
 $tv_au = $tv_a['author'];

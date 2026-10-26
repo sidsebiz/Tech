@@ -31,9 +31,9 @@ if ( $tv_filter ) {
 			$tv_slugs[ $tv_c['slug'] ] = $tv_c;
 		}
 	}
-	$tv_chips = sprintf( '<div class="chip-row" role="group" aria-label="%s"><a class="filter-chip" href="%s" data-live-link aria-pressed="%s">%s</a>', esc_attr__( 'Filter picks by category', 'techvenza-core' ), esc_url( Params::url( array() ) ), $tv_active ? 'false' : 'true', esc_html__( 'All', 'techvenza-core' ) );
+	$tv_chips = sprintf( '<div class="chip-row" role="group" aria-label="%s"><a class="filter-chip" href="%s" data-live-link aria-current="%s">%s</a>', esc_attr__( 'Filter picks by category', 'techvenza-core' ), esc_url( Params::url( array() ) ), $tv_active ? 'false' : 'true', esc_html__( 'All', 'techvenza-core' ) );
 	foreach ( $tv_slugs as $tv_c ) {
-		$tv_chips .= sprintf( '<a class="filter-chip" href="%s" data-live-link aria-pressed="%s"><span class="dot-c" style="--c:%s"></span>%s</a>', esc_url( Params::url( array( 'pick' => $tv_c['slug'] ) ) ), $tv_active === $tv_c['slug'] ? 'true' : 'false', esc_attr( $tv_c['color'] ), esc_html( $tv_c['short'] ) );
+		$tv_chips .= sprintf( '<a class="filter-chip" href="%s" data-live-link aria-current="%s"><span class="dot-c" style="--c:%s"></span>%s</a>', esc_url( Params::url( array( 'pick' => $tv_c['slug'] ) ) ), $tv_active === $tv_c['slug'] ? 'true' : 'false', esc_attr( $tv_c['color'] ), esc_html( $tv_c['short'] ) );
 	}
 	$tv_chips .= '</div>';
 }

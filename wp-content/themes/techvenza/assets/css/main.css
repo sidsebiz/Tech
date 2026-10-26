@@ -248,7 +248,7 @@ a.chip:hover{border-color:var(--c);transform:translateY(-1px)}
 
 .filter-chip:hover{border-color:var(--ink)}
 
-.filter-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.filter-chip[aria-pressed="true"],.filter-chip[aria-current="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 
 .filter-chip .count{font-size:var(--t-cap);opacity:.65}
 
@@ -1357,11 +1357,11 @@ main:focus{outline:none}
 
 .seg a.seg-btn:hover{color:var(--ink)}
 
-.seg a.seg-btn[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--sh-1);font-weight:600}
+.seg a.seg-btn[aria-current="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--sh-1);font-weight:600}
 
 a.filter-chip{text-decoration:none}
 
-.tag.is-active,a.tag[aria-pressed="true"]{background:var(--ink);color:#fff}
+.tag.is-active,a.tag[aria-current="true"]{background:var(--ink);color:#fff}
 
 .pagination .pg{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:.875rem;font-weight:500;color:var(--ink);text-decoration:none}
 
@@ -1435,3 +1435,13 @@ h2.row>svg,h3.row>svg{width:22px;height:22px;flex:none;color:var(--muted)}
 
 /* Narrow wrapper inside a container (FAQ, forms) */
 .container>.narrow{max-width:var(--container-narrow);margin-inline:auto}
+
+/* Tinted heroes: keep secondary text at 4.5:1 on the soft category background */
+.cat-hero,.page-hero.tinted{--muted:#4B5568}
+
+.delta{color:#047857}
+
+.delta.down{color:#BE123C}
+
+/* Decorative rank numerals (order is conveyed by the list itself) */
+.trend-row .num::before{content:attr(data-n)}

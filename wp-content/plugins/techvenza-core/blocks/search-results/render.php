@@ -130,7 +130,13 @@ if ( '' === $tv_q ) {
 					R::chip( $tv_a['cat'], false ),
 					R::hl( $tv_a['title'], $tv_q ),
 					R::hl( $tv_a['excerpt'], $tv_q ),
-					R::byline( $tv_a, array( 'avatar' => false ) )
+					R::byline(
+						$tv_a,
+						array(
+							'avatar' => false,
+							'link'   => false,
+						)
+					)
 				);
 			}
 			$tv_sec .= '<section><h2 class="h3 mb-4">' . esc_html__( 'Articles', 'techvenza-core' ) . '</h2><div class="grid" style="gap:var(--s5)">' . $tv_rows . '</div>' . R::pager(

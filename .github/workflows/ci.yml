@@ -92,9 +92,9 @@ jobs:
     needs: [php-lint, js-lint]
     steps:
       - uses: actions/checkout@v4
-      # Runs once the seeder exists (phase 10); earlier phases have nothing to seed.
+      # Runs once the seeder and the Playwright suite exist.
       - id: gate
-        run: echo "ok=$([ -f wp-content/plugins/techvenza-core/src/Cli/Seeder.php ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+        run: echo "ok=$([ -f wp-content/plugins/techvenza-core/src/Cli/Seeder.php ] && [ -f tests/e2e/playwright.config.ts ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
       - if: steps.gate.outputs.ok == 'true'
         uses: actions/setup-node@v4
         with:
@@ -134,8 +134,9 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
+      # Budgets include SEO, so this runs once the SEO module (meta, JSON-LD) has landed.
       - id: gate
-        run: echo "ok=$([ -f wp-content/plugins/techvenza-core/src/Cli/Seeder.php ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+        run: echo "ok=$([ -f wp-content/plugins/techvenza-core/src/Seo/Seo.php ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
       - if: steps.gate.outputs.ok == 'true'
         uses: actions/setup-node@v4
         with:

@@ -29,7 +29,7 @@ $tv_max   = max( 1, $tv_stats[ $tv_ranked[0]->ID ][0] ?? 1 );
 
 $tv_seg = '';
 foreach ( $tv_periods as $tv_k => [ $tv_l ] ) {
-	$tv_seg .= sprintf( '<a class="seg-btn" href="%s" data-live-link aria-pressed="%s">%s</a>', esc_url( Params::url( array( 'period' => '7d' === $tv_k ? '' : $tv_k ) ) ), $tv_k === $tv_period ? 'true' : 'false', esc_html( $tv_l ) );
+	$tv_seg .= sprintf( '<a class="seg-btn" href="%s" data-live-link aria-current="%s">%s</a>', esc_url( Params::url( array( 'period' => '7d' === $tv_k ? '' : $tv_k ) ) ), $tv_k === $tv_period ? 'true' : 'false', esc_html( $tv_l ) );
 }
 $tv_post = get_post();
 $tv_hero = sprintf(
@@ -68,7 +68,7 @@ foreach ( $tv_ranked as $tv_i => $tv_p ) {
 	[ $tv_cur, $tv_prev ] = $tv_stats[ $tv_p->ID ] ?? array( 0, 0 );
 	$tv_delta             = $tv_prev > 0 ? (int) round( ( $tv_cur - $tv_prev ) / $tv_prev * 100 ) : null;
 	$tv_rows             .= sprintf(
-		'<div class="trend-row"><span class="num">%02d</span><div class="card-body">%s<h3 class="card-title"><a href="%s"><span class="u-line">%s</span></a></h3><div class="meta"><span>%s</span><span class="dot"></span><span>%s</span></div></div><div class="trend-bar" aria-hidden="true"><span style="width:%d%%"></span></div><div>%s<div class="meta" style="justify-content:flex-end">%s</div></div></div>',
+		'<div class="trend-row"><span class="num" data-n="%02d" aria-hidden="true"></span><div class="card-body">%s<h3 class="card-title"><a href="%s"><span class="u-line">%s</span></a></h3><div class="meta"><span>%s</span><span class="dot"></span><span>%s</span></div></div><div class="trend-bar" aria-hidden="true"><span style="width:%d%%"></span></div><div>%s<div class="meta" style="justify-content:flex-end">%s</div></div></div>',
 		$tv_i + 1,
 		R::chip( $tv_a['cat'] ),
 		esc_url( $tv_a['url'] ),
