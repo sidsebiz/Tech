@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.8/theme.json",
+	"version": 3,
+	"title": "Night reading",
+	"settings": {
+		"color": {
+			"palette": [
+				{ "slug": "ink", "name": "Deep Ink", "color": "#F1F5F9" },
+				{ "slug": "navy", "name": "Midnight Navy", "color": "#0B1120" },
+				{ "slug": "warm", "name": "Background", "color": "#0B1120" },
+				{ "slug": "white", "name": "Surface", "color": "#111A2E" },
+				{ "slug": "surface-2", "name": "Surface Muted", "color": "#1A2540" },
+				{ "slug": "text", "name": "Body Text", "color": "#B6C2D6" },
+				{ "slug": "muted", "name": "Muted Text", "color": "#8D9AB2" },
+				{ "slug": "border", "name": "Border", "color": "#24314F" },
+				{ "slug": "border-strong", "name": "Border Strong", "color": "#33415F" },
+				{ "slug": "link", "name": "Link", "color": "#93C5FD" }
+			]
+		}
+	}
+}

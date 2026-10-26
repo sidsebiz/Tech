@@ -34,8 +34,6 @@ const opts = ( file ) => ( {
 	target: [ 'es2019', 'chrome90', 'safari14', 'firefox90' ],
 	legalComments: 'none',
 	logLevel: 'error',
-	loader: { '.woff2': 'file', '.svg': 'file' },
-	external: [ '*.woff2', '*.svg', '*.png', '*.jpg', '*.webp' ],
 } );
 
 if ( process.argv.includes( '--watch' ) ) {
