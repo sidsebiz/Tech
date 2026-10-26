@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/author-portal",
+	"title": "Author portal",
+	"category": "techvenza",
+	"icon": "edit-page",
+	"description": "Contributor workspace: dashboard, articles, submissions, profile, analytics, notifications, settings.",
+	"textdomain": "techvenza-core",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [],
+	"viewScript": "techvenza-portal",
+	"tvPreview": "placeholder",
+	"tvHint": "Only visible to authors and editors. Assign the “App screen” template to this page."
+}

@@ -278,6 +278,27 @@ final class MeController {
 			)
 		);
 		\Techvenza\Core\Content\UserMeta::flush( $user );
-		return rest_ensure_response( array( 'ok' => true ) );
+		$message = __( 'Profile saved.', 'techvenza-core' );
+		$email   = sanitize_email( (string) $request->get_param( 'email' ) );
+		if ( '' !== $email && strtolower( $email ) !== strtolower( (string) wp_get_current_user()->user_email ) ) {
+			$changed = \Techvenza\Core\Portal\Account::request_email_change( $user, $email );
+			if ( is_wp_error( $changed ) ) {
+				$changed->add_data(
+					array(
+						'status' => 400,
+						'errors' => array( 'email' => $changed->get_error_message() ),
+					)
+				);
+				return $changed;
+			}
+			/* translators: %s: new email */
+			$message = sprintf( __( 'Profile saved. Confirm the change from the link we sent to %s.', 'techvenza-core' ), $email );
+		}
+		return rest_ensure_response(
+			array(
+				'ok'      => true,
+				'message' => $message,
+			)
+		);
 	}
 }

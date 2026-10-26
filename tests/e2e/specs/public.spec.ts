@@ -15,6 +15,9 @@ const PAGES: Array< [ string, string | RegExp ] > = [
 	[ '/author/priya-natarajan/', 'Priya Natarajan' ],
 	[ '/the-agentic-enterprise/', 'The Agentic Enterprise: What Changes When Software Starts Taking Actions' ],
 	[ '/?s=zero+trust', /Results for/ ],
+	[ '/login/', 'Welcome back' ],
+	[ '/register/', 'Create your account' ],
+	[ '/forgot-password/', 'Forgot your password?' ],
 ];
 
 async function dismissConsent( page ) {

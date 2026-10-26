@@ -31,7 +31,7 @@ final class NotificationsController {
 					'filter' => array(
 						'type'    => 'string',
 						'default' => 'all',
-						'enum'    => array( 'all', 'unread', 'approved', 'feedback', 'status', 'system' ),
+						'enum'    => array( 'all', 'unread', 'approved', 'revision', 'status', 'account', 'published' ),
 					),
 				),
 			)

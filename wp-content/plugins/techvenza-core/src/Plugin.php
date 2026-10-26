@@ -51,6 +51,8 @@ final class Plugin {
 		'Techvenza\\Core\\Auth\\Auth',
 		'Techvenza\\Core\\Auth\\AdminLockdown',
 		'Techvenza\\Core\\Auth\\GoogleOAuth',
+		'Techvenza\\Core\\Portal\\App',
+		'Techvenza\\Core\\Portal\\Account',
 		'Techvenza\\Core\\Newsletter\\Newsletter',
 		'Techvenza\\Core\\Forms\\Forms',
 		'Techvenza\\Core\\Seo\\Seo',

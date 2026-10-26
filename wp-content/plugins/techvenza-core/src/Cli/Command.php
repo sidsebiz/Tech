@@ -38,6 +38,9 @@ final class Command {
 	 * [--skip-images]
 	 * : Do not download cover images from Unsplash (cards fall back to gradient placeholders).
 	 *
+	 * [--demo-password=<password>]
+	 * : Use one fixed password for every demo account (automated tests only — never on a public site).
+	 *
 	 * ## EXAMPLES
 	 *
 	 *     wp techvenza seed
@@ -48,7 +51,12 @@ final class Command {
 	 */
 	public function seed( array $args, array $assoc ): void {
 		$seeder = new Seeder( static fn( string $m ) => \WP_CLI::log( $m ) );
-		$seeder->run( array( 'skip-images' => (bool) \WP_CLI\Utils\get_flag_value( $assoc, 'skip-images', false ) ) );
+		$seeder->run(
+			array(
+				'skip-images'   => (bool) \WP_CLI\Utils\get_flag_value( $assoc, 'skip-images', false ),
+				'demo-password' => (string) \WP_CLI\Utils\get_flag_value( $assoc, 'demo-password', '' ),
+			)
+		);
 		if ( $seeder->credentials ) {
 			\WP_CLI::log( '' );
 			\WP_CLI::log( 'Demo accounts (passwords shown once — store them securely):' );

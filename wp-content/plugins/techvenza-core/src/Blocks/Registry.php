@@ -73,7 +73,7 @@ final class Registry {
 			wp_register_script(
 				$handle,
 				$src,
-				'techvenza-frontend' === $handle ? array() : array( 'techvenza-frontend' ),
+				'techvenza-frontend' === $handle ? array() : ( 'techvenza-portal' === $handle ? array( 'techvenza-frontend', 'techvenza-forms' ) : array( 'techvenza-frontend' ) ),
 				$ver,
 				array(
 					'in_footer' => true,

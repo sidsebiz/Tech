@@ -1445,3 +1445,10 @@ h2.row>svg,h3.row>svg{width:22px;height:22px;flex:none;color:var(--muted)}
 
 /* Decorative rank numerals (order is conveyed by the list itself) */
 .trend-row .num::before{content:attr(data-n)}
+
+/* "or" divider on account pages */
+.divider-text{display:flex;align-items:center;gap:var(--s3);font-size:var(--t-meta);color:var(--muted)}
+
+.divider-text::before,.divider-text::after{content:"";flex:1;height:1px;background:var(--border)}
+
+.cf-turnstile{min-height:65px}

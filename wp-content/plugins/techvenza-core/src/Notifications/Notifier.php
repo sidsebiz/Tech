@@ -55,7 +55,20 @@ final class Notifier {
 	 */
 	public static function wants_email( int $user_id, string $event ): bool {
 		$prefs = get_user_meta( $user_id, 'tv_email_prefs', true );
-		return ! is_array( $prefs ) || ! array_key_exists( $event, $prefs ) || (bool) $prefs[ $event ];
+		if ( ! is_array( $prefs ) ) {
+			return true;
+		}
+		// Portal settings store groups (status / feedback / published); older data may store events.
+		$group = array(
+			'changes_requested' => 'feedback',
+			'published'         => 'published',
+		)[ $event ] ?? 'status';
+		foreach ( array( $event, $group ) as $key ) {
+			if ( array_key_exists( $key, $prefs ) ) {
+				return (bool) $prefs[ $key ];
+			}
+		}
+		return true;
 	}
 
 	/**

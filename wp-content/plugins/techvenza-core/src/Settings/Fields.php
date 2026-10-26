@@ -96,6 +96,24 @@ final class Fields {
 				'subject'  => __( 'A question about your {site_name} application', 'techvenza-core' ),
 				'body'     => __( "Hi {applicant_first_name},\n\nAn editor has a question about your application:\n\n{note}\n\nPlease reply to this email.", 'techvenza-core' ),
 			),
+			'verify_email'         => array(
+				'label'    => __( 'Confirm email address (new account)', 'techvenza-core' ),
+				'audience' => 'reader',
+				'subject'  => __( 'Confirm your {site_name} account', 'techvenza-core' ),
+				'body'     => __( "Hi {first_name},\n\nPlease confirm your email address to activate your account:\n\n{verify_url}\n\nThe link expires in 48 hours. If you did not create an account, you can ignore this email.", 'techvenza-core' ),
+			),
+			'password_reset'       => array(
+				'label'    => __( 'Password reset link', 'techvenza-core' ),
+				'audience' => 'reader',
+				'subject'  => __( 'Reset your {site_name} password', 'techvenza-core' ),
+				'body'     => __( "Hi {first_name},\n\nSomeone asked to reset the password for your account. If this was you, choose a new password here:\n\n{reset_url}\n\nThe link works once and expires after 24 hours. If you did not ask for this, you can ignore this email — your password will not change.", 'techvenza-core' ),
+			),
+			'password_changed'     => array(
+				'label'    => __( 'Password changed confirmation', 'techvenza-core' ),
+				'audience' => 'reader',
+				'subject'  => __( 'Your {site_name} password was changed', 'techvenza-core' ),
+				'body'     => __( "Hi {first_name},\n\nThe password for your account was just changed and other sessions were signed out.\n\nIf you did not do this, reset your password immediately: {forgot_url}", 'techvenza-core' ),
+			),
 		);
 	}
 
@@ -473,6 +491,17 @@ final class Fields {
 					'registration_open'    => array(
 						'type'    => 'toggle',
 						'label'   => __( 'Allow reader registration', 'techvenza-core' ),
+						'default' => true,
+					),
+					'branded_login'        => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Send wp-login.php visitors to the branded pages', 'techvenza-core' ),
+						'default' => true,
+						'help'    => __( 'Add ?tv-core-login=1 to wp-login.php to reach the core screen if you ever need it.', 'techvenza-core' ),
+					),
+					'admin_lockdown'       => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Keep readers out of wp-admin and hide their admin bar', 'techvenza-core' ),
 						'default' => true,
 					),
 					'login_attempts'       => array(
