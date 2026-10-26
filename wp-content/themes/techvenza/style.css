@@ -1,0 +1,17 @@
+/*
+Theme Name: Techvenza
+Theme URI: https://www.techvenza.example/
+Author: eSparkBiz Technologies
+Author URI: https://www.esparkinfo.com/
+Description: Premium editorial block theme for Techvenza — technology, business and industry, explained. Pairs with the Techvenza Core plugin, which provides all dynamic blocks, the editorial workflow and settings.
+Requires at least: 6.6
+Tested up to: 6.8
+Requires PHP: 8.2
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: techvenza
+Tags: blog, news, block-patterns, full-site-editing, editor-style, custom-colors, wide-blocks, translation-ready, accessibility-ready
+*/
+
+/* Styles live in assets/css/. This file only carries the theme header. */
