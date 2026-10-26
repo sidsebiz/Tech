@@ -1,0 +1,151 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-lint:
+    name: PHP — syntax, PHPCS, PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: composer:v2
+      - run: composer install --no-progress --prefer-dist
+      - name: PHP syntax
+        run: |
+          if [ -d wp-content ]; then find wp-content -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null; fi
+      - name: PHPCS (WordPress Coding Standards)
+        run: |
+          if [ -d wp-content ]; then composer phpcs -- --report=full; else echo "No PHP yet"; fi
+      - name: PHPStan (level 6)
+        run: |
+          if [ -d wp-content/plugins/techvenza-core/src ]; then composer phpstan -- --no-progress; else echo "No plugin code yet"; fi
+
+  js-lint:
+    name: JS / CSS lint and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint:js
+      - run: npm run lint:css
+      - run: npm run build
+      - name: Validate block.json files
+        run: |
+          if [ -d wp-content/plugins/techvenza-core/blocks ]; then node bin/validate-blocks.mjs; else echo "No blocks yet"; fi
+
+  phpunit:
+    name: PHPUnit (WP ${{ matrix.wp }}, PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3']
+        wp: ['6.8']
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress_tests
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -proot" --health-interval=5s --health-timeout=5s --health-retries=20
+    env:
+      WP_TESTS_DB_HOST: 127.0.0.1
+      WP_TESTS_DB_NAME: wordpress_tests
+      WP_TESTS_DB_USER: root
+      WP_TESTS_DB_PASSWORD: root
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, intl, sodium
+          coverage: none
+      - id: gate
+        run: echo "ok=$([ -f tests/php/bootstrap.php ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - if: steps.gate.outputs.ok == 'true'
+        run: composer install --no-progress --prefer-dist
+      - if: steps.gate.outputs.ok == 'true'
+        run: composer test
+
+  e2e:
+    name: Playwright e2e + axe
+    runs-on: ubuntu-latest
+    needs: [php-lint, js-lint]
+    steps:
+      - uses: actions/checkout@v4
+      # Runs once the seeder exists (phase 10); earlier phases have nothing to seed.
+      - id: gate
+        run: echo "ok=$([ -f wp-content/plugins/techvenza-core/src/Cli/Seeder.php ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - if: steps.gate.outputs.ok == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - if: steps.gate.outputs.ok == 'true'
+        run: npm ci
+      - if: steps.gate.outputs.ok == 'true'
+        run: npx playwright install --with-deps chromium
+      - if: steps.gate.outputs.ok == 'true'
+        name: Start Mailpit
+        run: docker run -d --name mailpit -p 8025:8025 -p 1025:1025 axllent/mailpit:v1.21
+      - if: steps.gate.outputs.ok == 'true'
+        name: Start WordPress (wp-env)
+        run: npx wp-env start
+      - if: steps.gate.outputs.ok == 'true'
+        name: Seed demo content
+        run: |
+          npx wp-env run cli wp techvenza seed --skip-images
+          npx wp-env run cli wp rewrite structure '/%postname%/' --hard
+      - if: steps.gate.outputs.ok == 'true'
+        run: npm run test:e2e
+        env:
+          WP_BASE_URL: http://localhost:8888
+          MAILPIT_URL: http://localhost:8025
+      - uses: actions/upload-artifact@v4
+        if: failure() && steps.gate.outputs.ok == 'true'
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
+
+  lighthouse:
+    name: Lighthouse CI budget
+    runs-on: ubuntu-latest
+    needs: [e2e]
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - id: gate
+        run: echo "ok=$([ -f wp-content/plugins/techvenza-core/src/Cli/Seeder.php ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - if: steps.gate.outputs.ok == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - if: steps.gate.outputs.ok == 'true'
+        run: npm ci
+      - if: steps.gate.outputs.ok == 'true'
+        run: npx wp-env start
+      - if: steps.gate.outputs.ok == 'true'
+        run: |
+          npx wp-env run cli wp techvenza seed --skip-images
+          npx wp-env run cli wp rewrite structure '/%postname%/' --hard
+      - if: steps.gate.outputs.ok == 'true'
+        run: npm run lighthouse

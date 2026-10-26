@@ -1,0 +1,13 @@
+parameters:
+	level: 6
+	paths:
+		- wp-content/plugins/techvenza-core/src
+		- wp-content/plugins/techvenza-core/techvenza-core.php
+		- wp-content/themes/techvenza/functions.php
+	excludePaths:
+		- */vendor/*
+	treatPhpDocTypesAsCertain: false
+	ignoreErrors:
+		# WP_CLI is only loaded under WP-CLI.
+		- '#WP_CLI#'
+	reportUnmatchedIgnoredErrors: false

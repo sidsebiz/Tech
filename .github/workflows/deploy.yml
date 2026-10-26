@@ -1,0 +1,80 @@
+name: Deploy
+
+# Builds a release ZIP (theme + plugin, no dev files) and deploys it over SSH/rsync.
+# Required repository secrets are listed in docs/DEPLOY.md. Until they exist the
+# deploy job is skipped and only the release artefact is produced.
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        type: choice
+        options: [staging, production]
+        default: staging
+  push:
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - id: v
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+      - run: bash bin/make-release.sh "${{ steps.v.outputs.version }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: techvenza-release
+          path: dist/*.zip
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'production' }}
+    steps:
+      - name: Check deploy secrets
+        id: check
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          if [ -z "$HOST" ]; then
+            echo "::warning::DEPLOY_HOST secret not set — skipping deploy. See docs/DEPLOY.md."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/download-artifact@v4
+        if: steps.check.outputs.ready == 'true'
+        with:
+          name: techvenza-release
+          path: dist
+      - name: Configure SSH
+        if: steps.check.outputs.ready == 'true'
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          echo "${{ secrets.DEPLOY_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+      - name: Upload and activate
+        if: steps.check.outputs.ready == 'true'
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          WP_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          set -euo pipefail
+          cd dist && unzip -q techvenza-*.zip -d release
+          SSH="ssh -i ~/.ssh/id_deploy -p $PORT"
+          rsync -az --delete -e "$SSH" release/themes/techvenza/ "$USER@$HOST:$WP_PATH/wp-content/themes/techvenza/"
+          rsync -az --delete -e "$SSH" release/plugins/techvenza-core/ "$USER@$HOST:$WP_PATH/wp-content/plugins/techvenza-core/"
+          $SSH "$USER@$HOST" "cd $WP_PATH && wp plugin activate techvenza-core && wp theme activate techvenza && wp techvenza migrate && wp cache flush && wp rewrite flush"

@@ -1,0 +1,77 @@
+# Docker Compose alternative to wp-env.
+#   cp .env.example .env && docker compose up -d && npm run seed:docker
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME:-techvenza}
+      MARIADB_USER: ${DB_USER:-techvenza}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-techvenza}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      retries: 20
+
+  wordpress:
+    image: wordpress:6.8-php8.2-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${WP_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: ${DB_NAME:-techvenza}
+      WORDPRESS_DB_USER: ${DB_USER:-techvenza}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-techvenza}
+      WORDPRESS_DEBUG: "1"
+      MAILPIT_HOST: mailpit
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_ENVIRONMENT_TYPE', 'local' );
+        define( 'WP_DEBUG_LOG', true );
+    volumes:
+      - wp_core:/var/www/html
+      - ./wp-content/themes/techvenza:/var/www/html/wp-content/themes/techvenza
+      - ./wp-content/plugins/techvenza-core:/var/www/html/wp-content/plugins/techvenza-core
+      - ./docker/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+
+  cli:
+    image: wordpress:cli-php8.2
+    depends_on: [wordpress]
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: ${DB_NAME:-techvenza}
+      WORDPRESS_DB_USER: ${DB_USER:-techvenza}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-techvenza}
+    volumes:
+      - wp_core:/var/www/html
+      - ./wp-content/themes/techvenza:/var/www/html/wp-content/themes/techvenza
+      - ./wp-content/plugins/techvenza-core:/var/www/html/wp-content/plugins/techvenza-core
+      - ./docker/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./bin:/scripts:ro
+    entrypoint: ["wp"]
+    profiles: ["tools"]
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    ports:
+      - "${MAILPIT_UI_PORT:-8025}:8025"
+      - "1025:1025"
+
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    depends_on: [db]
+    ports:
+      - "${PMA_PORT:-8081}:80"
+    environment:
+      PMA_HOST: db
+
+volumes:
+  db_data:
+  wp_core:
