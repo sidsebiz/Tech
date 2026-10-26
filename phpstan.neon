@@ -1,5 +1,7 @@
 parameters:
 	level: 6
+	bootstrapFiles:
+		- tests/phpstan-bootstrap.php
 	paths:
 		- wp-content/plugins/techvenza-core/src
 		- wp-content/plugins/techvenza-core/techvenza-core.php
