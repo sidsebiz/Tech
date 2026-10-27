@@ -50,11 +50,19 @@ npm run seed:docker
 | `npm run lighthouse` | Lighthouse CI budget for home, article and category |
 | `npm run release` | Build deployable ZIPs into `dist/` |
 
+## Configuration
+
+All site settings live in **wp-admin → Editorial → Settings**. Any value can instead be pinned in
+`wp-config.php` as `TECHVENZA_<KEY>` (for example `TECHVENZA_SMTP_PASS`, `TECHVENZA_BREVO_API_KEY`);
+constants win and secrets saved through the screen are encrypted. No secrets are kept in this
+repository. The full list of keys and accounts needed for launch is in
+[`docs/DEPLOY.md` → Launch checklist](docs/DEPLOY.md#launch-checklist--information-and-keys-needed).
+
 ## Documentation
 
 * [`docs/ADMIN-GUIDE.md`](docs/ADMIN-GUIDE.md) — editing pages, menus, header/footer, categories, authors and the editorial workflow
 * [`docs/CONTENT-MODEL.md`](docs/CONTENT-MODEL.md) — post meta, taxonomies, user meta, custom post types and tables
-* [`docs/DEPLOY.md`](docs/DEPLOY.md) — hosting, secrets, release and rollback
+* [`docs/DEPLOY.md`](docs/DEPLOY.md) — hosting, configuration constants, CI, release, rollback and the launch checklist
 * [`docs/DECISIONS.md`](docs/DECISIONS.md) — architecture decisions and trade-offs
 
 ## License
