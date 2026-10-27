@@ -28,6 +28,11 @@ class FormsTest extends \WP_UnitTestCase {
 		reset_phpmailer_instance();
 	}
 
+	public function tear_down(): void {
+		Options::flush(); // The request cache would otherwise outlive the rolled-back option.
+		parent::tear_down();
+	}
+
 	/**
 	 * Valid contact submission.
 	 *
