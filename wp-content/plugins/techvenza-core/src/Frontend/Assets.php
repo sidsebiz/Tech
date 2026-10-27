@@ -43,6 +43,7 @@ final class Assets {
 				'loginUrl'  => esc_url_raw( Render::page_url( 'login' ) ),
 				'postId'    => $post_id,
 				'trackView' => $post_id && ! is_preview(),
+				'consent'   => Consent::enabled(),
 				'searchUrl' => esc_url_raw( home_url( '/' ) ),
 				'i18n'      => array(
 					'saved'       => __( 'Saved to your reading list.', 'techvenza-core' ),

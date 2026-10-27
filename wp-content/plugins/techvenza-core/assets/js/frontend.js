@@ -1018,7 +1018,22 @@
 		ready();
 	}
 
+	/**
+	 * Visitor's privacy choice: 'all', 'essential' or '' (not chosen yet).
+	 * Without a consent banner every optional feature is allowed.
+	 */
+	function consent() {
+		const m = document.cookie.match(
+			/(?:^|;\s*)tv_consent=(essential|all)/
+		);
+		if ( m ) {
+			return m[ 1 ];
+		}
+		return cfg.consent ? '' : 'all';
+	}
+
 	window.techvenza = {
+		consent,
 		$,
 		$$,
 		esc,
