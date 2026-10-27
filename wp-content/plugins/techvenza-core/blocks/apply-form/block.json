@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/apply-form",
+	"title": "Author application form",
+	"category": "techvenza",
+	"icon": "feedback",
+	"description": "Contributor application with validation, spam protection and confirmation email.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"intro": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "intro",
+			"type": "textarea",
+			"label": "Introduction"
+		}
+	],
+	"viewScript": "techvenza-forms"
+}

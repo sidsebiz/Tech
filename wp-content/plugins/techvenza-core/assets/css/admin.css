@@ -867,3 +867,42 @@
 	width: 70px;
 	text-align: right;
 }
+
+/* Newsletter compose */
+.tv-admin .badge.sending {
+	background: #f3f0ff;
+	color: #6d28d9;
+}
+
+.tv-admin .badge.unsubscribed,
+.tv-admin .badge.draft {
+	background: #f1f5f9;
+	color: #475569;
+}
+
+.tv-admin .tva-grid2 {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 0 16px;
+}
+
+.tv-admin .tva-checks {
+	display: grid;
+	gap: 6px;
+	max-height: 320px;
+	overflow: auto;
+	padding: 10px 12px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	margin-top: 6px;
+}
+
+.tv-admin .tva-check {
+	display: flex;
+	gap: 8px;
+	align-items: baseline;
+}
+
+.tv-admin .bulk input[type="search"] {
+	min-width: 220px;
+}

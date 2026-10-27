@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/contact-form",
+	"title": "Contact form",
+	"category": "techvenza",
+	"icon": "email-alt",
+	"description": "Inquiry form routed by type to the emails in Settings → Forms & Spam.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"showAside": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "showAside",
+			"type": "toggle",
+			"label": "Side information panels"
+		}
+	],
+	"viewScript": "techvenza-forms"
+}

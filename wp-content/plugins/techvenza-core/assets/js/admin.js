@@ -21,7 +21,9 @@
 		if ( ! ( form instanceof HTMLFormElement ) ) {
 			return;
 		}
-		const msg = form.getAttribute( 'data-confirm' );
+		const msg =
+			form.getAttribute( 'data-confirm' ) ||
+			( e.submitter && e.submitter.getAttribute( 'data-confirm-send' ) );
 		if ( msg && ! window.confirm( msg ) ) {
 			e.preventDefault();
 		}

@@ -84,7 +84,10 @@ jobs:
       - if: steps.gate.outputs.ok == 'true'
         run: composer install --no-progress --prefer-dist
       - if: steps.gate.outputs.ok == 'true'
-        run: composer test
+        run: composer test -- --log-junit junit.xml
+      - name: Report failing tests as annotations
+        if: failure() && steps.gate.outputs.ok == 'true'
+        run: python3 bin/junit-annotations.py junit.xml
 
   e2e:
     name: Playwright e2e + axe

@@ -477,6 +477,8 @@ a:hover .media img,a:focus-visible .media img{transform:scale(1.04)}
 
 .field.invalid .error{display:flex}
 
+.error svg{width:16px;height:16px;flex:none}
+
 .input-group{position:relative}
 
 .input-group .input{padding-right:52px}

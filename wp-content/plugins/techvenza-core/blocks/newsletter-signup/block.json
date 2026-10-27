@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "techvenza/newsletter-signup",
+	"title": "Newsletter sign-up page",
+	"category": "techvenza",
+	"icon": "email",
+	"description": "Full sign-up with topic and frequency choice, consent and double opt-in.",
+	"textdomain": "techvenza-core",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "The Weekly Brief"
+		},
+		"title": {
+			"type": "string",
+			"default": "The week in technology, edited."
+		},
+		"lead": {
+			"type": "string",
+			"default": "Every Thursday: the stories worth your time, a short editor's note, and one deep dive to save for the weekend. No sponsored filler."
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"className": true,
+		"customClassName": true,
+		"reusable": true
+	},
+	"editorScript": "techvenza-blocks-editor",
+	"render": "file:./render.php",
+	"tvControls": [
+		{
+			"key": "eyebrow",
+			"type": "text",
+			"label": "Eyebrow"
+		},
+		{
+			"key": "title",
+			"type": "text",
+			"label": "Title"
+		},
+		{
+			"key": "lead",
+			"type": "textarea",
+			"label": "Introduction"
+		}
+	],
+	"viewScript": "techvenza-forms"
+}
