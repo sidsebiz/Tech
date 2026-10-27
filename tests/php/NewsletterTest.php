@@ -55,7 +55,7 @@ class NewsletterTest extends \WP_UnitTestCase {
 		$this->assertSame( 'Consent text', $sub['consent_text'] );
 		$this->assertMatchesRegularExpression( '/^[A-Za-z0-9]{40}$/', $sub['confirm_token'] );
 		$this->assertCount( 1, $this->sent(), 'A confirmation email is sent.' );
-		$this->assertStringContainsString( 'tv_nl_confirm=' . $sub['confirm_token'], $this->sent()[0]['body'] );
+		$this->assertStringContainsString( 'tv_nl_confirm=' . $sub['confirm_token'], quoted_printable_decode( $this->sent()[0]['body'] ) );
 
 		$this->assertSame( array(), Subscribers::recipients( 'all' ), 'Pending addresses never receive campaigns.' );
 
