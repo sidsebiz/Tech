@@ -28,6 +28,9 @@ const SCREENS: Array< [ string, string ] > = [
 	[ 'techvenza-authors', 'Authors' ],
 	[ 'techvenza-analytics', 'Analytics' ],
 	[ 'techvenza-roles', 'Roles & permissions' ],
+	[ 'techvenza-newsletter', 'Newsletter' ],
+	[ 'techvenza-messages', 'Contact messages' ],
+	[ 'techvenza-settings', 'Site settings' ],
 ];
 
 test( 'editorial admin screens render without errors and pass axe', async ( { page } ) => {
@@ -99,4 +102,22 @@ test( 'author flags toggle and persist', async ( { page } ) => {
 	expect( after ).not.toBe( before );
 	await page.locator( 'tr', { hasText: 'Hana Kim' } ).locator( 'button[aria-label^="Toggle Featured"]' ).click();
 	await expect( page.locator( 'tr', { hasText: 'Hana Kim' } ).locator( 'button[aria-label^="Toggle Featured"]' ) ).toHaveText( before || '' );
+} );
+
+test( 'settings save, keep secrets write-only and stay accessible', async ( { page } ) => {
+	await login( page, ADMIN );
+	await page.goto( '/wp-admin/admin.php?page=techvenza-settings&tab=brand' );
+	await expectAccessible( page );
+	const field = page.locator( '#tvs-tagline' );
+	const original = await field.inputValue();
+	await field.fill( 'E2E tagline' );
+	await page.getByRole( 'button', { name: 'Save changes' } ).click();
+	await expect( page.locator( '.notice-success' ) ).toBeVisible();
+	await expect( page.locator( '#tvs-tagline' ) ).toHaveValue( 'E2E tagline' );
+	await page.locator( '#tvs-tagline' ).fill( original );
+	await page.getByRole( 'button', { name: 'Save changes' } ).click();
+
+	await page.goto( '/wp-admin/admin.php?page=techvenza-settings&tab=newsletter' );
+	await expect( page.locator( '#tvs-brevo_api_key' ) ).toHaveAttribute( 'type', 'password' );
+	await expect( page.locator( '#tvs-brevo_api_key' ) ).toHaveValue( '' );
 } );

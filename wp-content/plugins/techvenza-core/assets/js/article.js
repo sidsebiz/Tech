@@ -22,6 +22,9 @@
 			}
 		},
 		set( k, v ) {
+			if ( tv.consent && tv.consent() !== 'all' ) {
+				return;
+			}
 			try {
 				window.localStorage.setItem( 'tv:' + k, JSON.stringify( v ) );
 			} catch ( e ) {}

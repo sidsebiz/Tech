@@ -79,3 +79,9 @@ Unsubscribe links in emails open the newsletter page with a one-button confirmat
 
 ## D18 — Form URL checks do not resolve DNS
 `wp_http_validate_url()` resolves hostnames and rejects anything it cannot reach, which fails on hosts without outbound DNS and adds latency. Applicant links are checked syntactically (absolute http/https URL with a dotted host) and are only ever displayed, never fetched by the server.
+
+## D19 — Consent is read in the browser
+The privacy choice is a first-party `tv_consent` cookie (`essential` or `all`, 12 months) that only JavaScript reads, so every public page stays cacheable by full-page caches and CDNs. Analytics (GA4 with IP anonymisation, or Plausible) are injected only after "Allow all"; optional browser storage (reading preferences, dashboard layout) is only persisted then, and choosing "Essential only" clears it. Logged-in editors are never tracked.
+
+## D20 — Built-in SEO steps aside for SEO plugins
+Titles, descriptions, canonicals, robots, Open Graph/X tags and JSON-LD are produced by `Seo\Seo` unless Yoast SEO, Rank Math, SEOPress or AIOSEO is active, so a site can switch to a dedicated plugin without duplicate tags. Sitemap tuning (noindexed posts, account pages, tag/author archives) stays active either way. Account and app pages are recognised by the blocks they contain, not by slug, so renaming a page keeps it out of search.

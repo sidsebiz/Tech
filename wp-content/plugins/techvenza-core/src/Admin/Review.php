@@ -40,28 +40,18 @@ final class Review {
 	}
 
 	/**
-	 * Default editorial checklist (editable via filter).
+	 * Editorial checklist (Settings → Editorial; filterable).
 	 *
 	 * @return array<int,string>
 	 */
 	public static function checklist(): array {
+		$items = array_values( array_filter( array_map( 'trim', (array) preg_split( '/\R/', (string) \Techvenza\Core\Settings\Options::get( 'checklist', '' ) ) ) ) );
 		/**
 		 * Review checklist items shown to editors.
 		 *
 		 * @param array<int,string> $items Items.
 		 */
-		return (array) apply_filters(
-			'techvenza/review/checklist',
-			array(
-				__( 'Original work — not published elsewhere', 'techvenza-core' ),
-				__( 'Claims are sourced and accurate', 'techvenza-core' ),
-				__( 'AI assistance disclosed (if used)', 'techvenza-core' ),
-				__( 'Images have rights and alt text', 'techvenza-core' ),
-				__( 'Links follow the link policy', 'techvenza-core' ),
-				__( 'Headings, excerpt and formatting meet guidelines', 'techvenza-core' ),
-				__( 'Conflicts of interest disclosed', 'techvenza-core' ),
-			)
-		);
+		return (array) apply_filters( 'techvenza/review/checklist', $items );
 	}
 
 	/**

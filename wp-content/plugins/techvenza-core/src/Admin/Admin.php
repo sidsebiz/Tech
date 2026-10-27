@@ -42,6 +42,7 @@ final class Admin {
 			'techvenza-messages'     => array( __( 'Messages', 'techvenza-core' ), 'tv_manage_messages', array( Messages::class, 'render' ) ),
 			'techvenza-analytics'    => array( __( 'Analytics', 'techvenza-core' ), 'tv_view_analytics', array( Analytics::class, 'render' ) ),
 			'techvenza-roles'        => array( __( 'Roles & permissions', 'techvenza-core' ), 'manage_options', array( RolesScreen::class, 'render' ) ),
+			'techvenza-settings'     => array( __( 'Settings', 'techvenza-core' ), 'tv_manage_settings', array( Settings::class, 'render' ) ),
 		);
 	}
 

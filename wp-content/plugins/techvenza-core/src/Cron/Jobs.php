@@ -4,7 +4,7 @@
  * (unconfirmed newsletter sign-ups, old contact messages, stale rate-limit data).
  *
  * WP-Cron is triggered by traffic; on production set DISABLE_WP_CRON and run
- * `wp cron event run --due-now` from a system cron every 5 minutes (see docs/DEPLOYMENT.md).
+ * `wp cron event run --due-now` from a system cron every 5 minutes (see docs/DEPLOY.md).
  *
  * @package Techvenza\Core
  */
