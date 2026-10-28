@@ -35,3 +35,5 @@ playwright-report/
 *.min.js
 *.min.css
 junit.xml
+!docs/examples/*.zip
+!tests/e2e/fixtures/*.zip
