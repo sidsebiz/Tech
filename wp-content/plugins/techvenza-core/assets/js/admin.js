@@ -74,6 +74,66 @@
 		}
 	} );
 
+	/* ---------- Bulk Blog runner ---------- */
+	const bulk = document.querySelector( '[data-bulk-form]' );
+	if ( bulk && window.wp && window.wp.apiFetch ) {
+		const job = bulk.getAttribute( 'data-bulk-form' );
+		const wrap = document.querySelector( '[data-bulk-progress]' );
+		const bar = document.querySelector( '[data-bulk-bar]' );
+		const status = document.querySelector( '[data-bulk-status]' );
+		const run = () => {
+			bulk.querySelectorAll( 'button' ).forEach( ( b ) => {
+				b.disabled = true;
+			} );
+			if ( wrap ) {
+				wrap.hidden = false;
+			}
+			const step = () =>
+				window.wp
+					.apiFetch( {
+						path: '/techvenza/v1/bulk/' + job + '/run',
+						method: 'POST',
+					} )
+					.then( ( res ) => {
+						const pct = res.total
+							? Math.round( ( res.done / res.total ) * 100 )
+							: 100;
+						if ( bar ) {
+							bar.style.width = pct + '%';
+						}
+						if ( status ) {
+							status.textContent = t(
+								'bulkProgress',
+								String( res.done ),
+								String( res.total )
+							);
+						}
+						if ( res.complete ) {
+							window.location.reload();
+							return;
+						}
+						step();
+					} )
+					.catch( ( err ) => {
+						if ( status ) {
+							status.textContent =
+								( err && err.message ) || t( 'bulkFailed' );
+						}
+						bulk.querySelectorAll( 'button' ).forEach( ( b ) => {
+							b.disabled = false;
+						} );
+					} );
+			step();
+		};
+		bulk.addEventListener( 'submit', ( e ) => {
+			e.preventDefault();
+			run();
+		} );
+		if ( bulk.hasAttribute( 'data-bulk-autostart' ) ) {
+			run();
+		}
+	}
+
 	/* ---------- Calendar drag & drop ---------- */
 	const cal = document.querySelector( '[data-calendar]' );
 	if ( ! cal || ! window.wp || ! window.wp.apiFetch ) {

@@ -82,6 +82,11 @@ final class BlockConverter {
 		switch ( $tag ) {
 			case 'p':
 				return self::block( 'paragraph', array(), '<p>' . $inner . '</p>' );
+			case 'h1':
+			case 'h5':
+			case 'h6':
+				$tag = 'h1' === $tag ? 'h2' : $tag;
+				// Fall through: an article has one H1 (its title), so content H1s become H2s.
 			case 'h2':
 			case 'h3':
 			case 'h4':
@@ -108,7 +113,8 @@ final class BlockConverter {
 						$text .= $doc->saveHTML( $child );
 					}
 				}
-				$para = self::block( 'paragraph', array(), '<p>' . trim( $text ) . '</p>' );
+				$text = trim( $text );
+				$para = preg_match( '/^<p[\s>]/i', $text ) ? self::convert( $text ) : self::block( 'paragraph', array(), '<p>' . $text . '</p>' );
 				return self::block( 'quote', array(), '<blockquote class="wp-block-quote">' . $para . ( $cite ? '<cite>' . $cite . '</cite>' : '' ) . '</blockquote>' );
 			case 'table':
 				return self::block( 'table', array(), '<figure class="wp-block-table"><table>' . $inner . '</table></figure>' );
@@ -116,6 +122,33 @@ final class BlockConverter {
 				$code = $el->getElementsByTagName( 'code' )->item( 0 );
 				$text = $code ? self::inner( $doc, $code ) : $inner;
 				return self::block( 'code', array(), '<pre class="wp-block-code"><code>' . $text . '</code></pre>' );
+			case 'hr':
+				return self::block( 'separator', array(), '<hr class="wp-block-separator has-alpha-channel-opacity"/>' );
+			case 'img':
+			case 'figure':
+				$img = 'img' === $tag ? $el : $el->getElementsByTagName( 'img' )->item( 0 );
+				if ( ! $img instanceof \DOMElement ) {
+					return self::block( 'html', array(), $doc->saveHTML( $el ) );
+				}
+				$cap   = $el->getElementsByTagName( 'figcaption' )->item( 0 );
+				$id    = preg_match( '/wp-image-(\d+)/', $img->getAttribute( 'class' ), $m ) ? (int) $m[1] : 0;
+				$attrs = $id ? array(
+					'id'              => $id,
+					'sizeSlug'        => 'large',
+					'linkDestination' => 'none',
+				) : array();
+				return self::block(
+					'image',
+					$attrs,
+					sprintf(
+						'<figure class="wp-block-image%1$s"><img src="%2$s" alt="%3$s"%4$s/>%5$s</figure>',
+						$id ? ' size-large' : '',
+						esc_url( $img->getAttribute( 'src' ) ),
+						esc_attr( $img->getAttribute( 'alt' ) ),
+						$id ? ' class="wp-image-' . $id . '"' : '',
+						$cap ? '<figcaption class="wp-element-caption">' . self::inner( $doc, $cap ) . '</figcaption>' : ''
+					)
+				);
 			case 'div':
 				$class = $el->getAttribute( 'class' );
 				return self::block( 'paragraph', array( 'className' => $class ? $class : 'callout' ), '<p class="' . esc_attr( $class ? $class : 'callout' ) . '">' . $inner . '</p>' );
