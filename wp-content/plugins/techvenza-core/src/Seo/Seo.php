@@ -15,6 +15,7 @@ namespace Techvenza\Core\Seo;
 
 use Techvenza\Core\Content\CategoryMeta;
 use Techvenza\Core\Content\UserMeta;
+use Techvenza\Core\Media\Images;
 use Techvenza\Core\Settings\Options;
 
 /**
@@ -57,6 +58,7 @@ final class Seo {
 		remove_action( 'wp_head', 'rel_canonical' );
 		add_action( 'wp_head', array( self::class, 'head' ), 2 );
 		add_action( 'wp_footer', array( self::class, 'breadcrumbs_ld' ), 50 );
+		add_action( 'wp_footer', array( self::class, 'faq_ld' ), 51 );
 	}
 
 	/* ------------------------------------------------------------------ Titles */
@@ -209,23 +211,31 @@ final class Seo {
 	/**
 	 * Social image for the current request.
 	 *
-	 * @return array{url:string,width:int,height:int,alt:string}|null
+	 * @return array{url:string,width:int,height:int,alt:string}
 	 */
-	public static function image(): ?array {
-		$id = 0;
-		if ( is_singular() && has_post_thumbnail( (int) get_queried_object_id() ) ) {
-			$id = (int) get_post_thumbnail_id( (int) get_queried_object_id() );
+	public static function image(): array {
+		$id   = 0;
+		$slug = 'default';
+		if ( is_singular() ) {
+			$pid  = (int) get_queried_object_id();
+			$cat  = is_singular( 'post' ) ? CategoryMeta::for_post( $pid ) : null;
+			$slug = (string) ( $cat['slug'] ?? 'default' );
+			$id   = has_post_thumbnail( $pid ) ? (int) get_post_thumbnail_id( $pid ) : ( $cat ? Images::fallback_id( $cat, $pid ) : 0 );
 		} elseif ( is_category() ) {
-			$cat = CategoryMeta::current();
-			$id  = (int) ( $cat['hero'] ?? 0 );
+			$cat  = CategoryMeta::current();
+			$slug = (string) ( $cat['slug'] ?? 'default' );
+			$id   = (int) ( $cat['hero'] ?? 0 );
 		}
 		$id = $id ? $id : (int) Options::get( 'seo_default_image', 0 );
-		if ( ! $id ) {
-			return null;
+		// Social networks, feeds and email clients cannot display SVG: use the matching raster card.
+		if ( ! $id || Images::is_svg( $id ) ) {
+			$social        = Images::social( $slug );
+			$social['alt'] = $id ? (string) get_post_meta( $id, '_wp_attachment_image_alt', true ) : '';
+			return $social;
 		}
 		$src = wp_get_attachment_image_src( $id, 'large' );
 		if ( ! $src ) {
-			return null;
+			return Images::social( $slug );
 		}
 		return array(
 			'url'    => (string) $src[0],
@@ -324,25 +334,24 @@ final class Seo {
 			$org['sameAs'] = $same;
 		}
 		$graph = array( $org );
-		if ( is_front_page() ) {
-			$graph[] = array(
-				'@type'           => 'WebSite',
-				'@id'             => $home . '#website',
-				'url'             => $home,
-				'name'            => get_bloginfo( 'name' ),
-				'description'     => (string) Options::get( 'seo_description', get_bloginfo( 'description' ) ),
-				'publisher'       => array( '@id' => $home . '#organization' ),
-				'inLanguage'      => get_bloginfo( 'language' ),
-				'potentialAction' => array(
-					'@type'       => 'SearchAction',
-					'target'      => array(
-						'@type'       => 'EntryPoint',
-						'urlTemplate' => home_url( '/?s={search_term_string}' ),
-					),
-					'query-input' => 'required name=search_term_string',
+		// WebSite node on every page so other nodes can reference it.
+		$graph[] = array(
+			'@type'           => 'WebSite',
+			'@id'             => $home . '#website',
+			'url'             => $home,
+			'name'            => get_bloginfo( 'name' ),
+			'description'     => (string) Options::get( 'seo_description', get_bloginfo( 'description' ) ),
+			'publisher'       => array( '@id' => $home . '#organization' ),
+			'inLanguage'      => get_bloginfo( 'language' ),
+			'potentialAction' => array(
+				'@type'       => 'SearchAction',
+				'target'      => array(
+					'@type'       => 'EntryPoint',
+					'urlTemplate' => home_url( '/?s={search_term_string}' ),
 				),
-			);
-		}
+				'query-input' => 'required name=search_term_string',
+			),
+		);
 		if ( is_singular( 'post' ) ) {
 			$post = get_post();
 			if ( $post ) {
@@ -367,8 +376,95 @@ final class Seo {
 					'isAccessibleForFree' => true,
 					'image'               => $img ? array( '@type' => 'ImageObject', 'url' => $img['url'], 'width' => $img['width'], 'height' => $img['height'] ) : null, // phpcs:ignore WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound
 				);
+				$summary = trim( (string) get_post_meta( $post->ID, 'tv_summary', true ) );
+				if ( $summary ) {
+					$article['abstract'] = $summary;
+				}
+				if ( $cat ) {
+					$article['about'] = array(
+						'@type' => 'Thing',
+						'name'  => (string) $cat['name'],
+						'url'   => (string) $cat['url'],
+					);
+				}
+				$focus = trim( (string) get_post_meta( $post->ID, 'tv_focus_keyword', true ) );
+				if ( $focus ) {
+					$article['keywords'] = trim( $focus . ( $article['keywords'] ? ', ' . $article['keywords'] : '' ) );
+				}
+				$editor = (int) get_post_meta( $post->ID, 'tv_assigned_editor', true );
+				$ed     = $editor && $editor !== (int) $post->post_author ? UserMeta::author( $editor ) : null;
+				if ( $ed ) {
+					$article['editor'] = self::person( $ed );
+				}
+				$citations = array();
+				foreach ( (array) get_post_meta( $post->ID, 'tv_sources', true ) as $src ) {
+					if ( is_array( $src ) && ! empty( $src['url'] ) ) {
+						$citations[] = array_filter(
+							array(
+								'@type' => 'CreativeWork',
+								'name'  => (string) ( $src['title'] ?? '' ),
+								'url'   => (string) $src['url'],
+							)
+						);
+					}
+				}
+				if ( $citations ) {
+					$article['citation'] = $citations;
+				}
+				$article['speakable'] = array(
+					'@type'       => 'SpeakableSpecification',
+					'cssSelector' => array( 'h1', '.tv-summary', '.article-header .lead' ),
+				);
+				$series               = get_the_terms( $post->ID, 'tv_series' );
+				if ( is_array( $series ) && $series ) {
+					$article['isPartOf'] = array(
+						'@type' => 'CreativeWorkSeries',
+						'name'  => $series[0]->name,
+						'url'   => (string) get_term_link( $series[0] ),
+					);
+				}
 				$graph[] = array_filter( $article, static fn( $v ) => null !== $v && '' !== $v );
 			}
+		}
+		if ( is_page() && ! is_front_page() ) {
+			$graph[] = array(
+				'@type'        => self::page_type(),
+				'@id'          => self::canonical() . '#webpage',
+				'url'          => self::canonical(),
+				'name'         => wp_strip_all_tags( get_the_title() ),
+				'description'  => self::description(),
+				'inLanguage'   => get_bloginfo( 'language' ),
+				'isPartOf'     => array( '@id' => $home . '#website' ),
+				'dateModified' => get_the_modified_date( 'c' ), // phpcs:ignore WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
+			);
+		}
+		if ( is_category() || is_tag() || is_tax() ) {
+			global $wp_query;
+			$items = array();
+			foreach ( array_values( (array) $wp_query->posts ) as $i => $p ) {
+				if ( $p instanceof \WP_Post ) {
+					$items[] = array(
+						'@type'    => 'ListItem',
+						'position' => $i + 1,
+						'url'      => (string) get_permalink( $p ),
+						'name'     => wp_strip_all_tags( get_the_title( $p ) ),
+					);
+				}
+			}
+			$graph[] = array_filter(
+				array(
+					'@type'       => 'CollectionPage',
+					'@id'         => self::canonical() . '#collection',
+					'url'         => self::canonical(),
+					'name'        => wp_strip_all_tags( single_term_title( '', false ) ),
+					'description' => self::description(),
+					'isPartOf'    => array( '@id' => $home . '#website' ),
+					'mainEntity'  => $items ? array(
+						'@type'           => 'ItemList',
+						'itemListElement' => $items,
+					) : null,
+				)
+			);
 		}
 		if ( is_author() ) {
 			$au = UserMeta::author( (int) get_queried_object_id() );
@@ -406,6 +502,84 @@ final class Seo {
 				'image'      => (string) $au['photo'],
 				'knowsAbout' => (array) $au['expertise'], // phpcs:ignore WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
 				'sameAs'     => $same,
+			)
+		);
+	}
+
+	/**
+	 * FAQ items rendered on this page (FAQ blocks and article FAQs).
+	 *
+	 * @var array<int,array{q:string,a:string}>
+	 */
+	private static array $faq = array();
+
+	/**
+	 * Register FAQ items for FAQPage structured data.
+	 *
+	 * @param array<int,array<string,mixed>> $items Items with q and a.
+	 */
+	public static function add_faq( array $items ): void {
+		foreach ( $items as $i ) {
+			if ( ! empty( $i['q'] ) && ! empty( $i['a'] ) ) {
+				self::$faq[ md5( (string) $i['q'] ) ] = array(
+					'q' => (string) $i['q'],
+					'a' => (string) $i['a'],
+				);
+			}
+		}
+	}
+
+	/**
+	 * Schema.org type for a page (About, Contact, FAQ…).
+	 */
+	private static function page_type(): string {
+		$slug = (string) get_post_field( 'post_name', (int) get_queried_object_id() );
+		return match ( true ) {
+			str_contains( $slug, 'about' )   => 'AboutPage',
+			str_contains( $slug, 'contact' ) => 'ContactPage',
+			default                          => 'WebPage',
+		};
+	}
+
+	/**
+	 * FAQPage JSON-LD.
+	 */
+	public static function faq_ld(): void {
+		if ( ! self::$faq || self::noindex() ) {
+			return;
+		}
+		$entities = array();
+		foreach ( self::$faq as $f ) {
+			$entities[] = array(
+				'@type'          => 'Question',
+				'name'           => wp_strip_all_tags( $f['q'] ),
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => trim(
+						wp_kses(
+							wpautop( $f['a'] ),
+							array(
+								'p'      => array(),
+								'a'      => array( 'href' => array() ),
+								'ul'     => array(),
+								'ol'     => array(),
+								'li'     => array(),
+								'strong' => array(),
+								'em'     => array(),
+								'br'     => array(),
+							)
+						)
+					),
+				),
+			);
+		}
+		self::print_ld(
+			array(
+				array(
+					'@type'      => 'FAQPage',
+					'@id'        => self::canonical() . '#faq',
+					'mainEntity' => $entities,
+				),
 			)
 		);
 	}

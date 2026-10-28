@@ -1454,3 +1454,43 @@ h2.row>svg,h3.row>svg{width:22px;height:22px;flex:none;color:var(--muted)}
 .divider-text::before,.divider-text::after{content:"";flex:1;height:1px;background:var(--border)}
 
 .cf-turnstile{min-height:65px}
+
+
+/* Answer-first summary, article FAQ and sources (AEO) */
+.tv-summary{margin:0 0 var(--s6);padding:var(--s5) var(--s6);border-radius:var(--r-lg);background:linear-gradient(135deg,var(--soft-blue,#EFF6FF),#F5F3FF);border:1px solid var(--border)}
+
+.tv-summary .tv-summary-title{display:flex;align-items:center;gap:8px;margin:0 0 var(--s2);font-family:var(--font-sans);font-size:.8125rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+
+.tv-summary .tv-summary-title svg{width:18px;height:18px;color:var(--violet,#7C3AED)}
+
+.tv-summary p{margin:0;font-size:1.0625rem;line-height:1.6;color:var(--ink)}
+
+.prose .tv-faq,.prose .tv-sources{margin-top:var(--s8)}
+
+.prose .tv-faq .faq summary{font-size:1rem}
+
+.prose .tv-faq .ans p{margin:0}
+
+.tv-sources{margin-bottom:var(--s7)}
+
+.tv-sources ol{padding-left:1.4em;font-size:var(--t-small)}
+
+.tv-sources li+li{margin-top:.4em}
+
+.tv-sources .muted{color:var(--muted)}
+
+
+/* Partners block */
+.tv-partners{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--s4)}
+
+.tv-partner a{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s3);height:100%;padding:var(--s5);border:1px solid var(--border);border-radius:var(--r-lg);background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color var(--dur),box-shadow var(--dur)}
+
+.tv-partner a:hover,.tv-partner a:focus-visible{border-color:var(--ink);box-shadow:var(--sh-2)}
+
+.tv-partner-logo{max-height:44px;width:auto;object-fit:contain}
+
+.tv-partner-initial{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--ink);color:#fff;font-weight:700}
+
+.tv-partner-name{font-weight:600}
+
+.tv-partner-desc{font-size:var(--t-meta);color:var(--muted)}
