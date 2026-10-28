@@ -85,7 +85,8 @@ test( 'approved articles can be scheduled from the calendar endpoint', async ( {
 		{ id, date }
 	);
 	expect( res.id ).toBe( id );
-	await page.reload();
+	// Open the month that contains the new date (it may be next month near month end).
+	await page.goto( `/wp-admin/admin.php?page=techvenza-calendar&m=${ date.slice( 0, 7 ) }` );
 	await expect( page.locator( `.day[data-date="${ date }"] .cal-item[data-id="${ id }"]` ) ).toHaveCount( 1 );
 	await expect( page.locator( `[data-tray] .cal-item[data-id="${ id }"]` ) ).toHaveCount( 0 );
 } );

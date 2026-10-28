@@ -1,0 +1,24 @@
+title,content,slug,excerpt,author,category,tags,status,publish_date,featured_image,image_alt,image_caption,meta_title,meta_description,focus_keyword,summary,faq,sources,key_points,article_type,featured,editors_pick
+How Platform Teams Cut Lead Time in Half,"## Why lead time matters
+
+Lead time — from commit to production — is the clearest signal of how fast a team can learn. Teams in the **2024 DORA research** with short lead times also recovered from incidents faster.
+
+## What the three teams changed
+
+1. They published one *paved road* for new services.
+2. They moved approvals into automated checks.
+3. They measured lead time weekly and shared it.
+
+| Team | Before | After |
+| --- | --- | --- |
+| Payments | 9 days | 4 days |
+| Search | 6 days | 2 days |
+
+![Deployment dashboard](platform-dashboard.svg ""Lead time dashboard"")
+
+> Start with one workflow and make it the easiest path.
+",platform-teams-cut-lead-time,Three platform teams explain the changes that halved their lead time — and the metrics they used to prove it.,priya-natarajan@example.com,Software Development > DevOps,Platform engineering|DevOps|Lead time,publish,2026-10-20 09:00,platform-cover.svg,Illustration of a deployment pipeline with code windows,Illustration: Techvenza,Platform Teams: How to Halve Lead Time,"Three platform teams share the specific changes that halved lead time, from paved roads to automated approvals, and how they measured it.",platform engineering lead time,"Platform teams halve lead time by offering one supported ""paved road"" for new services, replacing manual approvals with automated checks and reviewing lead time every week. The biggest gains come from removing waiting, not from writing code faster.","What is lead time for changes?|The time from a code commit to that change running in production.||What is a paved road?|A supported, well-documented default path for building and shipping services.",DORA research program|https://dora.dev/research/,Measure lead time weekly||Automate approvals||Start with one paved road,analysis,no,yes
+Zero Trust for Small Teams: A 90-Day Plan,"<p>Zero trust is a strategy, not a product. Small teams can make real progress in 90 days.</p><h2>Days 1–30: identity</h2><p>Turn on phishing-resistant MFA for every account and remove standing admin rights.</p><h2>Days 31–60: devices</h2><ul><li>Inventory every laptop</li><li>Require disk encryption</li></ul><h2>Days 61–90: applications</h2><p>Put critical applications behind single sign-on.</p>",zero-trust-small-teams-90-days,A practical 90-day zero trust plan for teams without a dedicated security department.,leila-haddad@example.com,Cybersecurity,"Zero Trust, Identity",draft,,,,,,,zero trust small teams,,,NIST SP 800-207|https://csrc.nist.gov/pubs/sp/800/207/final,,guide,,
+Scheduling Example: Data Contracts in Practice,"Data contracts make the expectations between data producers and consumers explicit.
+
+This plain-text body is converted into paragraphs automatically.",data-contracts-in-practice,,daniel-okafor@example.com,Data Science & Analytics,Data contracts,publish,2027-01-15 08:30,,,,,,,,,,,news,,
