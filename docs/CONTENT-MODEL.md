@@ -23,6 +23,12 @@ block editor's *Techvenza* sidebar, on the category screen or on the user profil
 | `tv_is_sponsored` / `tv_sponsor_name` | bool / string | Sponsored label |
 | `tv_corrections` | {date,text}[] | Dated corrections listed at the end of the article |
 | `tv_seo_title`, `tv_seo_description`, `tv_canonical_url`, `tv_noindex` | | Per-article SEO overrides |
+| `tv_summary` | string | Answer-first summary ("In short"; Markdown, llms.txt, schema `abstract`) |
+| `tv_focus_keyword` | string | Main search phrase (schema `keywords`, SEO checks) |
+| `tv_faq` | {q,a}[] | FAQ section and FAQPage JSON-LD |
+| `tv_sources` | {title,url,rel}[] | Cited sources (schema `citation`) |
+| `tv_disable_autolinks` | bool | No partner auto-links in this article |
+| `tv_imported` | string | Bulk Blog job that created or last updated the article |
 | `tv_view_count`, `tv_views_24h`, `tv_views_7d`, `tv_views_30d` | int | Read-only view aggregates (hourly cron) |
 | `tv_timeline`, `tv_submitted_at` | | Workflow history and queue order (written only by the workflow engine) |
 
@@ -62,6 +68,7 @@ Profile meta (editable by the person): `tv_title`, `tv_expertise`, `tv_categorie
 | `tv_application` | Author applications | `tv_email`, `tv_title`, `tv_org`, `tv_expertise`, `tv_categories`, `tv_bio`, `tv_link`, `tv_samples`, `tv_reason`, `tv_status`, `tv_reference`, `tv_user_id`, `tv_decision_note`, `tv_consent_at`, `tv_history` |
 | `tv_campaign` | Newsletter campaigns | `tv_subject`, `tv_preheader`, `tv_intro`, `tv_posts`, `tv_audience`, `tv_status`, `tv_send_at`, `tv_sent_at`, `tv_stats`, `tv_esp_id` |
 | `tv_message` | Contact form messages | `tv_name`, `tv_email`, `tv_type`, `tv_routed_to`, `tv_handled`, `tv_consent_at`, `tv_ip_hash` |
+| `tv_partner` | Partners / backlinks (Editorial → Partners) | `tv_url`, `tv_rel` (follow/nofollow/sponsored/ugc), `tv_keywords`, `tv_until` |
 | `tv_redirect` | 301/302 redirects (only when the Redirection plugin is not active) | `tv_from`, `tv_to`, `tv_code`, `tv_hits` |
 
 ## Custom tables (`{prefix}tv_*`, versioned migrations in `Database\Schema`)
@@ -94,6 +101,9 @@ One option, `techvenza_settings`, edited at **Editorial → Settings**. Any key 
 | `newsletter/subscribe` | POST | Anyone (same-origin) |
 | `newsletter/unsubscribe/{token}` | POST | Token holder (RFC 8058 one-click) |
 | `forms/contact`, `forms/apply` | POST | Anyone (same-origin) |
+| `bulk/{job}/run` | POST | `tv_publish_posts` (runs the next Bulk Blog batch) |
+
+Public text routes: `/llms.txt`, `/llms-full.txt`, `/{indexnow-key}.txt` and `/{slug}/md/` (Markdown version of an article or page).
 
 The current-user summary and REST nonce come from `admin-ajax.php?action=techvenza_session`, so cached pages never contain personal data.
 
@@ -104,4 +114,7 @@ wp techvenza seed [--skip-images] [--demo-password=<pw>]   # import the prototyp
 wp techvenza reset --yes                                    # remove exactly what the seeder created
 wp techvenza migrate                                        # run table/data migrations
 wp techvenza aggregate                                      # recompute view aggregates now
+wp techvenza illustrations [--force]                        # (re)import the illustration library
+wp techvenza import-csv <file> [--images=<zip>] [--status=<s>] [--duplicates=skip|update|new] \
+  [--no-create-terms] [--inline-images] [--dry-run] [--user=<id>]  # Bulk Blog from the command line
 ```
