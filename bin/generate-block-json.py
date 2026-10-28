@@ -181,6 +181,11 @@ blk('doc-layout','Document with side navigation','Legal/guideline layout: side n
     extra={'tvInner':{'label':'document content (use H2 headings for sections)','template':[['core/heading',{'level':2,'content':'Section'}],['core/paragraph',{}]]}})
 blk('author-profile','Author profile','Author header (photo, title, bio, expertise, links) with featured and latest articles.',{},[],'admin-users',surface=False)
 
+blk('partners','Partners','Logos and links of partner companies managed in Editorial → Partners (link type and expiry per partner).',
+    {'eyebrow':S('Partners'),'heading':S('Companies we work with'),'description':S(''),'count':N(12),'showDescription':B(True)},
+    [{'key':'eyebrow','type':'text','label':'Eyebrow'},{'key':'heading','type':'text','label':'Heading'},{'key':'description','type':'textarea','label':'Description'},{'key':'count','type':'number','label':'Maximum partners','min':1,'max':48},{'key':'showDescription','type':'toggle','label':'Show descriptions'}],'groups',
+    extra={'tvHint':'Add, order and expire partners in Editorial → Partners.'})
+
 # ---------- Forms & accounts ----------
 F = lambda n,t,d,a=None,c=None,icon='feedback': blk(n,t,d,a or {},c or [],icon,script='techvenza-forms',surface=False)
 F('apply-form','Author application form','Contributor application with validation, spam protection and confirmation email.',{'intro':S('')},[{'key':'intro','type':'textarea','label':'Introduction'}])

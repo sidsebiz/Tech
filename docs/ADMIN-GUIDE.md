@@ -94,6 +94,70 @@ description and image, X handle, noindex for tag/author archives — are in **Se
 Account and dashboard pages are never indexed. If you install Yoast SEO, Rank Math, SEOPress or AIOSEO,
 the built-in tags switch off automatically.
 
+## Search & AI answers
+
+Each article has a **Search & AI answers** panel in the editor sidebar: a focus keyword, a 40–80 word
+answer-first summary (shown as "In short"), FAQs (shown at the end and marked up as FAQPage) and sources
+(cited links). The panel scores the article for search and for AI answers and lists what is missing.
+Site-wide switches are in **Settings → AI & answer engines**: `llms.txt`, Markdown versions (`…/md/`),
+AI search and AI training crawlers (robots.txt) and IndexNow.
+
+## Partners & backlinks
+
+**Editorial → Partners** lists companies you link to. For each one set the website, the link type
+(*Sponsored* for paid placements, *Nofollow*, *UGC* or *Follow* for editorial endorsements), optional
+keywords (their first mention in each article becomes a link) and an optional end date. A logo
+(featured image) and short description show in the **Partners** block. Outbound-link defaults (new tab,
+default rel, auto-link limit) are in **Settings → Links & partners**. Turn auto-links off for one
+article in its Search & AI answers panel.
+
+## Images
+
+Articles without a featured image use, in order: the category's **Category image** (Posts → Categories),
+**Settings → Brand → Default cover**, then the topic illustration from the Media Library (search
+"Techvenza illustration"). Replace any of them in the Media Library ("Replace" keeps the same item) or
+choose another image — no code involved. Editors and administrators can upload SVG files; they are
+cleaned automatically.
+
+## Bulk Blog
+
+**Editorial → Bulk Blog** imports many articles from one CSV file.
+
+1. Download the template (or start from `docs/examples/bulk-blog-sample.csv`). Save as CSV (UTF-8);
+   commas, semicolons and tabs all work, and header names are matched loosely (`post_title`, `Title`…).
+2. Optionally add a ZIP of images and refer to them by file name in `featured_image` or in the content.
+3. Choose the default status, what to do when a slug already exists (skip, update, or create a copy),
+   whether to create missing categories and whether to import images found in the content.
+4. **Upload and check** shows every row with errors and warnings; rows with errors are skipped.
+5. **Import** runs in batches with a progress bar; download the results report afterwards.
+
+| Column | Required | What to put in it |
+| --- | --- | --- |
+| `title` | yes | Headline |
+| `content` | yes | HTML, Markdown or plain text (detected automatically) |
+| `slug` |  | URL slug; matches existing articles for updates |
+| `excerpt` |  | Card summary |
+| `author` |  | Email, username or display name; empty = you |
+| `category` |  | Name or slug, several with `|`, `Parent > Child` for subtopics |
+| `tags` |  | Separated by `|` or commas |
+| `status` |  | draft, pending, publish, future or private |
+| `publish_date` |  | `YYYY-MM-DD HH:MM` (site time zone); future + publish = scheduled |
+| `featured_image` |  | Public URL, or a file name inside the images ZIP |
+| `image_alt` |  | Alt text |
+| `image_caption` |  | Caption / credit |
+| `meta_title` |  | SEO title |
+| `meta_description` |  | Search snippet |
+| `focus_keyword` |  | Main search phrase |
+| `summary` |  | Answer-first "In short" text |
+| `faq` |  | `Question|Answer||Question|Answer` or JSON |
+| `sources` |  | `Title|URL||Title|URL` |
+| `key_points` |  | `Point||Point` |
+| `article_type` |  | deep-dive, analysis, guide, opinion, news |
+| `featured / editors_pick / noindex` |  | yes/no |
+| `canonical_url, series, sponsored` |  | Optional |
+
+From the command line: `wp techvenza import-csv articles.csv --images=images.zip --dry-run`.
+
 ## Demo content
 
 `wp techvenza seed` imports the prototype's content; `wp techvenza reset --yes` removes exactly what the

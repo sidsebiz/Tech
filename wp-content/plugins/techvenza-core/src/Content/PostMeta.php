@@ -98,6 +98,32 @@ final class PostMeta {
 					),
 				),
 			),
+			'tv_summary'             => $str + array( 'description' => 'Answer-first summary (40–80 words) shown at the top and used by answer engines.' ),
+			'tv_focus_keyword'       => $str,
+			'tv_faq'                 => array(
+				'type'    => 'array',
+				'default' => array(),
+				'items'   => array(
+					'type'       => 'object',
+					'properties' => array(
+						'q' => array( 'type' => 'string' ),
+						'a' => array( 'type' => 'string' ),
+					),
+				),
+			),
+			'tv_sources'             => array(
+				'type'    => 'array',
+				'default' => array(),
+				'items'   => array(
+					'type'       => 'object',
+					'properties' => array(
+						'title' => array( 'type' => 'string' ),
+						'url'   => array( 'type' => 'string' ),
+						'rel'   => array( 'type' => 'string' ),
+					),
+				),
+			),
+			'tv_disable_autolinks'   => $bool,
 			'tv_seo_title'           => $str,
 			'tv_seo_description'     => $str,
 			'tv_canonical_url'       => $str,
@@ -186,6 +212,33 @@ final class PostMeta {
 				if ( ! is_array( $value ) ) {
 					return array();
 				}
+				if ( 'tv_faq' === $key ) {
+					$out = array();
+					foreach ( $value as $row ) {
+						if ( is_array( $row ) && '' !== trim( (string) ( $row['q'] ?? '' ) ) ) {
+							$out[] = array(
+								'q' => sanitize_text_field( (string) $row['q'] ),
+								'a' => wp_kses_post( (string) ( $row['a'] ?? '' ) ),
+							);
+						}
+					}
+					return $out;
+				}
+				if ( 'tv_sources' === $key ) {
+					$out = array();
+					foreach ( $value as $row ) {
+						$url = is_array( $row ) ? esc_url_raw( (string) ( $row['url'] ?? '' ) ) : '';
+						if ( $url ) {
+							$rel   = sanitize_key( (string) ( $row['rel'] ?? '' ) );
+							$out[] = array(
+								'title' => sanitize_text_field( (string) ( $row['title'] ?? '' ) ),
+								'url'   => $url,
+								'rel'   => in_array( $rel, array( 'nofollow', 'sponsored', 'ugc' ), true ) ? $rel : '',
+							);
+						}
+					}
+					return $out;
+				}
 				if ( 'tv_corrections' === $key ) {
 					$out = array();
 					foreach ( $value as $row ) {
@@ -206,7 +259,7 @@ final class PostMeta {
 				if ( isset( $defs[ $key ]['enum'] ) && ! in_array( $value, $defs[ $key ]['enum'], true ) ) {
 					return $defs[ $key ]['default'];
 				}
-				return in_array( $key, array( 'tv_ai_disclosure_text', 'tv_conflict_disclosure', 'tv_seo_description', 'tv_scheduled_note' ), true )
+				return in_array( $key, array( 'tv_ai_disclosure_text', 'tv_conflict_disclosure', 'tv_seo_description', 'tv_scheduled_note', 'tv_summary' ), true )
 					? sanitize_textarea_field( (string) $value )
 					: sanitize_text_field( (string) $value );
 		}

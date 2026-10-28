@@ -38,6 +38,7 @@ final class Admin {
 			'techvenza-calendar'     => array( __( 'Editorial calendar', 'techvenza-core' ), 'tv_review_posts', array( Calendar::class, 'render' ) ),
 			'techvenza-applications' => array( __( 'Author applications', 'techvenza-core' ), 'tv_manage_applications', array( Applications::class, 'render' ) ),
 			'techvenza-authors'      => array( __( 'Authors', 'techvenza-core' ), 'tv_manage_authors', array( Authors::class, 'render' ) ),
+			'techvenza-bulk'         => array( __( 'Bulk Blog', 'techvenza-core' ), 'tv_publish_posts', array( BulkBlog::class, 'render' ) ),
 			'techvenza-newsletter'   => array( __( 'Newsletter', 'techvenza-core' ), 'tv_manage_newsletter', array( NewsletterScreen::class, 'render' ) ),
 			'techvenza-messages'     => array( __( 'Messages', 'techvenza-core' ), 'tv_manage_messages', array( Messages::class, 'render' ) ),
 			'techvenza-analytics'    => array( __( 'Analytics', 'techvenza-core' ), 'tv_view_analytics', array( Analytics::class, 'render' ) ),
@@ -60,6 +61,7 @@ final class Admin {
 		PostsList::register();
 		Calendar::register();
 		NewsletterScreen::register();
+		BulkBlog::register();
 		Messages::register();
 	}
 
@@ -129,6 +131,9 @@ final class Admin {
 						'moveFailed'               => __( 'Could not reschedule this article.', 'techvenza-core' ),
 						/* translators: 1: title, 2: date */
 						'moveTo'                   => __( 'Move “%1$s” to %2$s?', 'techvenza-core' ),
+						/* translators: 1: rows done, 2: total rows */
+						'bulkProgress'             => __( 'Imported %1$s of %2$s rows…', 'techvenza-core' ),
+						'bulkFailed'               => __( 'The import stopped. Press Continue import to resume.', 'techvenza-core' ),
 					),
 				)
 			);

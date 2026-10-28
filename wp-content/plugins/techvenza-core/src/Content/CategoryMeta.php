@@ -275,7 +275,7 @@ final class CategoryMeta {
 			'tv_icon'            => array( __( 'Icon', 'techvenza-core' ), 'icon', '' ),
 			'tv_intro'           => array( __( 'Intro text', 'techvenza-core' ), 'textarea', __( 'Shown in the category hero.', 'techvenza-core' ) ),
 			'tv_watch'           => array( __( '“What to watch” text', 'techvenza-core' ), 'textarea', __( 'Used in generated article summaries.', 'techvenza-core' ) ),
-			'tv_hero_image'      => array( __( 'Hero image', 'techvenza-core' ), 'media', '' ),
+			'tv_hero_image'      => array( __( 'Category image', 'techvenza-core' ), 'media', __( 'Default cover for this category\'s articles without a featured image, and its social sharing image. Leave empty to use the built-in illustration.', 'techvenza-core' ) ),
 			'tv_seo_title'       => array( __( 'SEO title', 'techvenza-core' ), 'text', '' ),
 			'tv_seo_description' => array( __( 'SEO description', 'techvenza-core' ), 'textarea', '' ),
 			'tv_show_on_home'    => array( __( 'Show on homepage', 'techvenza-core' ), 'toggle', __( 'Include in “Explore by category” tiles.', 'techvenza-core' ) ),

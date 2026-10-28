@@ -175,6 +175,11 @@ final class Fields {
 						'label' => __( 'Favicon / site icon', 'techvenza-core' ),
 						'help'  => __( 'Square, at least 512×512. Saved as the WordPress Site Icon.', 'techvenza-core' ),
 					),
+					'default_cover' => array(
+						'type'  => 'media',
+						'label' => __( 'Default article cover', 'techvenza-core' ),
+						'help'  => __( 'Used for articles without a featured image when their category has no image. Leave empty to use the built-in illustration for each category.', 'techvenza-core' ),
+					),
 					'tagline'       => array(
 						'type'    => 'text',
 						'label'   => __( 'Tagline', 'techvenza-core' ),
@@ -631,6 +636,73 @@ final class Fields {
 						'type'    => 'toggle',
 						'label'   => __( 'Noindex author archives', 'techvenza-core' ),
 						'default' => false,
+					),
+				),
+			),
+			'ai'         => array(
+				'label'  => __( 'AI & answer engines', 'techvenza-core' ),
+				'fields' => array(
+					'llms_enabled'     => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Publish /llms.txt and /llms-full.txt (a curated site map for AI assistants)', 'techvenza-core' ),
+						'default' => true,
+					),
+					'llms_intro'       => array(
+						'type'    => 'textarea',
+						'label'   => __( 'llms.txt introduction', 'techvenza-core' ),
+						'default' => 'Techvenza publishes independent, expert-written analysis of artificial intelligence, software, cloud, cybersecurity, data, business leadership and Industry 4.0. Every article is reviewed by an editor; authors are practitioners named on their profile pages. Please cite articles by title and link.',
+						'help'    => __( 'Plain text or Markdown, shown under the site description.', 'techvenza-core' ),
+					),
+					'markdown_enabled' => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Offer a Markdown version of every article at /article-slug/md/', 'techvenza-core' ),
+						'default' => true,
+					),
+					'ai_search_bots'   => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Allow AI search assistants (ChatGPT search, Perplexity, Claude, DuckAssist…) to read and cite pages', 'techvenza-core' ),
+						'default' => true,
+					),
+					'ai_training_bots' => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Allow AI model training crawlers (GPTBot, ClaudeBot, Google-Extended, CCBot…)', 'techvenza-core' ),
+						'default' => true,
+						'help'    => __( 'Allowing training increases how often models know and mention the publication; switch off to opt out.', 'techvenza-core' ),
+					),
+					'indexnow_enabled' => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Notify search engines instantly via IndexNow when content is published or updated (Bing, Copilot, Yandex, Seznam, Naver)', 'techvenza-core' ),
+						'default' => true,
+					),
+				),
+			),
+			'links'      => array(
+				'label'  => __( 'Links & partners', 'techvenza-core' ),
+				'fields' => array(
+					'external_new_tab' => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Open external links in a new tab', 'techvenza-core' ),
+						'default' => true,
+					),
+					'external_rel'     => array(
+						'type'    => 'select',
+						'label'   => __( 'Default for external links in articles', 'techvenza-core' ),
+						'default' => '',
+						'options' => array(
+							''         => __( 'Follow (editorial links pass ranking signals)', 'techvenza-core' ),
+							'nofollow' => __( 'Nofollow every external link', 'techvenza-core' ),
+						),
+						'help'    => __( 'Partner links use the type set on each partner; sponsored articles always use rel="sponsored".', 'techvenza-core' ),
+					),
+					'autolink_enabled' => array(
+						'type'    => 'toggle',
+						'label'   => __( 'Auto-link partner keywords in articles', 'techvenza-core' ),
+						'default' => true,
+					),
+					'autolink_max'     => array(
+						'type'    => 'number',
+						'label'   => __( 'Maximum auto-links per article', 'techvenza-core' ),
+						'default' => 3,
 					),
 				),
 			),

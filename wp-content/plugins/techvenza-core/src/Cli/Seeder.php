@@ -57,6 +57,13 @@ final class Seeder {
 	private array $images = array();
 
 	/**
+	 * Illustration variant counter per category.
+	 *
+	 * @var array<string,int>
+	 */
+	private array $variants = array();
+
+	/**
 	 * Post IDs by prototype slug.
 	 *
 	 * @var array<string,int>
@@ -111,6 +118,7 @@ final class Seeder {
 		$this->settings();
 		$this->categories();
 		$this->authors();
+		$this->log( 'Illustrations imported: ' . \Techvenza\Core\Media\Images::install_library() );
 		if ( empty( $opts['skip-images'] ) ) {
 			$this->images();
 		}
@@ -546,6 +554,15 @@ final class Seeder {
 		}
 		if ( ! empty( $a['image'] ) && isset( $this->images[ $a['image'] ] ) ) {
 			set_post_thumbnail( (int) $id, $this->images[ $a['image'] ] );
+		} else {
+			// Offline or --skip-images: use the category's original illustration (a Media Library item editors can swap).
+			$cat                    = (string) ( $a['category'] ?? 'default' );
+			$this->variants[ $cat ] = ( $this->variants[ $cat ] ?? -1 ) + 1;
+			$variant                = $this->variants[ $cat ];
+			$ill                    = \Techvenza\Core\Media\Images::attachment( \Techvenza\Core\Media\Images::name_for( $cat, $variant ) );
+			if ( $ill ) {
+				set_post_thumbnail( (int) $id, $ill );
+			}
 		}
 		return (int) $id;
 	}
@@ -582,7 +599,10 @@ final class Seeder {
 				'tv_reading_time_manual' => true,
 				'tv_seo_title'           => $a['title'],
 				'tv_seo_description'     => $a['excerpt'],
+				'tv_summary'             => $a['excerpt'],
+				'tv_focus_keyword'       => strtolower( (string) ( ( (array) $a['tags'] )[0] ?? '' ) ),
 			);
+			$meta = array_merge( $meta, self::answer_content()[ $a['slug'] ] ?? array() );
 			foreach ( $meta as $k => $v ) {
 				update_post_meta( $id, $k, $v );
 			}
@@ -591,6 +611,73 @@ final class Seeder {
 			Workflow::log( $id, 'approved', 'publish', 'publish', $this->users['ananya-rao'] ?? 0, '', '', $a['publishedAt'] . ' 09:00:00' );
 		}
 		$this->log( 'Published articles: ' . count( $this->posts ) );
+	}
+
+	/**
+	 * Answer-engine content (FAQ and sources) for flagship demo articles.
+	 *
+	 * @return array<string,array<string,mixed>>
+	 */
+	private static function answer_content(): array {
+		return array(
+			'the-agentic-enterprise'      => array(
+				'tv_summary' => 'AI agents differ from chatbots because they take actions: they call tools, plan multi-step work and act with delegated authority. Enterprises adopting them need to treat agents like new colleagues — with scoped permissions, evaluation against real workflows, full observability and a clear human escalation path — before scaling beyond pilots.',
+				'tv_faq'     => array(
+					array(
+						'q' => 'What is an AI agent in an enterprise context?',
+						'a' => 'A system in which a language model chooses actions from a defined set of tools — searching, writing, updating records — and keeps going until it reaches a goal or a stopping condition, rather than only suggesting text to a human.',
+					),
+					array(
+						'q' => 'How should companies control what an AI agent can do?',
+						'a' => 'Give each agent its own identity with least-privilege permissions, require human approval for irreversible or high-value actions, and log every tool call so actions can be audited and reversed.',
+					),
+					array(
+						'q' => 'How do you evaluate an AI agent before production?',
+						'a' => 'Test it on recorded real tasks and score the whole trajectory — the steps, tool calls and final outcome — not just the final answer. Track cost, latency and the rate of escalations to humans alongside accuracy.',
+					),
+				),
+				'tv_sources' => array(
+					array(
+						'title' => 'NIST AI Risk Management Framework',
+						'url'   => 'https://www.nist.gov/itl/ai-risk-management-framework',
+						'rel'   => '',
+					),
+					array(
+						'title' => 'OWASP Top 10 for Large Language Model Applications',
+						'url'   => 'https://owasp.org/www-project-top-10-for-large-language-model-applications/',
+						'rel'   => '',
+					),
+				),
+			),
+			'zero-trust-12-month-roadmap' => array(
+				'tv_faq'     => array(
+					array(
+						'q' => 'What is zero trust security?',
+						'a' => 'A security model that never grants access based on network location alone: every request is authenticated, authorised and continuously evaluated using identity, device health and context.',
+					),
+					array(
+						'q' => 'Where should a zero trust programme start?',
+						'a' => 'With identity: phishing-resistant multi-factor authentication for everyone, single sign-on for critical applications and removal of standing admin rights.',
+					),
+					array(
+						'q' => 'How long does a zero trust roadmap take?',
+						'a' => 'Most organisations see meaningful risk reduction within twelve months by sequencing identity, devices, applications and data, but zero trust is an ongoing operating model rather than a one-off project.',
+					),
+				),
+				'tv_sources' => array(
+					array(
+						'title' => 'NIST SP 800-207: Zero Trust Architecture',
+						'url'   => 'https://csrc.nist.gov/pubs/sp/800/207/final',
+						'rel'   => '',
+					),
+					array(
+						'title' => 'CISA Zero Trust Maturity Model',
+						'url'   => 'https://www.cisa.gov/zero-trust-maturity-model',
+						'rel'   => '',
+					),
+				),
+			),
+		);
 	}
 
 	/**

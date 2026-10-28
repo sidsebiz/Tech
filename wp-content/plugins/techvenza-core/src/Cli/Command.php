@@ -1,6 +1,6 @@
 <?php
 /**
- * WP-CLI commands: `wp techvenza seed|reset|migrate|aggregate`.
+ * WP-CLI commands: `wp techvenza seed|reset|migrate|aggregate|illustrations|import-csv`.
  *
  * @package Techvenza\Core
  */
@@ -103,5 +103,99 @@ final class Command {
 	public function aggregate( array $args, array $assoc ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- WP-CLI signature.
 		Views::aggregate();
 		\WP_CLI::success( 'View aggregates updated.' );
+	}
+
+	/**
+	 * Import the bundled illustration library into the Media Library.
+	 *
+	 * ## OPTIONS
+	 *
+	 * [--force]
+	 * : Re-import illustrations that already exist.
+	 *
+	 * @param array<int,string>    $args  Positional.
+	 * @param array<string,string> $assoc Flags.
+	 */
+	public function illustrations( array $args, array $assoc ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- WP-CLI signature.
+		$n = \Techvenza\Core\Media\Images::install_library( ! empty( $assoc['force'] ) );
+		\WP_CLI::success( $n . ' illustrations imported.' );
+	}
+
+	/**
+	 * Import articles from a Bulk Blog CSV (same format as Editorial → Bulk Blog).
+	 *
+	 * ## OPTIONS
+	 *
+	 * <file>
+	 * : Path to the CSV file.
+	 *
+	 * [--images=<zip>]
+	 * : ZIP of images referenced by file name.
+	 *
+	 * [--status=<status>]
+	 * : Default status for rows without one (draft, pending, publish). Default: draft.
+	 *
+	 * [--duplicates=<mode>]
+	 * : skip, update or new when the slug already exists. Default: skip.
+	 *
+	 * [--no-create-terms]
+	 * : Do not create missing categories.
+	 *
+	 * [--inline-images]
+	 * : Copy images used inside the content into the Media Library.
+	 *
+	 * [--dry-run]
+	 * : Validate only.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp techvenza import-csv articles.csv --status=publish --user=admin
+	 *
+	 * @subcommand import-csv
+	 * @param array<int,string>    $args  Positional.
+	 * @param array<string,string> $assoc Flags.
+	 */
+	public function import_csv( array $args, array $assoc ): void {
+		$file = (string) ( $args[0] ?? '' );
+		if ( ! is_readable( $file ) ) {
+			\WP_CLI::error( 'CSV file not found: ' . $file );
+		}
+		$job = \Techvenza\Core\Import\Importer::create(
+			$file,
+			(string) ( $assoc['images'] ?? '' ),
+			basename( $file ),
+			array(
+				'status'        => (string) ( $assoc['status'] ?? 'draft' ),
+				'duplicates'    => (string) ( $assoc['duplicates'] ?? 'skip' ),
+				'create_terms'  => \WP_CLI\Utils\get_flag_value( $assoc, 'create-terms', true ),
+				'inline_images' => ! empty( $assoc['inline-images'] ),
+			)
+		);
+		if ( is_wp_error( $job ) ) {
+			\WP_CLI::error( $job->get_error_message() );
+		}
+		foreach ( \Techvenza\Core\Import\Importer::rows( (string) $job['id'] ) as $row ) {
+			foreach ( (array) $row['errors'] as $e ) {
+				\WP_CLI::warning( 'Line ' . $row['line'] . ': ' . $e );
+			}
+			foreach ( (array) $row['warnings'] as $w ) {
+				\WP_CLI::log( 'Line ' . $row['line'] . ': ' . $w );
+			}
+		}
+		\WP_CLI::log( sprintf( '%d rows, %d ready.', $job['total'], $job['valid'] ) );
+		if ( ! empty( $assoc['dry-run'] ) ) {
+			\Techvenza\Core\Import\Importer::delete( (string) $job['id'] );
+			\WP_CLI::success( 'Dry run complete — nothing was imported.' );
+			return;
+		}
+		do {
+			$job = \Techvenza\Core\Import\Importer::run( (string) $job['id'], 60 );
+			if ( is_wp_error( $job ) ) {
+				\WP_CLI::error( $job->get_error_message() );
+			}
+			\WP_CLI::log( sprintf( '%d/%d', $job['cursor'], $job['total'] ) );
+		} while ( 'done' !== $job['status'] );
+		$c = $job['counts'];
+		\WP_CLI::success( sprintf( '%d created, %d updated, %d skipped, %d failed.', $c['created'], $c['updated'], $c['skipped'], $c['failed'] ) );
 	}
 }

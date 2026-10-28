@@ -116,9 +116,21 @@ final class Render {
 	 * @param array<string,mixed> $o Options: ratio, eager, sizes, decorative, size.
 	 */
 	public static function media( array $a, array $o = array() ): string {
-		$cat   = $a['cat'] ?? null;
-		$style = sprintf( '--c:%s;--c2:%s', $cat['color'] ?? '#2563EB', $o['c2'] ?? '#7C3AED' );
-		$img   = '';
+		$cat        = $a['cat'] ?? null;
+		$style      = sprintf( '--c:%s;--c2:%s', $cat['color'] ?? '#2563EB', $o['c2'] ?? '#7C3AED' );
+		$img        = '';
+		$a['image'] = (int) ( $a['image'] ?? 0 );
+		if ( ! $a['image'] && empty( $o['no_fallback'] ) ) {
+			$a['image'] = \Techvenza\Core\Media\Images::fallback_id( $cat, (int) ( $a['id'] ?? 0 ) );
+			$a['alt']   = '';
+		}
+		if ( ! $a['image'] && empty( $o['no_fallback'] ) ) {
+			$img = sprintf(
+				'<img src="%s" alt="" width="1600" height="900" decoding="async"%s>',
+				esc_url( \Techvenza\Core\Media\Images::bundled_url( \Techvenza\Core\Media\Images::name_for( (string) ( $cat['slug'] ?? 'default' ), (int) ( $a['id'] ?? 0 ) ) ) ),
+				! empty( $o['eager'] ) ? ' fetchpriority="high"' : ' loading="lazy"'
+			);
+		}
 		if ( ! empty( $a['image'] ) ) {
 			$attrs = array(
 				'alt'      => ! empty( $o['decorative'] ) ? '' : (string) $a['alt'],
